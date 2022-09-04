@@ -1,0 +1,332 @@
+
+.wpforms-pdf-form-integration-card
+{
+	table-layout: fixed;
+}
+
+.wpforms-pdf-form-integration-card .code
+{
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+
+.pdf-forms-for-wpforms-admin table,
+.pdf-forms-for-wpforms-admin input[type=file]
+{
+	width: 100%;
+	max-width: 100%;
+}
+
+.pdf-forms-for-wpforms-admin .tags-textarea
+{
+	min-height: 180px;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.pdf-forms-for-wpforms-admin .submitbox
+{
+	margin: 10px 0;
+}
+
+.pdf-forms-for-wpforms-admin .pdf-form-data-box,
+.pdf-forms-for-wpforms-admin .preload-data,
+.pdf-forms-for-wpforms-admin .wpf-field-list
+{
+	display: none;
+}
+
+.pdf-forms-for-wpforms-admin .pdf-options-hidden,
+.pdf-forms-for-wpforms-admin .pdf-attachment-row-template,
+.pdf-forms-for-wpforms-admin .pdf-mapping-row-template,
+.pdf-forms-for-wpforms-admin .pdf-mapping-row-smarttag-template,
+.pdf-forms-for-wpforms-admin .pdf-mapping-row-valuemapping-template,
+.pdf-forms-for-wpforms-admin .image-embeds-row-template,
+.pdf-forms-for-wpforms-admin .image-embeds-row-smarttag-template
+{
+	display: none;
+}
+
+.pdf-forms-for-wpforms-admin .convert-to-smarttags-button
+{
+	text-decoration: none;
+}
+
+.pdf-forms-for-wpforms-admin td.smart-tags div.wpforms-panel-field
+{
+	width: 100%;
+	max-width: 100%;
+}
+
+.pdf-forms-for-wpforms-admin .filename-column
+{
+	width: 100%
+}
+
+.pdf-forms-for-wpforms-admin .pdf-attachment-row .pdf-filename
+{
+	word-break: break-all;
+}
+
+.pdf-forms-for-wpforms-admin div.pdf-options
+{
+	padding: 10px;
+}
+
+.pdf-forms-for-wpforms-admin div.pdf-options div
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.pdf-forms-for-wpforms-admin div.pdf-options > div.pdf-options-multiline
+{
+	border-bottom: 1px dotted gray;
+}
+
+.pdf-forms-for-wpforms-admin div.pdf-options div.flex
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.pdf-forms-for-wpforms-admin div.pdf-options div.flex input
+{
+	flex: 1;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.pdf-forms-for-wpforms-admin .notification,
+.pdf-forms-for-wpforms-admin .confirmation
+{
+	width: 40%;
+	min-width: 350px;
+}
+
+.pdf-forms-for-wpforms-admin .notification .select2,
+.pdf-forms-for-wpforms-admin .confirmation .select2
+{
+	width: 100%;
+	max-width: 100%;
+	display: inline-block;
+	position: relative;
+	top: 0;
+	left: 0;
+	transform: none;
+}
+
+.pdf-forms-for-wpforms-admin .pdf-buttons
+{
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.pdf-forms-for-wpforms-admin .mapping-table
+{
+	width: 100%;
+}
+
+.pdf-forms-for-wpforms-admin .mapping-table th,
+.pdf-forms-for-wpforms-admin .mapping-table td
+{
+	vertical-align: top;
+	text-align: center;
+	width: auto;
+	word-break: break-all;
+}
+
+.pdf-forms-for-wpforms-admin .mapping-table td.mapping-arrow
+{
+	width: 1%;
+	white-space: nowrap;
+}
+
+.pdf-forms-for-wpforms-admin .mapping-table td.buttons
+{
+	width: 1%;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.pdf-forms-for-wpforms-admin .mapping-table td,
+.pdf-forms-for-wpforms-admin .mapping-table th
+{
+	vertical-align: middle;
+}
+
+.pdf-forms-for-wpforms-admin .generate-and-insert-all-tags-message
+{
+	word-break: normal !important;
+	text-align: left !important;
+}
+
+.pdf-forms-for-wpforms-admin .pdf-fields-mapper td.wpf-field,
+.pdf-forms-for-wpforms-admin .pdf-fields-mapper th.wpf-field,
+.pdf-forms-for-wpforms-admin .pdf-fields-mapper td.pdf-field,
+.pdf-forms-for-wpforms-admin .pdf-fields-mapper th.pdf-field
+{
+	width: 40%;
+	vertical-align: middle;
+}
+
+.pdf-forms-for-wpforms-admin .pdf-valuemapping-row td.wpf-field
+{
+	padding-left: 20px;
+}
+
+.pdf-forms-for-wpforms-admin .pdf-valuemapping-row td.pdf-field
+{
+	padding-right: 20px;
+}
+
+.pdf-forms-for-wpforms-admin .pdf-valuemapping-row td
+{
+	background-color: rgba(100, 100, 100, 0.2);
+}
+
+.pdf-forms-for-wpforms-admin .mapping-table input,
+.pdf-forms-for-wpforms-admin .mapping-table textarea,
+.pdf-forms-for-wpforms-admin .mapping-table select
+{
+	width: 100%;
+	min-width: 50px;
+}
+
+
+.pdf-forms-for-wpforms-admin select
+{
+	width: 100%;
+	min-width: 50px;
+	text-overflow: ellipsis;
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #aaa;
+}
+
+.pdf-forms-for-wpforms-admin .select-dropdown
+{
+	position: relative;
+}
+
+.pdf-forms-for-wpforms-admin .select2
+{
+	/*
+	TODO: fix this
+	width: calc(100% - 10px);
+	max-width: calc(100% - 10px);
+	max-height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	*/
+}
+
+.pdf-forms-for-wpforms-admin .select2-results__option
+{
+	margin-bottom: 0;
+}
+
+.pdf-forms-for-wpforms-admin .footer
+{
+	padding-bottom: 15px;
+}
+
+.pdf-forms-for-wpforms-admin .helpbox
+{
+	margin-top: 15px;
+}
+
+.pdf-forms-for-wpforms-admin .help-button
+{
+	float: right;
+	padding-right: 10px;
+}
+
+.pdf-forms-for-wpforms-admin .field-hint-row
+{
+	vertical-align: middle !important;
+	text-align: left !important;
+}
+
+.pdf-forms-for-wpforms-admin .field-hint
+{
+	font-weight: bold;
+	word-break: break-all;
+}
+
+.pdf-forms-for-wpforms-admin .marked-row-background
+{
+	background-color: rgba(100, 100, 100, 0.2);
+}
+
+.pdf-forms-for-wpforms-admin .image-embeds th.wpf-field,
+.pdf-forms-for-wpforms-admin .image-embeds td.wpf-field,
+.pdf-forms-for-wpforms-admin .image-embeds th.pdf-file,
+.pdf-forms-for-wpforms-admin .image-embeds td.pdf-file
+{
+	width: 30%;
+}
+
+.pdf-forms-for-wpforms-admin .image-embeds td,
+.pdf-forms-for-wpforms-admin .image-embeds th
+{
+	vertical-align: middle;
+}
+
+.pdf-forms-for-wpforms-admin .jcrop-container
+{
+	margin: 0 auto;
+	width: 700px;
+	overflow: hidden;
+}
+
+.pdf-forms-for-wpforms-admin .jcrop-page
+{
+	width: 700px;
+}
+
+.pdf-forms-for-wpforms-admin input.coordinate
+{
+	width: 100px !important;
+}
+
+.pdf-forms-for-wpforms-admin .page-coordinates span
+{
+	margin: 0 5px;
+}
+
+.pdf-forms-for-wpforms-admin .image-region-selection-hint
+{
+	font-style: italic;
+}
+
+.wpf-panel-field-list
+{
+	max-width: calc(100% - 10px) !important;
+	margin: 0 auto;
+}
+
+.pdf-forms-for-wpforms-admin .select-dropdown .select2 .selection > span
+{
+	height: 32px !important;
+}
+
+.pdf-forms-for-wpforms-admin .image-embeds td.pdf-page
+{
+	width: 10%;
+}
+
+.pdf-forms-for-wpforms-admin .messages .error,
+.pdf-forms-for-wpforms-notice.notice-error
+{
+	color: red;
+}
+
+.pdf-forms-for-wpforms-admin .messages .warning,
+.pdf-forms-for-wpforms-notice.notice-warning
+{
+	color: #f0ad4e;
+}

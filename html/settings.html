@@ -1,0 +1,275 @@
+<div class="control-box pdf-forms-for-wpforms-admin wpforms-panel-content-section wpforms-panel-content-section-pdf-forms" data-section="pdf-forms" style="height: auto;">
+	
+	{data-field}
+	{preload-data}
+	
+	<select class="wpf-field-list wpforms-field-map-select" data-field-map-allowed="all-fields"></select>
+	
+	<div class="wpforms-panel-content-section-title">{title}</div>
+	
+	{messages}
+	
+	<p class="instructions">{instructions}</p>
+	
+	<a name="wpforms-pdf-form-messages"></a>
+	<div class="messages"></div>
+	
+	<table class="form-table pdf-attachments">
+		<tbody>
+			<tr class="pdf-buttons">
+				<td class="filename-column"></td>
+				<td class="pdf-buttons">
+					<input type="button" name="attach" class="button button-primary attach-btn" value="{attach-pdf}"/>
+				</td>
+			</tr>
+			<tr class="pdf-attachment-row-template">
+				<td class="filename-column">
+					<span class="pdf-filename"></span>
+					<div class="pdf-options pdf-options-hidden" style="display:none">
+						<div class="wpforms-panel-field pdf-option-skip"><input data-option="skip_empty" type="checkbox"/> {skip-when-empty}</div>
+						<div class="wpforms-panel-field pdf-option-flatten"><input data-option="flatten" type="checkbox"/> {flatten}</div>
+						<div class="wpforms-panel-field pdf-option-filename pdf-options-multiline">
+								<label for="pdf-forms-for-wpforms-smart-tags">
+									<span>{filename}</span>
+									<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
+								</label>
+								<div class="flex"><input id="pdf-forms-for-wpforms-smart-tags" data-option="filename" type="text" class="smart-tags"/><span>.pdf</span></div>
+								<div>{leave-blank-to-disable}</div>
+							</div>
+						<div class="wpforms-panel-field pdf-option-save-directory pdf-options-multiline">
+							<label for="pdf-forms-for-wpforms-smart-tags">
+								<span>{save-directory}</span>
+								<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
+							</label>
+							<div class="flex"><span>wp-content/uploads/</span><input id="pdf-forms-for-wpforms-smart-tags" data-option="save_directory" type="text" class="smart-tags"/></div>
+							<div>{leave-blank-to-disable}</div>
+						</div>
+						<div class="wpforms-panel-field pdf-option-confirmations select-dropdown confirmation">
+							{confirmations}<br/>
+							<select class="confirmations-list" multiple="multiple" data-option="confirmations"></select>
+						</div>
+						<div class="wpforms-panel-field pdf-option-notifications select-dropdown notification">
+							{notifications}<br/>
+							<select class="notifications-list" multiple="multiple" data-option="notifications"></select>
+						</div>
+					</div>
+				</td>
+				<td class="pdf-buttons">
+					<a class="button button-secondary pdf-options-button" href="#">{options}</a>
+					<a class="button button-secondary delete-button" href="#">{delete}</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<hr/>
+	
+	<div class="field-mapping-tool">
+		<div>
+			<span class="dashicons dashicons-randomize"></span>
+			<strong>{field-mapping}</strong>
+			<a class="help-button" href="#">{hide-help}</a>
+			<div class="helpbox">
+				<span class="dashicons dashicons-editor-help"></span>
+				{field-mapping-help}
+			</div>
+		</div>
+		
+		<table class="form-table pdf-fields-mapper mapping-table">
+			<tbody>
+				<tr>
+					<th class="wpf-field">{wpf-field}</th>
+					<th></th>
+					<th class="pdf-field">{pdf-field}</th>
+				</tr>
+				<tr class="marked-row-background">
+					<td class="wpf-field select-dropdown">
+						<select class="wpf-field-smarttag-list"></select>
+					</td>
+					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>
+					<td class="pdf-field select-dropdown"><select class="pdf-field-list"></select></td>
+					<td class="buttons">
+						<a class="button button-primary add-mapping-button" href="#">{add-mapping}</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="field-hint-row"><p>{new-field} <span class="field-hint"></span></p></td>
+					<td class="buttons"><input type="button" class="button button-primary insert-field-btn" value="{insert-tag}" /></td>
+				</tr>
+				<tr class="marked-row-background">
+					<td colspan="3" class="generate-and-insert-all-tags-message">{generate-and-insert-all-tags-message}</td>
+					<td class="buttons"><input type="button" class="button button-primary insert-and-map-all-fields-btn" value="{insert-and-map-all-tags}" /></td>
+				</tr>
+				<tr class="pdf-mapping-row-template">
+					<td class="wpf-field"><span class="wpf-field-name"></span> <a class="convert-to-smarttags-button" href="#"><span class="dashicons dashicons-edit"></span></a></td>
+					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>
+					<td class="pdf-field"><span class="pdf-field-name"></span></td>
+					<td class="buttons">
+						<a class="button button-small delete-mapping-button" href="#">{delete}</a>
+						<a class="button button-small map-value-button" href="#">{map-value}</a>
+					</td>
+				</tr>
+				<tr class="pdf-mapping-row-smarttag-template">
+					<td class="smart-tags">
+						<div class="wpforms-panel-field">
+							<label for="pdf-forms-for-wpforms-smart-tags">
+								{add-smart-tags}
+								<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
+							</label>
+							<textarea id="pdf-forms-for-wpforms-smart-tags" spellcheck="false" class="smart-tags"></textarea>
+						</div>
+					</td>
+					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>
+					<td class="pdf-field"><span class="pdf-field-name"></span></td>
+					<td class="buttons">
+						<a class="button button-small delete-mapping-button" href="#">{delete}</a>
+						<a class="button button-small map-value-button" href="#">{map-value}</a>
+					</td>
+				</tr>
+				<tr class="pdf-mapping-row-valuemapping-template">
+					<td class="wpf-field"><input type="text" class="wpf-value"></textarea></td>
+					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right"></span></td>
+					<td class="pdf-field"><input type="text" class="pdf-value"></td>
+					<td class="buttons">
+						<a class="button button-small delete-valuemapping-button" href="#">{delete}</a>
+					</td>
+				</tr>
+				<tr class="delete-all-row">
+					<td colspan="3"></td>
+					<td class="buttons">
+						<a class="button button-small delete-all-mappings-button" href="#">{delete-all-mappings}</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<hr/>
+	
+	<div class="image-embedding-tool">
+		
+		<div>
+			<span class="dashicons dashicons-media-document"></span>
+			<strong>{image-embedding}</strong>
+			<a class="help-button" href="#">{hide-help}</a>
+			
+			<div class="helpbox">
+				<span class="dashicons dashicons-editor-help"></span>
+				{image-embedding-help}
+			</div>
+		</div>
+		
+		<table class="form-table image-embeds mapping-table">
+			<tbody>
+				<tr>
+					<th class="wpf-field"><label for="embed-wpf-field">{wpf-field}</label></th>
+					<th></th>
+					<th class="pdf-file"><label for="embed-pdf-list">{pdf-file}</label></th>
+					<th><label for="embed-page">{page}</label></th>
+					<th></th>
+				</tr>
+				<tr>
+					<td class="wpf-field select-dropdown">
+						<select class="wpf-field-smarttag-list"></select>
+					</td>
+					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>
+					<td class="pdf-file select-dropdown"><select class="pdf-files-list" name="embed-pdf-list"></select></td>
+					<td class="pdf-page select-dropdown"><select class="page-list" name="embed-page"></select></td>
+					<td class="buttons"><a class="button button-primary add-wpf-field-embed-button" href="#">{add-wpf-field-embed}</a></td>
+				</tr>
+				<tr class="image-embeds-row-template">
+					<td colspan="5">
+						<hr/>
+					</td>
+				</tr>
+				<tr class="image-embeds-row-template">
+					<td class="wpf-field wpf-field-caption"><span class="wpf-field-name"></span> <a class="convert-to-smarttags-button" href="#"><span class="dashicons dashicons-edit"></span></a></td>
+					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>
+					<td class="pdf-file pdf-file-caption"></td>
+					<td class="page-caption"></td>
+					<td class="buttons"><a class="button button-small delete-wpf-field-embed-button" href="#">{delete-wpf-field-embed}</a></td>
+				</tr>
+				<tr class="image-embeds-row-template page-selector-row">
+					<td colspan="5">
+						<div class="image-region-selection-hint">{image-region-selection-hint}</div>
+						<div class="jcrop-container">
+							<img class="jcrop-page" width="500" height="600" />
+						</div>
+						<div class="page-coordinates">
+							<span>
+								<label for="left">Left</label>
+								<input type="number" min="0" name="left" class="coordinate" value="10"/> pts;
+							</span>
+							<span>
+								<label for="top">Top</label>
+								<input type="number" min="0" name="top" class="coordinate" value="10"/> pts;
+							</span>
+							<span>
+								<label for="width">Width</label>
+								<input type="number" min="0" name="width" class="coordinate" value="50"/> pts;
+							</span>
+							<span>
+								<label for="height">Height</label>
+								<input type="number" min="0" name="height" class="coordinate" value="50"/> pts;
+							</span>
+						</div>
+					</td>
+				</tr>
+				<tr class="image-embeds-row-smarttag-template">
+					<td colspan="5">
+						<hr/>
+					</td>
+				</tr>
+				<tr class="image-embeds-row-smarttag-template">
+					<td class="smart-tags">
+						<div class="wpforms-panel-field">
+							<label for="pdf-forms-for-wpforms-smart-tags">
+								{add-smart-tags}
+								<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
+							</label>
+							<textarea id="pdf-forms-for-wpforms-smart-tags" spellcheck="false" class="smart-tags"></textarea>
+						</div>
+					</td>
+					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>
+					<td class="pdf-file pdf-file-caption"></td>
+					<td class="page-caption"></td>
+					<td class="buttons"><a class="button button-small delete-wpf-field-embed-button" href="#">{delete-wpf-field-embed}</a></td>
+				</tr>
+				<tr class="image-embeds-row-smarttag-template page-selector-row">
+					<td colspan="5">
+						<div class="image-region-selection-hint">{image-region-selection-hint}</div>
+						<div class="jcrop-container">
+							<img class="jcrop-page" width="500" height="600" />
+						</div>
+						<div class="page-coordinates">
+							<span>
+								<label for="left">Left</label>
+								<input type="number" min="0" name="left" class="coordinate" value="10"/> pts;
+							</span>
+							<span>
+								<label for="top">Top</label>
+								<input type="number" min="0" name="top" class="coordinate" value="10"/> pts;
+							</span>
+							<span>
+								<label for="width">Width</label>
+								<input type="number" min="0" name="width" class="coordinate" value="50"/> pts;
+							</span>
+							<span>
+								<label for="height">Height</label>
+								<input type="number" min="0" name="height" class="coordinate" value="50"/> pts;
+							</span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	
+	<hr/>
+	
+	<div class="footer">
+		<span class="dashicons dashicons-editor-help"></span>
+		{help-message}
+	</div>
+</div>
