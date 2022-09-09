@@ -185,7 +185,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		 */
 		public function action_links( $links )
 		{
-			$links[] = '<a target="_blank" href="https://pdfformsfiller.org/docs/wpforms/">'.esc_html__( "Docs", 'pdf-forms-for-wpforms' ).'</a>';
 			$links[] = '<a target="_blank" href="https://wordpress.org/support/plugin/pdf-forms-for-wpforms/">'.esc_html__( "Support", 'pdf-forms-for-wpforms' ).'</a>';
 			return $links;
 		}
