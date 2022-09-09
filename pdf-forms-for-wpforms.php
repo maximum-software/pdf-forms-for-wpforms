@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: PDF Forms for WPForms
+ * Plugin Name: PDF Forms Filler for WPForms
  * Plugin URI: https://pdfformsfiller.org/
  * Description: Build WPForms from PDF forms. Get PDFs filled automatically and attached to email messages and/or website responses on form submissions.
  * Version: 1.0.0

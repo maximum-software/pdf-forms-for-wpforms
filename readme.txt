@@ -1,4 +1,4 @@
-=== PDF Forms for WPForms ===
+=== PDF Forms Filler for WPForms ===
 Version: 1.0.0
 Stable tag: 1.0.0
 Requires at least: 5.4
