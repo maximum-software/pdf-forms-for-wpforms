@@ -50,7 +50,7 @@ Special thanks to the following sponsors of this plugin:
 
 = 1.0.0 =
 
-* Release date: September 4, 2022
+* Release date: September 9, 2022
 
 * Initial release
 
