@@ -17,7 +17,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 msgid "PDF Forms Filler for WPForms"
-msgstr "Preenchendo formulários PDF para CF7"
+msgstr "Preenchendo formulários PDF para WPForms"
 
 #. Plugin URI of the plugin
 msgid "https://pdfformsfiller.org/"
