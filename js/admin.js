@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
 		});
 	}
 	
-	jQuery.fn.select2.amd.define("pdf-forms-for-wpf-shared-data-adapter", 
+	jQuery.fn.select2.amd.define("pdf-forms-for-wpforms-shared-data-adapter", 
 	['select2/data/array','select2/utils'],
 		function (ArrayData, Utils) {
 			function CustomData($element, options) {
@@ -156,7 +156,7 @@ jQuery(document).ready(function($) {
 				dropdownAutoWidth: true,
 				sharedDataElement: option,
 				dropdownParent: jQuery('#wpforms-builder'),
-				dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpf-shared-data-adapter")
+				dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter")
 			})
 			.change(function() {
 				var attachment_id = jQuery(this).data('attachment_id');
@@ -237,7 +237,7 @@ jQuery(document).ready(function($) {
 		width: '100%',
 		sharedDataElement: "wpfFieldsCache",
 		dropdownParent: jQuery('#wpforms-builder'),
-		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpf-shared-data-adapter")
+		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter")
 	}).on('select2:select', function (e) {
 		var data = e.params.data;
 		jQuery(this).find('option:selected').attr('data-smarttags', data['smarttag']);
@@ -248,7 +248,7 @@ jQuery(document).ready(function($) {
 		width: '100%',
 		sharedDataElement: "unmappedPdfFields",
 		dropdownParent: jQuery('#wpforms-builder'),
-		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpf-shared-data-adapter")
+		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter")
 	});
 	
 	jQuery('.pdf-forms-for-wpforms-admin .pdf-files-list').select2({
@@ -257,7 +257,7 @@ jQuery(document).ready(function($) {
 		dropdownAutoWidth: true,
 		sharedDataElement: "pdfSelect2Files",
 		dropdownParent: jQuery('#wpforms-builder'),
-		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpf-shared-data-adapter")
+		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter")
 	});
 	jQuery('.pdf-forms-for-wpforms-admin .page-list').select2({
 		ajax: {},
@@ -265,7 +265,7 @@ jQuery(document).ready(function($) {
 		dropdownAutoWidth: true,
 		sharedDataElement: "pageList",
 		dropdownParent: jQuery('#wpforms-builder'),
-		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpf-shared-data-adapter")
+		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter")
 	});
 	
 	var clearMessages = function()
@@ -975,7 +975,7 @@ jQuery(document).ready(function($) {
 				sharedDataElementId: wpfField.id,
 				tags: true,
 				dropdownParent: jQuery('#wpforms-builder'),
-				dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpf-shared-data-adapter"),
+				dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter"),
 			});
 			
 			select.append(new Option(data.wpf_value, data.wpf_value, true, true));
