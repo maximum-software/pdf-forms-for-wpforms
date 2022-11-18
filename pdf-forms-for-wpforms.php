@@ -507,7 +507,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 								{
 									$mappings[] = array( 'smart_tags' => $mapping['smart_tags'], 'pdf_field' => $mapping['pdf_field'] );
 								}
-																
 							}
 						}
 						$data['mappings'] = $mappings;
@@ -551,7 +550,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 								// TODO: don't reuse user input but create a new array with checked data
 								$embeds[] = $embed;
 							}
-								
 						}
 						$data['embeds'] = $embeds;
 						
