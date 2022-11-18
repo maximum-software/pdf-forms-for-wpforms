@@ -17,7 +17,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 msgid "PDF Forms Filler for WPForms"
-msgstr "PDF-Formularausfüller für WPForms"
+msgstr "PDF Forms Filler for WPForms"
 
 #. Plugin URI of the plugin
 msgid "https://pdfformsfiller.org/"
@@ -67,7 +67,7 @@ msgstr "E-Mail-Adresse des Administrators"
 
 #: modules/pdf-ninja.php:89
 msgid "Get new key"
-msgstr "Neuen Schlüssel besorgen"
+msgstr "Neuen Schlüssel abrufen"
 
 #: modules/pdf-ninja.php:98
 msgid "API URL"
@@ -109,17 +109,17 @@ msgstr "Verbindung zu {url} fehlgeschlagen"
 
 #: modules/pdf-ninja.php:356
 msgid "Failed to decode API server response"
-msgstr "Fehler beim API-Server-Antwort zu dekodieren"
+msgstr "Fehler beim Dekodieren der API-Server-Antwort"
 
 #: modules/pdf-ninja.php:359 modules/pdf-ninja.php:486
 #: modules/pdf-ninja.php:614 modules/pdf-ninja.php:627
 #: modules/pdf-ninja.php:659 modules/pdf-ninja.php:773
 msgid "Pdf.Ninja API server did not send an expected response"
-msgstr "Pdf.Ninja API-Server nicht eine erwartete Antwort senden"
+msgstr "Pdf.Ninja API-Server hat eine erwartete Antwort nicht gesendet"
 
 #: modules/pdf-ninja.php:370
 msgid "Failed to download a file from the API server"
-msgstr "Fehler beim herunterladen einer Datei aus dem API-server"
+msgstr "Fehler beim Herunterladen einer Datei vom API-server"
 
 #: modules/pdf-ninja.php:530
 msgid "Unknown attachment URL"
@@ -127,17 +127,17 @@ msgstr "Unbekannte Anhangs-URL"
 
 #: modules/pdf-ninja.php:559
 msgid "File is not accessible in the local file system"
-msgstr "Auf die Datei im lokalen Dateisystem kann nicht zugegriffen werden"
+msgstr "Auf die Datei kann im lokalen Dateisystem nicht zugegriffen werden"
 
 #: modules/pdf-ninja.php:664 modules/pdf-ninja.php:778
 #: pdf-forms-for-wpforms.php:693
 msgid "Failed to open file for writing"
-msgstr "Fehler beim öffnen der Datei zum schreiben"
+msgstr "Fehler beim Öffnen der Datei zum Schreiben"
 
 #: modules/pdf-ninja.php:670 modules/pdf-ninja.php:784
 #: pdf-forms-for-wpforms.php:699
 msgid "Failed to create file"
-msgstr "Fehler beim erstellen der Datei"
+msgstr "Fehler beim Erstellen der Datei"
 
 #: modules/pdf-ninja.php:714 modules/pdf-ninja.php:718
 msgid "Failed to encode JSON data"
@@ -146,7 +146,7 @@ msgstr "Fehler beim Codieren von JSON-Daten"
 #: modules/pdf-ninja.php:814 pdf-forms-for-wpforms.php:202
 #: pdf-forms-for-wpforms.php:1213
 msgid "PDF Forms Filler for WPForms Error"
-msgstr "PDF Forms Filler für WPForms-Fehler"
+msgstr "PDF Forms Filler for WPForms-Fehler"
 
 #: modules/pdf-ninja.php:817
 msgid ""
@@ -165,8 +165,8 @@ msgid ""
 "Your WPForms settings indicate that you are using an insecure connection to "
 "the Pdf.Ninja API server."
 msgstr ""
-"Ihre WPForms-Einstellungen zeigen an, dass Sie eine unsichere Verbindung zum "
-"Pdf.Ninja-API-Server verwenden."
+"Deine WPForms-Einstellungen zeigen an, dass du eine unsichere Verbindung zum "
+"Pdf.Ninja-API-Server verwendest."
 
 #: pdf-forms-for-wpforms.php:189
 msgid "Docs"
@@ -174,7 +174,7 @@ msgstr "Dokumentation"
 
 #: pdf-forms-for-wpforms.php:190
 msgid "Support"
-msgstr "Unterstützung"
+msgstr "Support"
 
 #: pdf-forms-for-wpforms.php:203
 msgid "The required plugin 'WPForms' version is not installed!"
@@ -182,7 +182,7 @@ msgstr "Die benötigte Plugin 'WPForms' Version ist nicht installiert!"
 
 #: pdf-forms-for-wpforms.php:210
 msgid "PDF Forms Filler for WPForms Warning"
-msgstr "PDF Forms Filler für WPForms-Warnung"
+msgstr "PDF Forms Filler for WPForms-Warnung"
 
 #: pdf-forms-for-wpforms.php:213
 msgid ""
@@ -192,12 +192,12 @@ msgid ""
 "plugin version {supported-wpforms-version} to ensure that 'PDF Forms Filler "
 "for WPForms' plugin would work correctly."
 msgstr ""
-"Die derzeit installierte Version des Plug-ins „WPForms“ ({current-wpforms-"
-"version}) wird möglicherweise nicht von der aktuellen Version des Plug-ins "
-"„PDF Forms Filler for WPForms“ ({current-plugin-version}) unterstützt. Bitte "
-"wechseln Sie zur Plug-in-Version {supported-wpforms-version} von „WPForms“, "
-"um dies sicherzustellen dass das Plugin „PDF Forms Filler for WPForms“ "
-"korrekt funktioniert."
+"Die derzeit installierte Version des Plugins „WPForms“ ({current-wpforms-"
+"version}) wird möglicherweise nicht von der aktuellen Version des Plugins "
+"„PDF Forms Filler for WPForms“ ({current-plugin-version}) unterstützt, bitte "
+"wechseln Sie zu „WPForms“-Plugin-Version {supported-wpforms-version}, um "
+"sicherzustellen, dass das „PDF Forms Filler for WPForms“-Plugin "
+"ordnungsgemäß funktioniert."
 
 #: pdf-forms-for-wpforms.php:215
 msgid "Unknown version"
@@ -206,12 +206,12 @@ msgstr "Unbekannte Version"
 #: pdf-forms-for-wpforms.php:364 pdf-forms-for-wpforms.php:1548
 #: pdf-forms-for-wpforms.php:1812
 msgid "Nonce mismatch"
-msgstr "Nonce Mismatch"
+msgstr "Nonce-Nichtübereinstimmung"
 
 #: pdf-forms-for-wpforms.php:367 pdf-forms-for-wpforms.php:1556
 #: pdf-forms-for-wpforms.php:1821
 msgid "Permission denied"
-msgstr "Zugriff verweigert"
+msgstr "Berechtigung verweigert"
 
 #: pdf-forms-for-wpforms.php:590
 msgid ""
@@ -231,7 +231,7 @@ msgstr ""
 
 #: pdf-forms-for-wpforms.php:933
 msgid "image embedding"
-msgstr "bildeinbettung"
+msgstr "Bildeinbettungstool"
 
 #: pdf-forms-for-wpforms.php:1156 pdf-forms-for-wpforms.php:1217
 msgid "Error generating PDF: {error-message} at {error-file}:{error-line}"
@@ -261,11 +261,11 @@ msgstr ""
 
 #: pdf-forms-for-wpforms.php:1418
 msgid "Attach a PDF File"
-msgstr "Hängen Sie eine PDF-Datei an"
+msgstr "Hänge eine PDF-Datei an"
 
 #: pdf-forms-for-wpforms.php:1419
 msgid "Insert Tags"
-msgstr "Insert-Tags"
+msgstr "Tags einfügen"
 
 #: pdf-forms-for-wpforms.php:1420
 msgid "Insert and Link"
@@ -277,9 +277,9 @@ msgid ""
 "fields, insert them into the form and link them to their corresponding "
 "fields."
 msgstr ""
-"Mit dieser Schaltfläche können Sie Felder für alle verbleibenden nicht "
-"verknüpften PDF-Felder generieren, sie in das Formular einfügen und mit den "
-"entsprechenden Feldern verknüpfen."
+"Mit dieser Schaltfläche kannst du für alle verbleibenden nicht verknüpften "
+"PDF-Felder Tags generieren, füge sie in das Formular ein und verknüpfe sie "
+"mit den entsprechenden Feldern."
 
 #: pdf-forms-for-wpforms.php:1422
 msgid "Insert & Link All"
@@ -291,7 +291,7 @@ msgstr "Löschen"
 
 #: pdf-forms-for-wpforms.php:1424
 msgid "Map Value"
-msgstr "Werte"
+msgstr "Wert zuordnen"
 
 #: pdf-forms-for-wpforms.php:1425
 msgid "Options"
@@ -314,7 +314,7 @@ msgstr ""
 
 #: pdf-forms-for-wpforms.php:1429
 msgid "Flatten"
-msgstr "Reduzieren"
+msgstr "Verflachen"
 
 #: pdf-forms-for-wpforms.php:1430
 msgid "New filled PDF file name:"
@@ -330,7 +330,7 @@ msgstr "(leer lassen, um diese Option zu deaktivieren)"
 
 #: pdf-forms-for-wpforms.php:1433
 msgid "Field Mapper Tool"
-msgstr "Feld-Mapper-Werkzeug"
+msgstr "Feldzuordnertool"
 
 #: pdf-forms-for-wpforms.php:1434
 msgid ""
@@ -343,11 +343,11 @@ msgid ""
 msgstr ""
 "Dieses Tool kann verwendet werden, um Formularfelder und Smarttags mit "
 "Feldern in den angehängten PDF-Dateien zu verknüpfen. WPForms-Felder können "
-"auch aus PDF-Feldern generiert werden. Wenn Ihre Benutzer das Formular "
+"auch aus PDF-Feldern generiert werden. Wenn deine Benutzer das Formular "
 "absenden, werden Eingaben aus Formularfeldern und anderen Smarttags in die "
-"entsprechenden Felder in der PDF-Datei eingefügt. WPForms-zu-PDF-"
-"Feldwertzuordnungen können auch erstellt werden, um das Ersetzen von WPForms-"
-"Daten zu ermöglichen, wenn PDF-Felder gefüllt werden."
+"entsprechenden Felder in der PDF-Datei eingefügt. WPForms-zu-PDF-Feldwert-"
+"Mappings können auch erstellt werden, um den Ersatz von WPForms-Daten zu "
+"ermöglichen, wenn PDF-Felder gefüllt werden."
 
 #: pdf-forms-for-wpforms.php:1435
 msgid "PDF field"
@@ -359,7 +359,7 @@ msgstr "WPForms-Feld / Smart-Tags"
 
 #: pdf-forms-for-wpforms.php:1437
 msgid "Add Mapping"
-msgstr "Mapping hinzufügen"
+msgstr "Feldzuordnung hinzufügen"
 
 #: pdf-forms-for-wpforms.php:1438
 msgid "Delete All"
@@ -371,7 +371,7 @@ msgstr "Neues Feld:"
 
 #: pdf-forms-for-wpforms.php:1440
 msgid "Image Embedding Tool"
-msgstr "Bild-Embedding-Tool"
+msgstr "Bildeinbettung"
 
 #: pdf-forms-for-wpforms.php:1441
 msgid ""
@@ -379,14 +379,14 @@ msgid ""
 "field attachments or field values that are URLs.  You must select a PDF "
 "file, its page and draw a bounding box for image insertion."
 msgstr ""
-"Dieses tool ermöglicht das einbetten von Grafiken in PDF-Dateien. Bilder "
-"stammen aus dem Bereich Anlagen-oder Feld-Werte, die URLs. Sie müssen wählen "
-"Sie eine PDF-Datei der Seite und ziehen Sie einen Begrenzungsrahmen für das "
-"Bild einfügen."
+"Dieses Tool ermöglicht das Einbetten von Bildern in PDF-Dateien. Bilder "
+"stammen aus Feldanhängen oder Feldwerten, bei denen es sich um URLs handelt. "
+"Du musst eine PDF-Datei und ihre Seite auswählen und einen Begrenzungsrahmen "
+"für das Einfügen von Bildern zeichnen."
 
 #: pdf-forms-for-wpforms.php:1442
 msgid "Embed Image"
-msgstr "Bild Einbetten"
+msgstr "Bild einbetten"
 
 #: pdf-forms-for-wpforms.php:1444
 msgid "PDF file"
@@ -398,7 +398,7 @@ msgstr "Seite"
 
 #: pdf-forms-for-wpforms.php:1446
 msgid "Select a region where the image needs to be embeded."
-msgstr "Wählen Sie eine region, wo das Bild eingebettet werden muss."
+msgstr "Wähle einen Bereich in den das Bild eingebettet werden soll."
 
 #: pdf-forms-for-wpforms.php:1447
 msgid "Add smart-tags:"
@@ -409,12 +409,12 @@ msgid ""
 "Have a question/comment/problem?  Feel free to use {a-href-forum}the support "
 "forum{/a}."
 msgstr ""
-"Haben Sie eine Frage/Anmerkung/ein Problem? Nutzen Sie gerne {a-href-forum}"
-"das Support-Forum{/a}."
+"Hast du eine Frage/Kommentar/Problem? Wende dich gerne an {a-href-forum}Das "
+"Support-Forum{/a}."
 
 #: pdf-forms-for-wpforms.php:1456 pdf-forms-for-wpforms.php:1500
 msgid "Show Help"
-msgstr "Zeig Hilfe"
+msgstr "Hilfe anzeigen"
 
 #: pdf-forms-for-wpforms.php:1457 pdf-forms-for-wpforms.php:1501
 msgid "Hide Help"
@@ -433,12 +433,13 @@ msgid ""
 "Are you sure you want to delete this file?  This will delete field mappings "
 "and image embeds associated with this file."
 msgstr ""
-"Sind Sie sicher, dass Sie möchten, um diese Datei zu löschen? Dieses löschen-"
-"Feld-mappings und Bild bettet mit dieser Datei verknüpft."
+"Möchtest du diese Datei wirklich löschen? Dadurch werden alle "
+"Feldzuordnungen und Bildeinbettungen gelöscht, die mit dieser Datei "
+"verknüpft sind."
 
 #: pdf-forms-for-wpforms.php:1496
 msgid "Are you sure you want to delete this mapping?"
-msgstr "Möchten Sie diese Zuordnung wirklich löschen?"
+msgstr "Möchtest du diese Zuordnung wirklich löschen?"
 
 #: pdf-forms-for-wpforms.php:1497
 msgid "Are you sure you want to delete all mappings?"
@@ -450,7 +451,7 @@ msgstr "Möchten Sie wirklich eine PDF-Datei ohne Formularfelder anhängen?"
 
 #: pdf-forms-for-wpforms.php:1499
 msgid "Are you sure you want to delete this embeded image?"
-msgstr "Sind Sie sicher, dass Sie löschen möchten dieses eingebettete Bild?"
+msgstr "Bist du sicher, dass du dieses eingebettete Bild löschen möchtest?"
 
 #: pdf-forms-for-wpforms.php:1502
 msgid "Select a PDF file"
@@ -458,7 +459,7 @@ msgstr "Wählen Sie eine PDF-Datei aus"
 
 #: pdf-forms-for-wpforms.php:1503
 msgid "Select"
-msgstr "Wählen"
+msgstr "Auswählen"
 
 #: pdf-forms-for-wpforms.php:1504
 msgid "Custom text string..."
@@ -486,7 +487,7 @@ msgstr "Standardbestätigung"
 
 #: pdf-forms-for-wpforms.php:1564
 msgid "PDF form filling"
-msgstr "PDF-formular ausfüllen"
+msgstr "PDF-Formular ausfüllen"
 
 #: pdf-forms-for-wpforms.php:1627
 msgid "Attachment file is not accessible"
@@ -502,4 +503,4 @@ msgstr "Ungültige Seitenzahl"
 
 #: pdf-forms-for-wpforms.php:1827
 msgid "Failed to retrieve page snapshot"
-msgstr "Fehler beim abrufen der Seite snapshot"
+msgstr "Fehler beim Abrufen der Schattenkopie der Seite"
