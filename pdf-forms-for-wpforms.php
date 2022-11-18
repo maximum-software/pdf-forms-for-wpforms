@@ -1103,11 +1103,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					}
 					unset( $value );
 					
-					// remove fields with empty values form data
-					foreach( $data as $field => $value )
-						if( $value === "" || is_null( $value ) || $value === array() )
-							unset( $data[$field] );
-					
 					// process image embeds
 					$embeds_data = array();
 					foreach( $embeds as $id => $embed )
@@ -1133,10 +1128,19 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						}
 					
 					// skip file if 'skip when empty' option is enabled and nothing is being done to the file
-					if( count( $data ) == 0
-					&& count( $embeds_data ) == 0
-					&& $attachment['options']['skip_empty'] )
-						continue;
+					if($attachment['options']['skip_empty'] )
+					{
+						$empty_data = true;
+						foreach( $data as $field => $value )
+							if( !( $value === "" || is_null( $value ) || $value === array() ) )
+							{
+								$empty_data = false;
+								break;
+							}
+						
+						if( $empty_data && count( $embeds_data ) == 0 )
+							continue;
+					}
 					
 					$notifications = $attachment['options']['notifications'];
 					$confirmations = $attachment['options']['confirmations'];
