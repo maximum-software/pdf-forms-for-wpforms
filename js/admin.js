@@ -1175,7 +1175,7 @@ jQuery(document).ready(function($) {
 			
 			if(type == 'select')
 				if(flags.indexOf('MultiSelect') != -1)
-					wpf_type += " multi-select";
+					wpf_type += " multiple choice";
 			
 			if(flags.indexOf('Required') != -1)
 				wpf_type += " required";
