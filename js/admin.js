@@ -967,7 +967,6 @@ jQuery(document).ready(function($) {
 			select.insertAfter(input);
 			input.hide();
 			
-			// TODO: use new custom select2DataAdapter
 			select.select2({
 				ajax: {},
 				width: '100%',
