@@ -1785,6 +1785,13 @@ jQuery(document).ready(function($) {
 			WPFormsBuilder.fieldAdd(wpf_type)
 				.then(function(result) {
 					
+					if(typeof result !== 'object' || !result.hasOwnProperty('success') || !result.hasOwnProperty('data')
+					|| (result.success == true && (typeof result.data !== 'object' || !result.data.hasOwnProperty('field') || !result.data.field.hasOwnProperty('id'))))
+						return reject("Unexpected result from WPFormsBuilder.fieldAdd()");
+					
+					if(result.success == false)
+						return reject(result.data);
+					
 					var field_id = result.data.field.id;
 					var valueMappings = [];
 					
