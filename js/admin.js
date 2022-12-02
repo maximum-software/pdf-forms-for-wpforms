@@ -239,7 +239,7 @@ jQuery(document).ready(function($) {
 		pageList: [],
 		notifications: [],
 		confirmations: [],
-		wpfFieldsChoices: [],
+		wpfFieldsChoices: {},
 	};
 	
 	jQuery('.pdf-forms-for-wpforms-admin .wpf-field-smarttag-list').select2({
