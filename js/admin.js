@@ -203,6 +203,8 @@ jQuery(document).ready(function($) {
 		)
 		{
 			var optionInfo = select2Data[id !== null ? id : 0];
+			if(typeof optionInfo == 'undefined')
+				optionInfo = Array.isArray(select2Data) ? select2Data[0] : Object.values(select2Data)[0];
 			var option = new Option(optionInfo.text, optionInfo.id, true, true);
 			jQuery(this).append(option).val(optionInfo.id);
 			
