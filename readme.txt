@@ -1,8 +1,8 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.0.0
-Stable tag: 1.0.0
+Version: 1.1.0
+Stable tag: 1.1.0
 Requires at least: 5.4
-Tested up to: 6.0
+Tested up to: 6.1
 Requires PHP: 5.5
 Tags: pdf, form, filler, wpforms, attach, email, download
 Plugin URI: https://pdfformsfiller.org/
@@ -47,6 +47,21 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.1.0 =
+
+* Release date: December 2, 2022
+
+* Some fixes were applied that affect the filling process logic. Please check your forms after the update to make sure everything is working as expected if you think they might be affected!
+
+* Fixed an issue with PDF fields not being cleared with empty CF7 field values (affects prefilled fields in the original PDF file)
+* Fixed an issue: value mappings get applied recursively (affects field value mappings that have matching CF7/PDF values)
+* Bug fix: value mapping fail to work with null values
+* Improved labeling of empty value mapping options
+* Improved PDF attachment affecting action detection
+* Fixed German translation
+* Updated language files
+* Other fixes and improvements
 
 = 1.0.0 =
 
