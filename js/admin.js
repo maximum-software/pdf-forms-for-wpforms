@@ -70,6 +70,10 @@ jQuery(document).ready(function($) {
 				if(options.hasOwnProperty('sharedDataElementId'))
 					items = items[options.sharedDataElementId];
 				
+				// if items is an object, convert to array
+				if(typeof items === 'object' && !Array.isArray(items))
+					items = Object.entries(items).map(function(item) { return item[1]; });
+				
 				var pageSize = 20;
 				if(!("page" in params))
 					params.page = 1;
@@ -189,8 +193,14 @@ jQuery(document).ready(function($) {
 		
 		jQuery(this).empty();
 		
-		var select2Data = select2SharedData[this.data().select2.options.options.sharedDataElement];
-		if(select2Data.length > 0)
+		var options = this.data().select2.options.options;
+		var select2Data = select2SharedData[options.sharedDataElement];
+		if(options.hasOwnProperty('sharedDataElementId'))
+			select2Data = select2Data[options.sharedDataElementId];
+		if(typeof select2Data === 'object' && (
+			   (Array.isArray(select2Data) && select2Data.length > 0))
+			|| (!Array.isArray(select2Data) && Object.keys(select2Data).length > 0)
+		)
 		{
 			var optionInfo = select2Data[id !== null ? id : 0];
 			var option = new Option(optionInfo.text, optionInfo.id, true, true);
@@ -2359,10 +2369,10 @@ jQuery(document).ready(function($) {
 			if(!field.hasOwnProperty('choices'))
 				return;
 			
-			select2SharedData.wpfFieldsChoices[id] = [];
+			select2SharedData.wpfFieldsChoices[id] = {};
 			jQuery.each(field.choices, function (i, choice) {
 				var text = String(choice.label);
-				select2SharedData.wpfFieldsChoices[id].push( { id: text, text: text, lowerText: text.toLowerCase() } );
+				select2SharedData.wpfFieldsChoices[id][text] = { id: text, text: text, lowerText: text.toLowerCase() };
 			});
 		});
 		
