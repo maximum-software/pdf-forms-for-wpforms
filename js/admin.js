@@ -978,12 +978,11 @@ jQuery(document).ready(function($) {
 				dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter"),
 			});
 			
-			select.append(new Option(data.wpf_value, data.wpf_value, true, true));
-			select.val(data.wpf_value).trigger('change');
-			
 			select.change(function() {
 				jQuery(this).prev().val(jQuery(this).val()).trigger('change');
 			});
+			
+			select.resetSelect2Field(data.wpf_value);
 		}
 		
 		if(typeof pdfField == 'object' && pdfField !== null && pdfField.hasOwnProperty('options') && ((Array.isArray(pdfField.options) && pdfField.options.length > 0) || (typeof pdfField.options == 'object' && Object.values(pdfField.options).length > 0)))
