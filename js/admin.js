@@ -110,15 +110,18 @@ jQuery(document).ready(function($) {
 					var lowerTag = String(tag).toLowerCase();
 					
 					var exists = false;
-					if(lowerTag != "")
-						jQuery.each(items, function(index, item) {
-							if(item.lowerText == lowerTag) {
-								exists = true;
-								return false; // break
-							}
-						});
-					
-					if(!exists) {
+					jQuery.each(items, function(index, item)
+					{
+						if(!item.hasOwnProperty("lowerText"))
+							item.lowerText = String(item.text).toLowerCase();
+						if(item.id == tag || item.lowerText == lowerTag)
+						{
+							exists = true;
+							return false; // break
+						}
+					});
+					if(!exists)
+					{
 						items = Object.assign([], items); // shallow copy
 						items.unshift({id: tag, text: tag, lowerText: lowerTag});
 					}
