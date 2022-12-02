@@ -1173,7 +1173,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					{
 						$empty_data = true;
 						foreach( $data as $field => $value )
-							if( !( $value === "" || is_null( $value ) || $value === array() ) )
+							if( !( is_null( $value ) || $value === array() || trim( $value ) === "" ) )
 							{
 								$empty_data = false;
 								break;
