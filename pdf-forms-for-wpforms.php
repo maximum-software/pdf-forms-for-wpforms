@@ -1620,7 +1620,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						'__PDF_Field_Type_Unsupported' => __( 'PDF field type has no equivalent in WPForms', 'pdf-forms-for-wpforms' ),
 						'__Default_Notification' => __( 'Default Notification', 'pdf-forms-for-wpforms' ),
 						'__Default_Confirmation' => __( 'Default Confirmation', 'pdf-forms-for-wpforms' ),
-						'__Null_Value_Mapping' => __( '--- EMPTY ---', 'pdf-forms-for-contact-form-7' ),
+						'__Null_Value_Mapping' => __( '--- EMPTY ---', 'pdf-forms-for-wpforms' ),
 					) );
 					
 					wp_enqueue_media();
@@ -1664,7 +1664,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				$attachment_id = isset( $_POST['file_id'] ) ? intval( $_POST['file_id'] ) : null;
 				
 				if( ! $attachment_id )
-					throw new Exception( __( "Invalid attachment ID", 'pdf-forms-for-contact-form-7' ) );
+					throw new Exception( __( "Invalid attachment ID", 'pdf-forms-for-wpforms' ) );
 				
 				if( ! current_user_can( 'edit_post', $attachment_id ) )
 					throw new Exception( __( "Permission denied", 'pdf-forms-for-wpforms' ) );
