@@ -1925,6 +1925,9 @@ jQuery(document).ready(function($) {
 			});
 			
 			promise
+				.catch(function(error) {
+					errorMessage(error);
+				})
 				.finally(function() {
 					PdfFormsFillerSpinner.hide();
 				});
