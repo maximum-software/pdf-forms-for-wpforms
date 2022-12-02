@@ -1013,8 +1013,9 @@ jQuery(document).ready(function($) {
 				if(text == data.pdf_value)
 					add_custom = false;
 			});
-			if(add_custom)
+			if(add_custom && data.pdf_value != '')
 				options.unshift({ id: data.pdf_value, text: data.pdf_value });
+			options.unshift({ id: '', text: pdf_forms_for_wpforms.__Null_Value_Mapping });
 			
 			select.select2({
 				data: options,
@@ -2374,6 +2375,7 @@ jQuery(document).ready(function($) {
 				var text = String(choice.label);
 				select2SharedData.wpfFieldsChoices[id][text] = { id: text, text: text, lowerText: text.toLowerCase() };
 			});
+			select2SharedData.wpfFieldsChoices[id][''] = { id: '', text: pdf_forms_for_wpforms.__Null_Value_Mapping };
 		});
 		
 		// update wpfFields labels in embeds

@@ -1594,6 +1594,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						'__PDF_Field_Type_Unsupported' => __( 'PDF field type has no equivalent in WPForms', 'pdf-forms-for-wpforms' ),
 						'__Default_Notification' => __( 'Default Notification', 'pdf-forms-for-wpforms' ),
 						'__Default_Confirmation' => __( 'Default Confirmation', 'pdf-forms-for-wpforms' ),
+						'__Null_Value_Mapping' => __( '--- EMPTY ---', 'pdf-forms-for-contact-form-7' ),
 					) );
 					
 					wp_enqueue_media();
