@@ -1014,52 +1014,93 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						}
 					}
 					
-					// process value mappings
-					$processed_value_mappings = array();
-					foreach( $value_mappings as $value_mapping )
+					if( count( $value_mappings ) > 0 )
 					{
-						$i = strpos( $value_mapping["pdf_field"], '-' );
-						if( $i === FALSE )
-							continue;
-						
-						$aid = substr( $value_mapping["pdf_field"], 0, $i );
-						if( $aid != $attachment_id && $aid != 'all' )
-							continue;
-						
-						$field = substr( $value_mapping["pdf_field"], $i+1 );
-						$field = self::base64url_decode( $field );
-						
-						if( !isset( $data[$field] ) )
-							continue;
-						
-						$processed_value_mappings[$field][$value_mapping['wpf_value']][] = $value_mapping;
-					}
-					
-					foreach($processed_value_mappings as $field => $wpf_mappings_list)
-						foreach($wpf_mappings_list as $wpf_value => $list)
+						// process value mappings
+						$processed_value_mappings = array();
+						$value_mapping_data = array();
+						$existing_data_fields = array_fill_keys( array_keys( $data ), true );
+						foreach( $value_mappings as $value_mapping )
 						{
-							$array = is_array( $data[$field] );
-							if( ! $array )
-								$data[$field] = array( $data[$field] );
+							$i = strpos( $value_mapping["pdf_field"], '-' );
+							if( $i === FALSE )
+								continue;
 							
-							foreach( $data[$field] as $key => $value )
-								if( Pdf_Forms_For_WPForms_Wrapper::mb_strtolower( $value ) === Pdf_Forms_For_WPForms_Wrapper::mb_strtolower( $wpf_value ) )
-								{
-									unset( $data[$field][$key] );
-									foreach( $list as $item )
-										$data[$field][] = $item['pdf_value'];
-								}
+							$aid = substr( $value_mapping["pdf_field"], 0, $i );
+							if( $aid != $attachment_id && $aid != 'all' )
+								continue;
 							
-							$data[$field] = array_unique( $data[$field] );
-						
-							if( ! $array && count( $data[$field] ) < 2 )
-							{
-								if( count( $data[$field] ) > 0 )
-									$data[$field] = reset( $data[$field] );
-								else
-									$data[$field] = null;
-							}
+							$field = substr( $value_mapping["pdf_field"], $i+1 );
+							$field = self::base64url_decode( $field );
+							
+							if( !isset( $existing_data_fields[$field] ) )
+								continue;
+							
+							if( !isset( $value_mapping_data[$field] ) )
+								$value_mapping_data[$field] = $data[$field];
+							
+							$wpf_value = strval( $value_mapping['wpf_value'] );
+							if( ! isset( $processed_value_mappings[$field] ) )
+								$processed_value_mappings[$field] = array();
+							if( ! isset( $processed_value_mappings[$field][$wpf_value] ) )
+								$processed_value_mappings[$field][$wpf_value] = array();
+							$processed_value_mappings[$field][$wpf_value][] = $value_mapping;
 						}
+						
+						// convert plain text values to arrays for processing
+						foreach( $value_mapping_data as $field => &$value )
+							if( ! is_array( $value ) )
+								$value = array( $value );
+						unset( $value );
+						
+						// determine old and new values
+						$add_data = array();
+						$remove_data = array();
+						foreach($processed_value_mappings as $field => $wpf_mappings_list)
+							foreach($wpf_mappings_list as $wpf_value => $list)
+							{
+								foreach( $value_mapping_data[$field] as $key => $value )
+									if( Pdf_Forms_For_WPForms_Wrapper::mb_strtolower( $value ) === Pdf_Forms_For_WPForms_Wrapper::mb_strtolower( $wpf_value ) )
+									{
+										if( ! isset( $remove_data[$field] ) )
+											$remove_data[$field] = array();
+										$remove_data[$field][] = $value;
+										
+										if( ! isset( $add_data[$field] ) )
+											$add_data[$field] = array();
+										foreach( $list as $item )
+											$add_data[$field][] = $item['pdf_value'];
+									}
+							}
+						
+						// remove old values
+						foreach( $value_mapping_data as $field => &$value )
+							if( isset( $remove_data[$field] ) )
+								$value = array_diff( $value, $remove_data[$field] );
+						unset( $value );
+						
+						// add new values
+						foreach( $value_mapping_data as $field => &$value )
+							if( isset( $add_data[$field] ) )
+								$value = array_unique( array_merge( $value, $add_data[$field] ) );
+						unset( $value );
+						
+						// convert arrays back to plain text where needed
+						foreach( $value_mapping_data as $field => &$value )
+							if( count( $value ) < 2 )
+							{
+								if( count( $value ) > 0 )
+									$value = reset( $value );
+								else
+									$value = null;
+							}
+						unset( $value );
+						
+						// update data
+						foreach( $value_mapping_data as $field => &$value )
+							$data[$field] = $value;
+						unset( $value );
+					}
 					
 					// filter out anything that the pdf field can't accept
 					foreach( $data as $field => &$value )
