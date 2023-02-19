@@ -208,7 +208,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					'label'   => esc_html__( "PDF Forms Filler for WPForms Warning", 'pdf-forms-for-wpforms' ),
 					'message' =>
 						self::replace_tags(
-							esc_html__( "The currently installed version of 'WPForms' plugin ({current-wpforms-version}) may not be supported by the current version of 'PDF Forms Filler for WPForms' plugin ({current-plugin-version}), please switch to 'WPForms' plugin version {supported-wpforms-version} to ensure that 'PDF Forms Filler for WPForms' plugin would work correctly.", 'pdf-forms-for-wpforms' ),
+							esc_html__( "The currently installed version of 'WPForms' plugin ({current-wpforms-version}) may not be supported by the current version of 'PDF Forms Filler for WPForms' plugin ({current-plugin-version}), please switch to 'WPForms' plugin version {supported-wpforms-version} or below to ensure that 'PDF Forms Filler for WPForms' plugin would work correctly.", 'pdf-forms-for-wpforms' ),
 							array(
 								'current-wpforms-version' => esc_html( defined( 'WPFORMS_VERSION' ) ? WPFORMS_VERSION : __( "Unknown version", 'pdf-forms-for-wpforms' ) ),
 								'current-plugin-version' => esc_html( self::VERSION ),
