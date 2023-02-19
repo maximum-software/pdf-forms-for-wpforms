@@ -1,8 +1,8 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.1.0
-Stable tag: 1.1.0
+Version: 1.1.1
+Stable tag: 1.1.1
 Requires at least: 5.4
-Tested up to: 6.1
+Tested up to: 6.2
 Requires PHP: 5.5
 Tags: pdf, form, filler, wpforms, attach, email, download
 Plugin URI: https://pdfformsfiller.org/
@@ -47,6 +47,13 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.1.1 =
+
+* Release date: December 2, 2022
+
+* Ensure support for WPForms 1.8.0
+* Minor warning message clarification
 
 = 1.1.0 =
 
