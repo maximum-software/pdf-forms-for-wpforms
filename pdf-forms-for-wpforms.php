@@ -1625,7 +1625,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					
 					wp_enqueue_media();
 					
-					wp_enqueue_script( array( 'pdf_forms_for_wpforms_admin_utils_script', 'pdf_forms_for_wpforms_admin_script' ) );
+					wp_enqueue_script( 'pdf_forms_for_wpforms_admin_script' );
 					wp_enqueue_style( 'pdf_forms_for_wpforms_admin_style' );
 					
 					wp_enqueue_script( 'pdf_forms_filler_spinner_script' );
