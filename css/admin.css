@@ -1,15 +1,4 @@
 
-.wpforms-pdf-form-integration-card
-{
-	table-layout: fixed;
-}
-
-.wpforms-pdf-form-integration-card .code
-{
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-}
-
 .pdf-forms-for-wpforms-admin table,
 .pdf-forms-for-wpforms-admin input[type=file]
 {
