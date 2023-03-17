@@ -1476,7 +1476,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			try
 			{
 				$service = $this->get_service();
-				if( $service && is_callable( array( $service, 'form_notices' ) ) )
+				if( $service )
 					$messages .= $service->form_notices();
 				
 				if( isset( $instance->form_data['pdf-forms-for-wpforms-form-settings'] ) && isset( $instance->form_data['pdf-forms-for-wpforms-form-settings']['data'] ) )

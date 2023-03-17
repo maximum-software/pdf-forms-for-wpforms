@@ -29,6 +29,8 @@
 		
 		public function admin_notices() { }
 		
+		public function form_notices() { }
+		
 		public function plugin_init() {}
 		
 		public function admin_enqueue_scripts( $hook ) {}
