@@ -45,7 +45,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 			self::VIEW => array(
 				'name'   => esc_html__( 'Pdf.Ninja', 'pdf-forms-for-wpforms' ),
 				'form'   => true,
-				'submit' => esc_html__( 'Save Settings', 'wpforms-lite' ),
+				'submit' => esc_html__( 'Save Settings', 'pdf-forms-for-wpforms' ),
 			)
 		);
 		
