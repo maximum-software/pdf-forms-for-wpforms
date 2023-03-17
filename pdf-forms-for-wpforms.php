@@ -86,7 +86,11 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			add_filter( 'cron_schedules', array( $this, 'cron_schedules' ) );
 			
 			if( $service = $this->get_service() )
+			{
 				$service->plugin_init();
+				if( $service != $this->pdf_ninja_service )
+					$this->pdf_ninja_service->plugin_init();
+			}
 		}
 		
 		/*
@@ -218,7 +222,11 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				) );
 			
 			if( $service = $this->get_service() )
+			{
 				$service->admin_notices();
+				if( $service != $this->pdf_ninja_service )
+					$this->pdf_ninja_service->admin_notices();
+			}
 		}
 		
 		/**
