@@ -366,13 +366,13 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				
 				$service = $this->get_service();
 				
+				// TODO: get email from form, remove email setting
 				if( empty( $email = wpforms_setting( WPForms_Pdf_Ninja::VIEW . '-email' ) ) )
 					$email = null;
 				else
 					$email = sanitize_email( $email );
 				
 				$service->set_key( $key = $service->generate_key( $email ) );
-				$service->update_wpforms_settings_value( WPForms_Pdf_Ninja::VIEW . '-api_key', $key );
 			}
 			catch ( Exception $e )
 			{
