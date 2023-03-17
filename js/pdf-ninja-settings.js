@@ -38,5 +38,5 @@ jQuery(document).ready(function($) {
 			beforeSend: function() { PdfFormsFillerSpinner.show(); },
 			complete: function() { PdfFormsFillerSpinner.hide(); }
 		});
-	})
+	});
 });
