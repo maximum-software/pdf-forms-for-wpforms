@@ -31,5 +31,5 @@
 		
 		public function plugin_init() {}
 		
-		public function admin_enqueue_scripts() {}
+		public function admin_enqueue_scripts( $hook ) {}
 	}

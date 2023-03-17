@@ -25,15 +25,20 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 	/**
 	 * Adds necessary admin scripts and styles
 	 */
-	public function admin_enqueue_scripts()
+	public function admin_enqueue_scripts( $hook )
 	{
-		wp_register_script( 'pdf_forms_for_wpforms_pdfninja_panel_script', plugin_dir_url(__FILE__) . '../js/pdf-ninja-settings.js', array('jquery'), Pdf_Forms_For_WPForms::VERSION );
-		wp_localize_script( 'pdf_forms_for_wpforms_pdfninja_panel_script', 'pdf_forms_for_wpforms', array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'ajax_nonce' => wp_create_nonce( 'pdf-forms-for-wpforms-ajax-nonce' ),
-			'__Unknown_error' => __( 'Unknown error', 'pdf-forms-for-wpforms' ),
-		) );
-		wp_enqueue_script( 'pdf_forms_for_wpforms_pdfninja_panel_script' );
+		if( wpforms_is_admin_page( 'settings' ) )
+		{
+			wp_enqueue_script( 'pdf_forms_filler_spinner_script' );
+			wp_enqueue_style( 'pdf_forms_filler_spinner_style' );
+			wp_register_script( 'pdf_forms_for_wpforms_pdfninja_panel_script', plugins_url( '../js/pdf-ninja-settings.js', __FILE__ ), array('jquery'), Pdf_Forms_For_WPForms::VERSION );
+			wp_localize_script( 'pdf_forms_for_wpforms_pdfninja_panel_script', 'pdf_forms_for_wpforms', array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'ajax_nonce' => wp_create_nonce( 'pdf-forms-for-wpforms-ajax-nonce' ),
+				'__Unknown_error' => __( 'Unknown error', 'pdf-forms-for-wpforms' ),
+			) );
+			wp_enqueue_script( 'pdf_forms_for_wpforms_pdfninja_panel_script' );
+		}
 	}
 	
 	/**

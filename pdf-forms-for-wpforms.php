@@ -1582,11 +1582,11 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			if( ! class_exists('WPForms') || ! defined( 'WPFORMS_VERSION' ) )
 				return;
 			
+			wp_register_script( 'pdf_forms_filler_spinner_script', plugin_dir_url(__FILE__) . 'js/spinner.js', array('jquery'), '1.0.0' );
+			wp_register_style( 'pdf_forms_filler_spinner_style', plugin_dir_url( __FILE__ ) . 'css/spinner.css', array(), '1.0.0' );
+			
 			if( false !== strpos( $hook, 'wpforms' ) )
 			{
-				wp_register_script( 'pdf_forms_filler_spinner_script', plugin_dir_url(__FILE__) . 'js/spinner.js', array('jquery'), '1.0.0' );
-				wp_register_style( 'pdf_forms_filler_spinner_style', plugin_dir_url( __FILE__ ) . 'css/spinner.css', array(), '1.0.0' );
-				
 				if( wpforms_is_admin_page( 'builder' ) )
 				{
 					wp_register_style( 'select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), '4.0.13' );
@@ -1631,14 +1631,13 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					wp_enqueue_script( 'pdf_forms_filler_spinner_script' );
 					wp_enqueue_style( 'pdf_forms_filler_spinner_style' );
 				}
-				else if( wpforms_is_admin_page( 'settings' ) )
-				{
-					if( $service = $this->get_service() )
-						$service->admin_enqueue_scripts();
-					
-					wp_enqueue_script( 'pdf_forms_filler_spinner_script' );
-					wp_enqueue_style( 'pdf_forms_filler_spinner_style' );
-				}
+			}
+			
+			if( $service = $this->get_service() )
+			{
+				$service->admin_enqueue_scripts( $hook );
+				if( $service != $this->pdf_ninja_service )
+					$this->pdf_ninja_service->admin_enqueue_scripts( $hook );
 			}
 		}
 		
