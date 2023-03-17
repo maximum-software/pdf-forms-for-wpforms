@@ -198,28 +198,30 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		 */
 		public function admin_notices()
 		{
-			if( ! class_exists('WPForms') && current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) )
+			if( ! class_exists('WPForms') || ! defined( 'WPFORMS_VERSION' ) )
 			{
-				echo Pdf_Forms_For_WPForms::render_error_notice( 'wpf-not-installed', array(
-					'label'   => esc_html__( "PDF Forms Filler for WPForms Error", 'pdf-forms-for-wpforms' ),
-					'message' => esc_html__( "The required plugin 'WPForms' version is not installed!", 'pdf-forms-for-wpforms' ),
-				) );
+				if( current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) )
+					echo Pdf_Forms_For_WPForms::render_error_notice( 'wpf-not-installed', array(
+						'label'   => esc_html__( "PDF Forms Filler for WPForms Error", 'pdf-forms-for-wpforms' ),
+						'message' => esc_html__( "The required plugin 'WPForms' version is not installed!", 'pdf-forms-for-wpforms' ),
+					) );
 				return;
 			}
 			
-			if( ! defined( 'WPFORMS_VERSION' ) || ! $this->is_wpf_version_supported( WPFORMS_VERSION ) && current_user_can( 'update_plugins' ) )
-				echo Pdf_Forms_For_WPForms::render_warning_notice( 'unsupported-wpf-version-'.WPFORMS_VERSION, array(
-					'label'   => esc_html__( "PDF Forms Filler for WPForms Warning", 'pdf-forms-for-wpforms' ),
-					'message' =>
-						self::replace_tags(
-							esc_html__( "The currently installed version of 'WPForms' plugin ({current-wpforms-version}) may not be supported by the current version of 'PDF Forms Filler for WPForms' plugin ({current-plugin-version}), please switch to 'WPForms' plugin version {supported-wpforms-version} or below to ensure that 'PDF Forms Filler for WPForms' plugin would work correctly.", 'pdf-forms-for-wpforms' ),
-							array(
-								'current-wpforms-version' => esc_html( defined( 'WPFORMS_VERSION' ) ? WPFORMS_VERSION : __( "Unknown version", 'pdf-forms-for-wpforms' ) ),
-								'current-plugin-version' => esc_html( self::VERSION ),
-								'supported-wpforms-version' => esc_html( self::MAX_WPFORMS_VERSION ),
-							)
-						),
-				) );
+			if( ! $this->is_wpf_version_supported( WPFORMS_VERSION ) )
+				if( current_user_can( 'update_plugins' ) )
+					echo Pdf_Forms_For_WPForms::render_warning_notice( 'unsupported-wpf-version-'.WPFORMS_VERSION, array(
+						'label'   => esc_html__( "PDF Forms Filler for WPForms Warning", 'pdf-forms-for-wpforms' ),
+						'message' =>
+							self::replace_tags(
+								esc_html__( "The currently installed version of 'WPForms' plugin ({current-wpforms-version}) may not be supported by the current version of 'PDF Forms Filler for WPForms' plugin ({current-plugin-version}), please switch to 'WPForms' plugin version {supported-wpforms-version} or below to ensure that 'PDF Forms Filler for WPForms' plugin would work correctly.", 'pdf-forms-for-wpforms' ),
+								array(
+									'current-wpforms-version' => esc_html( defined( 'WPFORMS_VERSION' ) ? WPFORMS_VERSION : __( "Unknown version", 'pdf-forms-for-wpforms' ) ),
+									'current-plugin-version' => esc_html( self::VERSION ),
+									'supported-wpforms-version' => esc_html( self::MAX_WPFORMS_VERSION ),
+								)
+							),
+					) );
 			
 			if( $service = $this->get_service() )
 			{
