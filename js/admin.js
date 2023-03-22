@@ -1365,7 +1365,7 @@ jQuery(document).ready(function($) {
 		
 		tag.attr('data-embed_id', data.embed.id);
 		
-		var delete_button = tag.find('.delete-wpf-field-embed-button');
+		var delete_button = tag.find('.delete-embed-button');
 		delete_button.data('embed_id', data.embed.id);
 		delete_button.click(function(event) {
 			
