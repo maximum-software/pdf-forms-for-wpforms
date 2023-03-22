@@ -295,7 +295,7 @@ jQuery(document).ready(function($) {
 		jQuery('.pdf-forms-for-wpforms-admin .messages').append(
 			jQuery('<div class="error"/>').text(msg)
 		);
-		location.href = '#wpforms-pdf-form-messages';
+		location.href = '#pdf-forms-for-wpforms-messages';
 	};
 	
 	var warningMessage = function(msg)
@@ -303,7 +303,7 @@ jQuery(document).ready(function($) {
 		jQuery('.pdf-forms-for-wpforms-admin .messages').append(
 			jQuery('<div class="warning"/>').text(msg)
 		);
-		location.href = '#wpforms-pdf-form-messages';
+		location.href = '#pdf-forms-for-wpforms-messages';
 	};
 	
 	var successMessage = function(msg)
@@ -311,7 +311,7 @@ jQuery(document).ready(function($) {
 		jQuery('.pdf-forms-for-wpforms-admin .messages').append(
 			jQuery('<div class="updated"/>').text(msg)
 		);
-		location.href = '#wpforms-pdf-form-messages';
+		location.href = '#pdf-forms-for-wpforms-messages';
 	};
 	
 	var strtr = function(str, replacements)
