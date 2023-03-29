@@ -29,8 +29,16 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 	{
 		if( wpforms_is_admin_page( 'settings' ) )
 		{
+			wp_register_script( 'pdf_forms_for_wpforms_copy_key_script', plugins_url( '../js/copy-key.js', __FILE__ ), array( 'jquery' ), Pdf_Forms_For_WPForms::VERSION );
+			wp_localize_script( 'pdf_forms_for_wpforms_copy_key_script', 'pdf_forms_for_wpforms_copy_key', array(
+				'__key_copy_btn_label' => __( 'copy key', 'pdf-forms-for-wpforms' ),
+				'__key_copied_btn_label' => __( 'copied!', 'pdf-forms-for-wpforms' ),
+			) );
+			wp_enqueue_script( 'pdf_forms_for_wpforms_copy_key_script' );
+			
 			wp_enqueue_script( 'pdf_forms_filler_spinner_script' );
 			wp_enqueue_style( 'pdf_forms_filler_spinner_style' );
+			
 			wp_register_script( 'pdf_forms_for_wpforms_pdfninja_panel_script', plugins_url( '../js/pdf-ninja-settings.js', __FILE__ ), array('jquery'), Pdf_Forms_For_WPForms::VERSION );
 			wp_localize_script( 'pdf_forms_for_wpforms_pdfninja_panel_script', 'pdf_forms_for_wpforms', array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -80,6 +88,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 				'id'       => self::VIEW . '-api_key',
 				'name'     => esc_html__( 'API Key', 'pdf-forms-for-wpforms' ),
 				'type'     => 'text',
+				'desc'     => '<button class="copy-pdf-ninja-key-btn wpforms-btn wpforms-btn-md">' . esc_html__( 'copy key', 'pdf-forms-for-wpforms' ) . '</button>',
 				'filter'   => function($value, $id, $field, $prev_value) { return empty($value) ? $prev_value : $value; }
 			),
 			self::VIEW . '-request_new_key_form' => array(
