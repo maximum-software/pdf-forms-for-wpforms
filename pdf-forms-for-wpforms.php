@@ -1532,6 +1532,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					"",
 					array(
 						'class' => 'pdf-form-data-box',
+						'readonly' => 'readonly', // TODO: switch to input type="hidden" instead
 					),
 					false
 				),
