@@ -451,8 +451,7 @@ jQuery(document).ready(function($) {
 				obj = obj[key];
 				key = k;
 			});
-			obj[key] = item.value;
-			
+			obj[key] = JSON.parse(JSON.stringify(item.value)); // deep copy
 		});
 		
 		return object;
