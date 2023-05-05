@@ -395,7 +395,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			wp_send_json_success();
 		}
 		
-		const DEFAULT_PDF_OPTIONS = array( 'skip_empty' => false, 'flatten' => false, 'notifications' => array( 1 ), 'confirmations' => array(), 'filename' => "", 'save_directory'=> "" );
+		const DEFAULT_PDF_OPTIONS = array( 'skip_empty' => false, 'flatten' => false, 'notifications' => array( ), 'confirmations' => array(), 'filename' => "", 'save_directory'=> "" );
 		
 		/**
 		 * Hook that runs on wpform save action to validate plugin data

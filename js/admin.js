@@ -1689,7 +1689,16 @@ jQuery(document).ready(function($) {
 						if(!confirm(pdf_forms_for_wpforms.__Confirm_Attach_Empty_Pdf))
 							return;
 					setAttachmentData(data.attachment_id, data);
-					addAttachment({'attachment_id': data.attachment_id, options: defaultPdfOptions});
+					
+					var options = Object.assign({}, defaultPdfOptions); // shallow copy
+					
+					// add first notification by default
+					jQuery.each(getWpformsNotifications(), function(i, notification) {
+						options.notifications = [i];
+						return false; // break;
+					});
+					
+					addAttachment({'attachment_id': data.attachment_id, options: options});
 				}
 			},
 			
