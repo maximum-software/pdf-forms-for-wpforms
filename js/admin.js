@@ -174,14 +174,12 @@ jQuery(document).ready(function($) {
 		var select2Data = select2SharedData[option];
 		var selected_options = attachment_options[option];
 		
-		// TODO: optimize
-		for(var i = 0; i < selected_options.length; ++i)
-			for(var j = 0; j < select2Data.length; ++j)
-				if(selected_options[i] == select2Data[j].id)
-				{
-					var text = select2Data[j].text, id = select2Data[j].id;
-					jQuery(this).append( new Option(text, id, true, true) );
-				}
+		for(var j = 0; j < select2Data.length; ++j)
+			if(selected_options.indexOf(select2Data[j].id) != -1)
+			{
+				var text = select2Data[j].text, id = select2Data[j].id;
+				jQuery(this).append( new Option(text, id, true, true) );
+			}
 		
 		jQuery(this).val(selected_options).trigger('change');
 	}
