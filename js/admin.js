@@ -175,9 +175,9 @@ jQuery(document).ready(function($) {
 		var selected_options = attachment_options[option];
 		
 		for(var j = 0; j < select2Data.length; ++j)
-			if(selected_options.indexOf(select2Data[j].id) != -1)
+			if(selected_options.indexOf(String(select2Data[j].id)) != -1)
 			{
-				var text = select2Data[j].text, id = select2Data[j].id;
+				var text = select2Data[j].text, id = String(select2Data[j].id);
 				jQuery(this).append( new Option(text, id, true, true) );
 			}
 		
@@ -1633,7 +1633,7 @@ jQuery(document).ready(function($) {
 		select2SharedData.notifications = [];
 		
 		jQuery.each(getWpformsNotifications(), function(i, notification) {
-			notification.id = i;
+			notification.id = String(i);
 			if(notification.hasOwnProperty('notification_name'))
 				notification.text = notification.notification_name;
 			else
@@ -1649,7 +1649,7 @@ jQuery(document).ready(function($) {
 		select2SharedData.confirmations = [];
 		
 		jQuery.each(getWpformsConfirmations(), function(i, confirmation) {
-			confirmation.id = i;
+			confirmation.id = String(i);
 			if(confirmation.hasOwnProperty('name'))
 				confirmation.text = confirmation.name;
 			else
@@ -1694,7 +1694,7 @@ jQuery(document).ready(function($) {
 					
 					// add first notification by default
 					jQuery.each(getWpformsNotifications(), function(i, notification) {
-						options.notifications = [i];
+						options.notifications = [String(i)];
 						return false; // break;
 					});
 					
