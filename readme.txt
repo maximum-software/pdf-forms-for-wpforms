@@ -30,7 +30,7 @@ Requirements:
  * PHP 5.5 or newer
  * WordPress 5.4 or newer
  * WPForms 1.6.9 or newer
- * Chrome 60, Firefox 56 (or equivalent) or newer
+ * Chrome 63, Firefox 58 (or equivalent) or newer
 
 Known problems:
 * [Imagify](https://wordpress.org/plugins/imagify/) (strips forms from PDF files)
