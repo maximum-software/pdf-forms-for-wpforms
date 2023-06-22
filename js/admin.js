@@ -320,9 +320,23 @@ jQuery(document).ready(function($) {
 		return str;
 	}
 	
+	var utf8btoa = function(str)
+	{
+		// see https://developer.mozilla.org/en-US/docs/Glossary/Base64#the_unicode_problem
+		var binstr = '';
+		(new TextEncoder()).encode(str).forEach(byte => binstr += String.fromCharCode(byte));
+		return btoa(binstr);
+	};
+	
+	var utf8atob = function(str)
+	{
+		// see https://developer.mozilla.org/en-US/docs/Glossary/Base64#the_unicode_problem
+		return (new TextDecoder()).decode(Uint8Array.from(atob(str), c => c.charCodeAt(0)));
+	};
+	
 	var base64urldecode = function(data)
 	{
-		return window.atob(strtr(data, {'.': '+', '_': '/'}).padEnd(data.length % 4, '='));
+		return utf8atob(strtr(data, {'.': '+', '_': '/'}).padEnd(data.length % 4, '='));
 	}
 	
 	var getPdfFieldData = function(id)
@@ -549,7 +563,7 @@ jQuery(document).ready(function($) {
 	var updatePluginDataField = function()
 	{
 		// we can't use json directly, we have to use encoding without slashes and quotes due to an unnecessary stripslashes() call in wpforms/includes/admin/builder/panels/class-base.php
-		data_tag.val(btoa(JSON.stringify(pluginData)));
+		data_tag.val(utf8btoa(JSON.stringify(pluginData)));
 	}
 	
 	var getAttachments = function()
@@ -777,7 +791,7 @@ jQuery(document).ready(function($) {
 		var data_base64 = data_tag.val();
 		var data_json = null;
 		var data = {};
-		try { if(data_base64) data_json = atob(data_base64); }
+		try { if(data_base64) data_json = utf8atob(data_base64); }
 		catch(e) { data_json = data_base64; }
 		try { if(data_json) data = JSON.parse(data_json); }
 		catch(e) { return errorMessage(e.message); }
