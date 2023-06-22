@@ -1,6 +1,6 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.1.3
-Stable tag: 1.1.3
+Version: 1.1.4
+Stable tag: 1.1.4
 Requires at least: 5.4
 Tested up to: 6.2
 Requires PHP: 5.5
@@ -47,6 +47,12 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.1.4 =
+
+* Release date: June 22, 2023
+
+* Fixed a bug: form settings sometimes are not saved
 
 = 1.1.3 =
 
