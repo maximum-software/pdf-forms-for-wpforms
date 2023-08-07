@@ -1936,8 +1936,8 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				if ( ! check_ajax_referer( 'pdf-forms-for-wpforms-ajax-nonce', 'nonce', false ) )
 					throw new Exception( __( "Nonce mismatch", 'pdf-forms-for-wpforms' ) );
 				
-				$attachment_id = isset( $_POST['attachment_id'] ) ? (int) $_POST['attachment_id'] : null;
-				$page = isset( $_POST['page'] ) ? (int) $_POST['page'] : null;
+				$attachment_id = isset( $_POST['attachment_id'] ) ? intval( $_POST['attachment_id'] ) : null;
+				$page = isset( $_POST['page'] ) ? intval( $_POST['page'] ) : null;
 				
 				if ( $page < 1 )
 					throw new Exception( __( "Invalid page number", 'pdf-forms-for-wpforms' ) );

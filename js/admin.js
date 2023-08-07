@@ -729,6 +729,11 @@ jQuery(document).ready(function($) {
 			setAttachmentOption(attachment_id, option, jQuery(this).val());
 		});
 		tag.find('.pdf-options-button').click(function() {
+			
+			// prevent running default button click handlers
+			event.stopPropagation();
+			event.preventDefault();
+			
 			jQuery(this).closest('.pdf-attachment-row').find('.pdf-options').toggle('.pdf-options-hidden');
 		});
 		
@@ -1199,14 +1204,18 @@ jQuery(document).ready(function($) {
 			var flags = pdf_field_data.flags;
 			
 			if(type == 'select')
+			{
 				if(flags.indexOf('MultiSelect') != -1)
-					wpf_type += " multiple choice";
+					wpf_type = "multiple choice list";
+				else
+					wpf_type = "dropdown";
+			}
 			
 			if(flags.indexOf('Required') != -1)
-				wpf_type += " required";
+				wpf_type += ", required";
 		}
 		
-		var hint = wpf_type + " '" + pdf_field_data.name + "'";
+		var hint = wpf_type + ", named '" + pdf_field_data.name + "'";
 		
 		var defaultValue = null;
 		if(pdf_field_data.hasOwnProperty('defaultValue'))
@@ -1958,7 +1967,10 @@ jQuery(document).ready(function($) {
 				else
 					promise = promise
 						.catch(function(error) {
-							errorMessage(error);
+							if(error instanceof Error)
+								errorMessage(error.message);
+							else
+								errorMessage(error);
 						})
 						.finally(function() {
 							return addFormField(pdf_field);
