@@ -405,181 +405,183 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			try
 			{
 				$post_content = json_decode( stripslashes( $post['post_content'] ), true );
-				if( is_array( $post_content ) )
+				if( ! is_array( $post_content ) )
+					throw new Exception(
+							__( "Missing post content", 'pdf-forms-for-wpforms' ),
+						);
+				
+				if( isset( $post_content['fields'] ) )
+					$wpf_fields = $post_content['fields'];
+				else
+					$wpf_fields = array();
+				
+				// check form settings
+				if( isset( $post_content['pdf-forms-for-wpforms-form-settings'] ) && isset( $post_content['pdf-forms-for-wpforms-form-settings']['data'] ) )
 				{
-					if( isset( $post_content['fields'] ) )
-						$wpf_fields = $post_content['fields'];
-					else
-						$wpf_fields = array();
+					$data = self::decode_form_settings( $post_content['pdf-forms-for-wpforms-form-settings']['data'] );
 					
-					// check form settings
-					if( isset( $post_content['pdf-forms-for-wpforms-form-settings'] ) && isset( $post_content['pdf-forms-for-wpforms-form-settings']['data'] ) )
+					// check attachments
+					$attachments = array();
+					if( isset( $data['attachments'] ) && is_array( $data['attachments'] ) )
 					{
-						$data = self::decode_form_settings( $post_content['pdf-forms-for-wpforms-form-settings']['data'] );
-						
-						// check attachments
-						$attachments = array();
-						if( isset( $data['attachments'] ) && is_array( $data['attachments'] ) )
+						foreach( $data['attachments'] as $attachment )
 						{
-							foreach( $data['attachments'] as $attachment )
+							$attachment_id = $attachment['attachment_id'];
+							
+							// check permissions
+							if( ! wpforms_current_user_can( 'edit_post', $attachment_id ) )
+								continue;
+							
+							// check options
+							if( !isset( $attachment['options'] ) || !is_array( $attachment['options'] ) )
+								$attachment['options'] = array();
+							else
 							{
-								$attachment_id = $attachment['attachment_id'];
-								
-								// check permissions
-								if( ! wpforms_current_user_can( 'edit_post', $attachment_id ) )
-									continue;
-								
-								// check options
-								if( !isset( $attachment['options'] ) || !is_array( $attachment['options'] ) )
-									$attachment['options'] = array();
-								else
+								// add missing options
+								foreach( self::DEFAULT_PDF_OPTIONS as $option_name => $option_value )
 								{
-									// add missing options
-									foreach( self::DEFAULT_PDF_OPTIONS as $option_name => $option_value )
+									if( !isset( $attachment['options'][$option_name] ) )
+										$attachment['options'][$option_name] = $option_value;
+								}
+								
+								// remove non-existing options
+								foreach( $attachment['options'] as $option_name => $option_value )
+								{
+									if( !isset( self::DEFAULT_PDF_OPTIONS[$option_name] ) )
+										unset( $attachment['options'][$option_name] );
+								}
+								
+								// check skip_empty to make sure it is a boolean value
+								if( isset( $attachment['options']['skip_empty'] ) && !is_bool( $attachment['options']['skip_empty'] ) )
+									$attachment['options']['skip_empty'] = boolval( $attachment['options']['skip_empty'] );
+								
+								// check flatten to make sure it is a boolean value
+								if( isset( $attachment['options']['flatten'] ) && !is_bool( $attachment['options']['flatten'] ) )
+									$attachment['options']['flatten'] = boolval( $attachment['options']['flatten'] );
+								
+								// check notifications
+								if( isset( $attachment['options']['notifications'] ) )
+								{
+									if( !is_array( $option_value ) )
+										$option_value = array();
+									foreach( $option_value as $notification_id => $notification )
 									{
-										if( !isset( $attachment['options'][$option_name] ) )
-											$attachment['options'][$option_name] = $option_value;
-									}
-									
-									// remove non-existing options
-									foreach( $attachment['options'] as $option_name => $option_value )
-									{
-										if( !isset( self::DEFAULT_PDF_OPTIONS[$option_name] ) )
-											unset( $attachment['options'][$option_name] );
-									}
-									
-									// check skip_empty to make sure it is a boolean value
-									if( isset( $attachment['options']['skip_empty'] ) && !is_bool( $attachment['options']['skip_empty'] ) )
-										$attachment['options']['skip_empty'] = boolval( $attachment['options']['skip_empty'] );
-									
-									// check flatten to make sure it is a boolean value
-									if( isset( $attachment['options']['flatten'] ) && !is_bool( $attachment['options']['flatten'] ) )
-										$attachment['options']['flatten'] = boolval( $attachment['options']['flatten'] );
-									
-									// check notifications
-									if( isset( $attachment['options']['notifications'] ) )
-									{
-										if( !is_array( $option_value ) )
-											$option_value = array();
-										foreach( $option_value as $notification_id => $notification )
-										{
-											// check to make sure this notification is valid
-											if( !isset( $post_content['notifications'][$notification_id] ) )
-												unset( $attachment['options']['notifications'][$notification_id] );
-										}
-									}
-									
-									// check confirmations
-									if( isset( $attachment['options']['confirmations'] ) )
-									{
-										if( !is_array( $option_value ) )
-											$option_value = array();
-										foreach( $option_value as $confirmation_id => $confirmation )
-										{
-											// check to make sure this confirmation is valid
-											if( !isset( $post_content['confirmations'][$confirmation_id] ) )
-												unset( $attachment['options']['confirmations'][$confirmation_id] );
-										}
+										// check to make sure this notification is valid
+										if( !isset( $post_content['notifications'][$notification_id] ) )
+											unset( $attachment['options']['notifications'][$notification_id] );
 									}
 								}
 								
-								$attachments[$attachment_id] = $attachment;
-							}
-						}
-						$data['attachments'] = $attachments;
-						
-						// process mappings
-						$mappings = array();
-						if( isset( $data['mappings'] ) && is_array( $data['mappings'] ) )
-						{
-							foreach( $data['mappings'] as $mapping )
-							{
-								if( isset( $mapping['wpf_field'] ) && isset( $mapping['pdf_field'] ) )
+								// check confirmations
+								if( isset( $attachment['options']['confirmations'] ) )
 								{
-									// make sure wpforms field exists
-									$exists = false;
-									foreach( $wpf_fields as $field )
-										if( isset( $field['id'] ) && $field['id'] == $mapping['wpf_field'] )
-										{
-											$exists = true;
-											break;
-										}
-									if( ! $exists )
-										continue;
-									
-									// TODO: make sure pdf field exists
-									
-									$mappings[] = array( 'wpf_field' => $mapping['wpf_field'], 'pdf_field' => $mapping['pdf_field'] );
-								}
-								
-								
-								if( isset( $mapping['smart_tags'] ) && isset( $mapping['pdf_field'] ) )
-								{
-									$mappings[] = array( 'smart_tags' => $mapping['smart_tags'], 'pdf_field' => $mapping['pdf_field'] );
+									if( !is_array( $option_value ) )
+										$option_value = array();
+									foreach( $option_value as $confirmation_id => $confirmation )
+									{
+										// check to make sure this confirmation is valid
+										if( !isset( $post_content['confirmations'][$confirmation_id] ) )
+											unset( $attachment['options']['confirmations'][$confirmation_id] );
+									}
 								}
 							}
+							
+							$attachments[$attachment_id] = $attachment;
 						}
-						$data['mappings'] = $mappings;
-						
-						// process embeds
-						$embeds = array();
-						if( isset( $data['embeds'] ) && is_array( $data['embeds'] ) )
+					}
+					$data['attachments'] = $attachments;
+					
+					// process mappings
+					$mappings = array();
+					if( isset( $data['mappings'] ) && is_array( $data['mappings'] ) )
+					{
+						foreach( $data['mappings'] as $mapping )
 						{
-							foreach( $data['embeds'] as $embed )
+							if( isset( $mapping['wpf_field'] ) && isset( $mapping['pdf_field'] ) )
 							{
-								if( ! isset( $embed['attachment_id'] ) )
+								// make sure wpforms field exists
+								$exists = false;
+								foreach( $wpf_fields as $field )
+									if( isset( $field['id'] ) && $field['id'] == $mapping['wpf_field'] )
+									{
+										$exists = true;
+										break;
+									}
+								if( ! $exists )
 									continue;
 								
-								if( ! isset( $embed['smart_tags'] ) && ! isset( $embed['wpf_field'] ) )
-									continue;
+								// TODO: make sure pdf field exists
 								
-								// make sure attachment exists
-								if( ! isset( $data['attachments'][ $embed['attachment_id'] ] ) && $embed['attachment_id'] !== 'all' )
-									continue;
-								
-								if( isset( $embed['wpf_field'] ) )
-								{
-									// make sure wpforms field exists
-									$exists = false;
-									foreach( $wpf_fields as $field )
-										if( isset( $field['id'] ) && $field['id'] == $embed['wpf_field'] )
-										{
-											$exists = true;
-											break;
-										}
-									if( ! $exists )
-										continue;
-								}
-								
-								// TODO: make sure pdf page exists
-								// TODO: check insertion position and size
-								
-								if( isset( $embed['smart_tags'] ) )
-									$embed['smart_tags'] = strval( $embed['smart_tags'] );
-								
-								// TODO: don't reuse user input but create a new array with checked data
-								$embeds[] = $embed;
+								$mappings[] = array( 'wpf_field' => $mapping['wpf_field'], 'pdf_field' => $mapping['pdf_field'] );
+							}
+							
+							
+							if( isset( $mapping['smart_tags'] ) && isset( $mapping['pdf_field'] ) )
+							{
+								$mappings[] = array( 'smart_tags' => $mapping['smart_tags'], 'pdf_field' => $mapping['pdf_field'] );
 							}
 						}
-						$data['embeds'] = $embeds;
-						
-						// process value mappings
-						if( !isset( $data['value_mappings'] ) || !is_array( $data['value_mappings'] ) )
-							$data['value_mappings'] = array();
-						else
+					}
+					$data['mappings'] = $mappings;
+					
+					// process embeds
+					$embeds = array();
+					if( isset( $data['embeds'] ) && is_array( $data['embeds'] ) )
+					{
+						foreach( $data['embeds'] as $embed )
 						{
-							$value_mappings = array();
-							foreach( $data['value_mappings'] as $value_mapping )
-								if( isset( $value_mapping['pdf_field'] ) && isset( $value_mapping['wpf_value'] ) && isset( $value_mapping['pdf_value'] ) )
-									$value_mappings[] = array( 'pdf_field' => $value_mapping['pdf_field'], 'wpf_value' => $value_mapping['wpf_value'], 'pdf_value' => $value_mapping['pdf_value'] );
-							$data['value_mappings'] = $value_mappings;
+							if( ! isset( $embed['attachment_id'] ) )
+								continue;
+							
+							if( ! isset( $embed['smart_tags'] ) && ! isset( $embed['wpf_field'] ) )
+								continue;
+							
+							// make sure attachment exists
+							if( ! isset( $data['attachments'][ $embed['attachment_id'] ] ) && $embed['attachment_id'] !== 'all' )
+								continue;
+							
+							if( isset( $embed['wpf_field'] ) )
+							{
+								// make sure wpforms field exists
+								$exists = false;
+								foreach( $wpf_fields as $field )
+									if( isset( $field['id'] ) && $field['id'] == $embed['wpf_field'] )
+									{
+										$exists = true;
+										break;
+									}
+								if( ! $exists )
+									continue;
+							}
+							
+							// TODO: make sure pdf page exists
+							// TODO: check insertion position and size
+							
+							if( isset( $embed['smart_tags'] ) )
+								$embed['smart_tags'] = strval( $embed['smart_tags'] );
+							
+							// TODO: don't reuse user input but create a new array with checked data
+							$embeds[] = $embed;
 						}
-						
-						$post_content['pdf-forms-for-wpforms-form-settings']['data'] = self::encode_form_settings( $data );
+					}
+					$data['embeds'] = $embeds;
+					
+					// process value mappings
+					if( !isset( $data['value_mappings'] ) || !is_array( $data['value_mappings'] ) )
+						$data['value_mappings'] = array();
+					else
+					{
+						$value_mappings = array();
+						foreach( $data['value_mappings'] as $value_mapping )
+							if( isset( $value_mapping['pdf_field'] ) && isset( $value_mapping['wpf_value'] ) && isset( $value_mapping['pdf_value'] ) )
+								$value_mappings[] = array( 'pdf_field' => $value_mapping['pdf_field'], 'wpf_value' => $value_mapping['wpf_value'], 'pdf_value' => $value_mapping['pdf_value'] );
+						$data['value_mappings'] = $value_mappings;
 					}
 					
-					$post['post_content'] = wpforms_encode( $post_content );
+					$post_content['pdf-forms-for-wpforms-form-settings']['data'] = self::encode_form_settings( $data );
 				}
+				
+				$post['post_content'] = wpforms_encode( $post_content );
 				
 				return $post;
 			}
