@@ -1283,6 +1283,11 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					$storage = $this->get_storage();
 					foreach( $files as $id => $filedata )
 					{
+						// if we are sending the notification asynchronously then we need to keep a copy of the filled pdf file around for a little bit until the notification is sent
+						// TODO: the problem is that the notification may get delayed for longer than the file would be available
+						$file = $this->get_downloads()->add_file( $filedata['file'], $filedata['filename'], array() );
+						$this->wpforms_mail_attachments[$id]['file'] = $file['filepath'];
+						
 						$save_directory = strval( $filedata['options']['save_directory'] );
 						if( $save_directory !== "" )
 						{
@@ -1321,6 +1326,9 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						if( $create_download_link )
 							$this->get_downloads()->add_file( $filedata['file'], $filedata['filename'], array( 'confirmations' => $filedata['options']['confirmations'] ) );
 					}
+					
+					// make sure to enable cron if it is down so that old files get cleaned up
+					$this->enable_cron();
 				}
 			}
 			catch( Exception $e )

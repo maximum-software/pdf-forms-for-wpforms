@@ -118,14 +118,16 @@ if( ! class_exists( 'Pdf_Forms_For_WPForms_Downloads' ) )
 			copy( $srcfile, $filepath );
 			$url = $this->get_full_url() . '/' .$filename;
 			
-			array_push($this->files, array(
+			$file = array(
 				'filename' => $filename,
 				'url' => $url,
 				'filepath' => $filepath,
 				'metadata' => $metadata
-			));
+			);
 			
-			return $this;
+			array_push($this->files, $file);
+			
+			return $file;
 		}
 		
 		/**
