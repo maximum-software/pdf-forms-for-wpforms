@@ -328,7 +328,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		 */
 		public static function get_meta( $post_id, $key )
 		{
-			$value = get_post_meta( $post_id, "pdf-forms-for-wpforms" . $key, $single=true );
+			$value = get_post_meta( $post_id, "pdf-forms-for-wpforms-" . $key, $single=true );
 			if( $value === '' )
 				return null;
 			return $value;
@@ -339,16 +339,16 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		 */
 		public static function set_meta( $post_id, $key, $value )
 		{
-			$oldval = get_post_meta( $post_id, "pdf-forms-for-wpforms" . $key, true );
+			$oldval = get_post_meta( $post_id, "pdf-forms-for-wpforms-" . $key, true );
 			if( $oldval !== '' && $value === null)
-				delete_post_meta( $post_id, "pdf-forms-for-wpforms" . $key );
+				delete_post_meta( $post_id, "pdf-forms-for-wpforms-" . $key );
 			else
 			{
 				// wp bug workaround
 				// https://developer.wordpress.org/reference/functions/update_post_meta/#workaround
 				$fixed_value = wp_slash( $value );
 				
-				update_post_meta( $post_id, "pdf-forms-for-wpforms" . $key, $fixed_value, $oldval );
+				update_post_meta( $post_id, "pdf-forms-for-wpforms-" . $key, $fixed_value, $oldval );
 			}
 			return $value;
 		}
@@ -358,7 +358,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		 */
 		public static function unset_meta( $post_id, $key )
 		{
-			delete_post_meta( $post_id, "pdf-forms-for-wpforms" . $key );
+			delete_post_meta( $post_id, "pdf-forms-for-wpforms-" . $key );
 		}
 		
 		/**
