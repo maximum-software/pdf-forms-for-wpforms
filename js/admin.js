@@ -145,11 +145,12 @@ jQuery(document).ready(function($) {
 	
 	jQuery.fn.initializeMultipleSelect2Field = function(attachment_options) {
 		
-		if(!jQuery(this).data('option'))
+		var option = jQuery(this).data('option');
+		
+		if(!option)
 			return;
 		
 		var class_name = this[0].className;
-		var option = jQuery(this).data('option');
 		var attachment_id = jQuery(this).data('attachment_id');
 		
 		if(attachment_id === undefined || !class_name)
@@ -173,6 +174,8 @@ jQuery(document).ready(function($) {
 		
 		var select2Data = select2SharedData[option];
 		var selected_options = attachment_options[option];
+		if(typeof selected_options !== 'object' || !Array.isArray(selected_options))
+			selected_options = [];
 		
 		for(var j = 0; j < select2Data.length; ++j)
 			if(selected_options.indexOf(String(select2Data[j].id)) != -1)
