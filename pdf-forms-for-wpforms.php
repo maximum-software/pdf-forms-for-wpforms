@@ -1862,15 +1862,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			return preg_replace( '/(^\s+)|(\s+$)/us', '', $str );
 		}
 		
-		private static function escape_tag_value( $value )
-		{
-			$value = esc_attr( $value );
-			$escape_characters = array( "\\","]","|" );
-			$escape_table = array( '&#92;', '&#93;','&#124;' );
-			$value = str_replace( $escape_characters, $escape_table, $value );
-			return $value;
-		}
-		
 		/**
 		 * Helper function used in wp-admin interface
 		 */
