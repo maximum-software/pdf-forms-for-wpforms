@@ -2,7 +2,7 @@
 Version: 1.1.5
 Stable tag: 1.1.5
 Requires at least: 5.4
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 5.5
 Tags: pdf, form, filler, wpforms, attach, email, download
 Plugin URI: https://pdfformsfiller.org/
@@ -32,7 +32,7 @@ Requirements:
  * WPForms 1.6.9 or newer
  * Chrome 63, Firefox 58 (or equivalent) or newer
 
-Known problems:
+Known incompatible plugins:
 * [Imagify](https://wordpress.org/plugins/imagify/) (strips forms from PDF files)
 * [ShortPixel Image Optimizer](https://wordpress.org/plugins/shortpixel-image-optimiser/) (strips forms from PDF files)
 
@@ -104,7 +104,7 @@ Special thanks to the following sponsors of this plugin:
 
 == Frequently Asked Questions ==
 
-= Does this plugin allow my website users to work with PDF files? =
+= Does this plugin allow my website users to edit PDF files? =
 
 No. This plugin adds features to the [WPForms](https://wordpress.org/plugins/wpforms-lite/) interface in the WordPress Admin Panel only.
 
