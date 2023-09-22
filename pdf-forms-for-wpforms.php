@@ -1855,14 +1855,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		}
 		
 		/**
-		 * Multibyte trim
-		 */
-		public static function mb_trim( $str )
-		{
-			return preg_replace( '/(^\s+)|(\s+$)/us', '', $str );
-		}
-		
-		/**
 		 * Helper function used in wp-admin interface
 		 */
 		private function query_pdf_fields( $attachment_id )
