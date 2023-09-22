@@ -1828,7 +1828,8 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			// set up array keys so it is easier to search
 			$fields = array();
 			foreach( $info['fields'] as $field )
-				$fields[$field['name']] = $field;
+				if( isset( $field['name'] ) )
+					$fields[$field['name']] = $field;
 			$info['fields'] = $fields;
 			
 			$pages = array();
