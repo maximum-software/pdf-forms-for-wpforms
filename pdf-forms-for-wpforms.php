@@ -1591,6 +1591,11 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				'pdf-file' => esc_html__( 'PDF file', 'pdf-forms-for-wpforms' ),
 				'page' => esc_html__( 'Page', 'pdf-forms-for-wpforms' ),
 				'image-region-selection-hint' => esc_html__( 'Select a region where the image needs to be embeded.', 'pdf-forms-for-wpforms' ),
+				'top' => esc_html__( 'Top', 'pdf-forms-for-wpforms' ),
+				'left' => esc_html__( 'Left', 'pdf-forms-for-wpforms' ),
+				'width' => esc_html__( 'Width', 'pdf-forms-for-wpforms' ),
+				'height' => esc_html__( 'Height', 'pdf-forms-for-wpforms' ),
+				'pts' => esc_html__( 'pts', 'pdf-forms-for-wpforms' ),
 				'add-smart-tags' => esc_html__( 'Add smart-tags:', 'pdf-forms-for-wpforms' ),
 				'show-smart-tags' => esc_html__( 'Show Smart Tags', 'pdf-forms-for-wpforms' ),
 				'help-message' => self::replace_tags(
