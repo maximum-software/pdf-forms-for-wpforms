@@ -308,7 +308,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 	public function get_ignore_ssl_errors()
 	{
 		if( $this->ignore_ssl_errors === null )
-			$this->ignore_ssl_errors = (bool)wpforms_setting( self::VIEW . '-ignore_ssl_errors', false );
+			$this->ignore_ssl_errors = boolval( wpforms_setting( self::VIEW . '-ignore_ssl_errors', false ) );
 		
 		return $this->ignore_ssl_errors;
 	}
