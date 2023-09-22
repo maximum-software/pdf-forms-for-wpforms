@@ -805,14 +805,15 @@ jQuery(document).ready(function($) {
 		|| (typeof preload_data != 'object' || preload_data === null))
 			return errorMessage(pdf_forms_for_wpforms.__No_Preload_Data);
 		
+		// load default PDF options
+		if(preload_data.hasOwnProperty('default_pdf_options'))
+			defaultPdfOptions = preload_data.default_pdf_options;
+		
 		// load information about attached PDFs
 		if(preload_data.hasOwnProperty('attachments'))
 			jQuery.each(preload_data.attachments, function(index, attachment) {
 				setAttachmentData(attachment.attachment_id, attachment);
 			});
-		
-		if(preload_data.hasOwnProperty('default_pdf_options'))
-			defaultPdfOptions = preload_data.default_pdf_options;
 		
 		if(data.hasOwnProperty('attachments'))
 			jQuery.each(data.attachments, function(index, data) {
