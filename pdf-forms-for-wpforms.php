@@ -1965,7 +1965,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			catch( Exception $e )
 			{
 				return wp_send_json( array(
-					'success'  => false,
+					'success' => false,
 					'error_message' => $e->getMessage(),
 					'error_location' => wp_basename( $e->getFile() ) . ":". $e->getLine(),
 				) );
