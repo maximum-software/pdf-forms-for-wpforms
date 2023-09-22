@@ -1244,15 +1244,12 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					}
 					$attachment_affected = $filling_data || count( $embeds_data ) > 0 || $options['flatten'];
 					
-					$filepath = get_attached_file( $attachment_id );
-					
 					$filename = strval( $attachment['options']['filename'] );
 					if ( $filename !== "" )
 						$destfilename = wpforms_process_smart_tags( $filename, $form_data, $wpform_fields, $entry_id );
-					else
-						$destfilename = $filepath;
+					if( empty( $destfilename ) )
+						$destfilename = sanitize_file_name( get_the_title( $attachment_id ) );
 					
-					$destfilename = wp_basename( empty( $destfilename ) ? $filepath : $destfilename, '.pdf' );
 					$destfile = $this->create_tmp_filepath( $destfilename . '.pdf' );
 					
 					try
@@ -1266,7 +1263,19 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 								$filled = $service->api_fill_embed( $destfile, $attachment_id, $data, $embeds_data, $options );
 						
 						if( ! $filled )
-							copy( $filepath, $destfile );
+						{
+							$filepath = get_attached_file( $attachment_id );
+							if( empty( $filepath ) )
+							{
+								$fileurl = wp_get_attachment_url( $attachment_id );
+								if( empty( $fileurl ) )
+									throw new Exception( __( "Attachment file is not accessible", 'pdf-forms-for-wpforms' ) );
+								self::download_file( $fileurl, $destfile );
+							}
+							else
+								copy( $filepath, $destfile );
+						}
+						
 						$files[] = array( 'attachment_id' => $attachment_id, 'file' => $destfile, 'filename' => $destfilename . '.pdf', 'options' => $attachment['options'] );
 					}
 					catch(Exception $e)
@@ -1515,7 +1524,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						
 						$attachments[] = array(
 							'attachment_id' => $attachment_id,
-							'filename' => wp_basename( get_attached_file( $attachment_id ) ),
+							'filename' => get_the_title( $attachment_id ),
 							'info' => $info,
 						);
 					}
@@ -1911,14 +1920,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			if( ! isset( $wp_upload_dir['path'] ) || ! isset( $wp_upload_dir['url'] ) )
 				throw new Exception( __( "Failed to determine upload path", 'pdf-forms-for-wpforms' ) );
 			
-			$attachment_path = get_attached_file( $attachment_id );
-			
-			if( $attachment_path === false )
-				$attachment_path = wp_get_attachment_url( $attachment_id );
-			if( $attachment_path === false )
-				$attachment_path = "unknown";
-			
-			$filename = wp_unique_filename( $wp_upload_dir['path'], wp_basename( $attachment_path ).'.page'.intval($page).'.jpg' );
+			$filename = wp_unique_filename( $wp_upload_dir['path'], sanitize_file_name( get_the_title( $attachment_id ) ) . '.page' . strval( intval( $page ) ) . '.jpg' );
 			$filepath = trailingslashit( $wp_upload_dir['path'] ) . $filename;
 			
 			$service = $this->get_service();
