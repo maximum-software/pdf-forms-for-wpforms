@@ -1905,8 +1905,11 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				return $old_attachment_id;
 			}
 			
-			if( ! ( ( $wp_upload_dir = wp_upload_dir() ) && false === $wp_upload_dir['error'] ) )
+			$wp_upload_dir = wp_upload_dir();
+			if( isset( $wp_upload_dir['error'] ) && false !== $wp_upload_dir['error'] )
 				throw new Exception( $wp_upload_dir['error'] );
+			if( ! isset( $wp_upload_dir['path'] ) || ! isset( $wp_upload_dir['url'] ) )
+				throw new Exception( __( "Failed to determine upload path", 'pdf-forms-for-wpforms' ) );
 			
 			$attachment_path = get_attached_file( $attachment_id );
 			
