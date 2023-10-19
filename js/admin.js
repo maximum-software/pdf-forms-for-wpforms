@@ -2456,6 +2456,15 @@ jQuery(document).ready(function($) {
 		refreshEmbeds();
 	});
 	
+	// auto-resizing textareas
+	jQuery('.pdf-forms-for-wpforms-admin').on("input change focus", "textarea.smart-tags", function() {
+		if(this.scrollHeight > this.clientHeight)
+		{
+			this.style.height = 'auto';
+			this.style.height = (this.scrollHeight) + 'px';
+		}
+	});
+	
 	// poll until wpforms builder is loaded, then preload data
 	// TODO: find a better way to detect when wpforms builder has initialized
 	var poll = setInterval(function() {
