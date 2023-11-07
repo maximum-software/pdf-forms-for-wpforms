@@ -1244,10 +1244,10 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					}
 					$attachment_affected = $filling_data || count( $embeds_data ) > 0 || $options['flatten'];
 					
-					$filename = strval( $attachment['options']['filename'] );
-					if ( $filename !== "" )
-						$destfilename = wpforms_process_smart_tags( $filename, $form_data, $wpform_fields, $entry_id );
-					if( empty( $destfilename ) )
+					$destfilename = strval( $attachment['options']['filename'] );
+					if( $destfilename != "" )
+						$destfilename = strval( wpforms_process_smart_tags( $destfilename, $form_data, $wpform_fields, $entry_id ) );
+					if( $destfilename == "" )
 						$destfilename = sanitize_file_name( get_the_title( $attachment_id ) );
 					
 					$destfile = $this->create_tmp_filepath( $destfilename . '.pdf' );
