@@ -719,7 +719,7 @@ jQuery(document).ready(function($) {
 			var option = jQuery(this).data('option');
 			setAttachmentOption(attachment_id, option, jQuery(this)[0].checked);
 		});
-		tag.find('.pdf-options input[type=text]').change(function() {
+		tag.find('.pdf-options input[type=text]').on("input change", function() {
 			var attachment_id = jQuery(this).data('attachment_id');
 			var option = jQuery(this).data('option');
 			setAttachmentOption(attachment_id, option, jQuery(this).val());
