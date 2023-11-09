@@ -410,15 +410,30 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 							__( "Missing post content", 'pdf-forms-for-wpforms' ),
 						);
 				
-				if( isset( $post_content['fields'] ) )
-					$wpf_fields = $post_content['fields'];
-				else
-					$wpf_fields = array();
-				
 				// check form settings
 				if( isset( $post_content['pdf-forms-for-wpforms-form-settings'] ) && isset( $post_content['pdf-forms-for-wpforms-form-settings']['data'] ) )
 				{
 					$data = self::decode_form_settings( $post_content['pdf-forms-for-wpforms-form-settings']['data'] );
+					
+					if( isset( $post_content['settings'] ) )
+						$wpf_settings = $post_content['settings'];
+					if( ! is_array( $wpf_settings ) )
+						$wpf_settings = array();
+					
+					if( isset( $wpf_settings['notifications'] ) )
+						$wpf_notifications = $wpf_settings['notifications'];
+					if( ! is_array( $wpf_notifications ) )
+						$wpf_notifications = array();
+					
+					if( isset( $wpf_settings['confirmations'] ) )
+						$wpf_confirmations = $wpf_settings['confirmations'];
+					if( ! is_array( $wpf_confirmations ) )
+						$wpf_confirmations = array();
+					
+					if( isset( $post_content['fields'] ) )
+						$wpf_fields = $post_content['fields'];
+					if( ! is_array( $wpf_fields ) )
+						$wpf_fields = array();
 					
 					// check attachments
 					$attachments = array();
@@ -462,12 +477,13 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 								// check notifications
 								if( isset( $attachment['options']['notifications'] ) )
 								{
+									$option_value = $attachment['options']['notifications'];
 									if( !is_array( $option_value ) )
 										$option_value = array();
 									foreach( $option_value as $notification_id => $notification )
 									{
 										// check to make sure this notification is valid
-										if( !isset( $post_content['notifications'][$notification_id] ) )
+										if( ! isset($wpf_notifications[$notification] ) )
 											unset( $attachment['options']['notifications'][$notification_id] );
 									}
 								}
@@ -475,12 +491,13 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 								// check confirmations
 								if( isset( $attachment['options']['confirmations'] ) )
 								{
+									$option_value = $attachment['options']['confirmations'];
 									if( !is_array( $option_value ) )
 										$option_value = array();
 									foreach( $option_value as $confirmation_id => $confirmation )
 									{
 										// check to make sure this confirmation is valid
-										if( !isset( $post_content['confirmations'][$confirmation_id] ) )
+										if( ! isset( $wpf_confirmations[$confirmation] ) )
 											unset( $attachment['options']['confirmations'][$confirmation_id] );
 									}
 								}
