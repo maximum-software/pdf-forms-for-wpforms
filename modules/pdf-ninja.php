@@ -221,6 +221,11 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 		if( $option !== false && is_array( $option ) && isset( $option['wpcf7_pdf_forms_pdfninja_key'] ) )
 			return $option['wpcf7_pdf_forms_pdfninja_key'];
 		
+		// from PDF Forms Filler for WooCommerce
+		$option = get_option( 'pdf-forms-for-woocommerce-settings-pdf-ninja-api-key' );
+		if( $option !== false )
+			return $option;
+		
 		return null;
 	}
 	
