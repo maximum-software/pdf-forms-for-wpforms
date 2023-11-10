@@ -1315,8 +1315,13 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					foreach( $files as $id => $filedata )
 					{
 						// if we are sending the notification asynchronously then we need to keep a copy of the filled pdf file around for a little bit until the notification is sent
+						// we are going to share the file between notifications and confirmations
+						$file_metadata = array();
+						$create_download_link = sizeof( $filedata['options']['confirmations'] ) > 0;
+						if( $create_download_link )
+							$file_metadata['confirmations'] = $filedata['options']['confirmations'];
 						// TODO: the problem is that the notification may get delayed for longer than the file would be available
-						$file = $this->get_downloads()->add_file( $filedata['file'], $filedata['filename'], array() );
+						$file = $this->get_downloads()->add_file( $filedata['file'], $filedata['filename'], $file_metadata );
 						$this->wpforms_mail_attachments[$id]['file'] = $file['filepath'];
 						
 						$save_directory = strval( $filedata['options']['save_directory'] );
@@ -1352,10 +1357,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 							$storage->set_subpath( $save_directory );
 							$storage->save( $filedata['file'], $filedata['filename'] );
 						}
-						
-						$create_download_link = sizeof( $filedata['options']['confirmations'] ) > 0;
-						if( $create_download_link )
-							$this->get_downloads()->add_file( $filedata['file'], $filedata['filename'], array( 'confirmations' => $filedata['options']['confirmations'] ) );
 					}
 					
 					// make sure to enable cron if it is down so that old files get cleaned up
