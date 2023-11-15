@@ -792,7 +792,20 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		 */
 		private function is_embed_image_format_supported( $mimetype )
 		{
-			$supported_mime_types = array(
+			try
+			{
+				$service = $this->get_service();
+				if( $service )
+				{
+					$capabilities = $service->api_get_capabilities();
+					if( isset( $capabilities['input_image_types'] ) && is_array( $capabilities['input_image_types'] ) )
+						$supported_mime_types = $capabilities['input_image_types'];
+				}
+			}
+			catch( Exception $e ) { } // ignore
+			
+			if( ! isset( $supported_mime_types ) )
+				$supported_mime_types = array(
 					"image/jpeg",
 					"image/png",
 					"image/gif",
@@ -803,12 +816,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					"image/webp",
 				);
 			
-			if( $mimetype )
-				foreach( $supported_mime_types as $smt )
-					if( $mimetype === $smt )
-						return true;
-			
-			return false;
+			return in_array( $mimetype, $supported_mime_types, $strict = true );
 		}
 		
 		/**

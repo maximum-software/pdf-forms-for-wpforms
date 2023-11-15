@@ -2,6 +2,11 @@
 
 	abstract class Pdf_Forms_For_WPForms_Service
 	{
+		public function api_get_capabilities()
+		{
+			throw new Exception( __( "Missing feature", 'pdf-forms-for-wpfoms' ) );
+		}
+		
 		public function api_get_fields( $attachment_id )
 		{
 			throw new Exception( __( "Missing feature", 'pdf-forms-for-wpfoms' ) );

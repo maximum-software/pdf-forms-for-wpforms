@@ -9,6 +9,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 	private $api_url = null;
 	private $api_version = null;
 	private $ignore_ssl_errors = null;
+	private $capabilities = null;
 	
 	const API_URL = 'https://pdf.ninja';
 	const VIEW = 'pdf-ninja';
@@ -138,6 +139,23 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 		if( ! wpforms_setting( self::VIEW . '-api_key' ) )
 			try { $settings_fields[ self::VIEW . '-api_key' ][ 'default' ] = $this->get_key(); }
 			catch( Exception $e) {}
+		
+		// set capabilities section content
+		try
+		{
+			$settings_fields[ self::VIEW ][ self::VIEW . '-capabilities' ] = array(
+				'id'       => self::VIEW . '-capabilities',
+				'name'     => esc_html__( 'API Capabilities', 'pdf-forms-for-wpforms' ),
+				'content'  => Pdf_Forms_For_WPForms::replace_tags(
+					'<button onclick="jQuery(\'#pdf-ninja-caps\').toggle();return false;"><span class="dashicons dashicons-search"></span></button><pre id="pdf-ninja-caps" style="display:none;">{json}</pre>',
+					array(
+						'json' => esc_html( json_encode( $this->api_get_capabilities( $use_cache = false ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) ),
+					)
+				),
+				'type'     => 'content',
+			);
+		}
+		catch( Exception $e) { } // ignore errors
 		
 		return $settings_fields;
 	}
@@ -505,6 +523,38 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 			throw new Exception( __( "Pdf.Ninja API server did not send an expected response", 'pdf-forms-for-wpforms' ) );
 		
 		return $result['key'];
+	}
+	
+	/**
+	 * Retrieves API capabilities
+	 */
+	public function api_get_capabilities( $use_cache = true )
+	{
+		if( $this->capabilities )
+			return $this->capabilities;
+		
+		$transient = 'pdf_forms_for_wpforms_pdfninja_capabilities';
+		
+		if( $use_cache )
+		{
+			// retrieve cached capabilities
+			$capabilities = get_transient( $transient );
+			if( $capabilities !== false )
+				return json_decode( $capabilities, true );
+		}
+		
+		// get capabilities from the API
+		$capabilities = $this->api_get( 'capabilities', array( 'key' => $this->get_key() ) );
+		
+		if( ! is_array( $capabilities ) || ! isset( $capabilities['version'] ) )
+			throw new Exception( __( "Pdf.Ninja API server did not send an expected response", 'pdf-forms-for-wpforms' ) );
+		
+		// cache capabilities
+		set_transient( $transient, Pdf_Forms_For_WPForms::json_encode( $capabilities ), DAY_IN_SECONDS );
+		
+		$this->capabilities = $capabilities;
+		
+		return $capabilities;
 	}
 	
 	/**
