@@ -134,11 +134,6 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 			),
 		);
 		
-		// Set default value for first run
-		if( ! wpforms_setting( self::VIEW . '-api_key' ) )
-			try { $settings_fields[ self::VIEW . '-api_key' ][ 'default' ] = $this->get_key(); }
-			catch( Exception $e) {}
-		
 		return $settings_fields;
 	}
 	
