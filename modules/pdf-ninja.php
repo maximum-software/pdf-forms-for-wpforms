@@ -525,7 +525,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 	 */
 	public function api_get_capabilities( $use_cache = true )
 	{
-		if( $this->capabilities )
+		if( $this->capabilities !== null )
 			return $this->capabilities;
 		
 		$transient = 'pdf_forms_for_wpforms_pdfninja_capabilities';
@@ -535,7 +535,10 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 			// retrieve cached capabilities
 			$capabilities = get_transient( $transient );
 			if( $capabilities !== false )
-				return json_decode( $capabilities, true );
+			{
+				$this->capabilities = json_decode( $capabilities, true );
+				return $this->capabilities;
+			}
 		}
 		
 		// get capabilities from the API
