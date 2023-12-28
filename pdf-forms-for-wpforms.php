@@ -903,7 +903,8 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 							if( $parsed !== false )
 							{
 								$url_mimetype = $parsed['mime'];
-								file_put_contents( $filepath, $parsed['data'] );
+								if( file_put_contents( $filepath, $parsed['data'] ) === false || ! is_file( $filepath ) )
+									throw new Exception( __( "Failed to create file", 'pdf-forms-for-wpforms' ) );
 							}
 						}
 					}
