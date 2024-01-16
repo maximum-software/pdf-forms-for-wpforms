@@ -24,6 +24,8 @@ If the PDF attachment has a PDF form, the plugin allows users to add fields to t
 
 When your website visitor submits your WPForms form, the form in the PDF file is filled with the form information, images are embedded and the resulting PDF file is attached to the WPForms notification. The resulting PDF file can also be downloaded by your website visitors if this option is enabled in your form's options.
 
+What makes this plugin special is its approach to preparing PDF files. It is not generating PDF documents from scratch. It modifies the original PDF document that was prepared using third party software and supplied to the plugin. This allows users the freedom to design exactly what they need and use their pre-existing documents.
+
 An external web API (https://pdf.ninja) is used for filling PDF forms (free usage has limitations).
 
 Requirements:
