@@ -104,7 +104,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 					Pdf_Forms_For_WPForms::render( "pdf-ninja-settings",
 						array(
 							'request-new-key-heading' => esc_html__( "Request new key from API", 'pdf-forms-for-wpforms' ),
-							'admin-email' => $this->get_admin_email(),
+							'admin-email' => esc_html( $this->get_admin_email() ),
 							'admin-email-label' => esc_html__( "Administrator's Email Address", 'pdf-forms-for-wpforms' ),
 							'get-new-key-label' => esc_html__( "Get new key", 'pdf-forms-for-wpforms' ),
 						)
