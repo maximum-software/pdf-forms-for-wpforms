@@ -1,5 +1,8 @@
 <?php
-
+	
+	if( ! defined( 'ABSPATH' ) )
+		return;
+	
 	abstract class Pdf_Forms_For_WPForms_Service
 	{
 		public function api_get_capabilities()
