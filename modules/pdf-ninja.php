@@ -612,7 +612,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 			'key'    => $this->get_key(),
 		);
 		
-		$boundary = wp_generate_password( 24 );
+		$boundary = wp_generate_password( 48, $special_chars = false, $extra_special_chars = false );
 		
 		$payload = "";
 		
@@ -799,7 +799,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 				$params[$key] = $value;
 		}
 		
-		$boundary = wp_generate_password( 24 );
+		$boundary = wp_generate_password( 48, $special_chars = false, $extra_special_chars = false );
 		
 		$payload = "";
 		
