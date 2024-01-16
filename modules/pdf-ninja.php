@@ -1,5 +1,8 @@
 <?php
 
+if( ! defined( 'ABSPATH' ) )
+	return;
+
 class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 {
 	private static $instance = null;

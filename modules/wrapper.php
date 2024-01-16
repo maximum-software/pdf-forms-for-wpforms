@@ -1,5 +1,8 @@
 <?php
 	
+	if( ! defined( 'ABSPATH' ) )
+		return;
+	
 	class Pdf_Forms_For_WPForms_Wrapper
 	{
 		public static function mb_strpos( $haystack, $needle, $offset = 0 )
