@@ -1604,7 +1604,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				'delete-all-mappings' => esc_html__( 'Delete All', 'pdf-forms-for-wpforms' ),
 				'new-field' => esc_html__( 'New Field:', 'pdf-forms-for-wpforms' ),
 				'image-embedding' => esc_html__( 'Image Embedding Tool', 'pdf-forms-for-wpforms' ),
-				'image-embedding-help'=> esc_html__( 'This tool allows embedding of images into PDF files. Images are taken from field attachments or field values that are URLs. You can select a PDF file page and draw a bounding box for image insertion. Alternatively, you can insert your image in the center of every page.', 'pdf-forms-for-wpforms' ),
+				'image-embedding-help'=> esc_html__( 'This tool allows embedding of images into PDF files. Images are taken from file upload fields or URL field values. You can select a PDF file page and draw a bounding box for image insertion. Alternatively, you can insert your image in the center of every page.', 'pdf-forms-for-wpforms' ),
 				'add-wpf-field-embed' => esc_html__( 'Embed Image', 'pdf-forms-for-wpforms' ),
 				'delete-wpf-field-embed' => esc_html__( 'Delete', 'pdf-forms-for-wpforms' ),
 				'pdf-file' => esc_html__( 'PDF file', 'pdf-forms-for-wpforms' ),
