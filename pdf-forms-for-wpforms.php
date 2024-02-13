@@ -1096,8 +1096,17 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						foreach($processed_value_mappings as $field => $wpf_mappings_list)
 							foreach($wpf_mappings_list as $wpf_value => $list)
 							{
+								$wpf_value_canonicalized =
+									Pdf_Forms_For_WPForms_Wrapper::mb_strtolower(
+										Pdf_Forms_For_WPForms_Wrapper::mb_trim( $wpf_value )
+									);
 								foreach( $value_mapping_data[$field] as $key => $value )
-									if( Pdf_Forms_For_WPForms_Wrapper::mb_strtolower( $value ) === Pdf_Forms_For_WPForms_Wrapper::mb_strtolower( $wpf_value ) )
+								{
+									$value_canonicalized =
+										Pdf_Forms_For_WPForms_Wrapper::mb_strtolower(
+											Pdf_Forms_For_WPForms_Wrapper::mb_trim( $value )
+										);
+									if( $value_canonicalized === $wpf_value_canonicalized )
 									{
 										if( ! isset( $remove_data[$field] ) )
 											$remove_data[$field] = array();
@@ -1108,6 +1117,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 										foreach( $list as $item )
 											$add_data[$field][] = $item['pdf_value'];
 									}
+								}
 							}
 						
 						// remove old values
