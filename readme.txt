@@ -4,7 +4,7 @@ Stable tag: 1.1.7
 Requires at least: 5.4
 Tested up to: 6.4
 Requires PHP: 5.5
-Tags: pdf, form, filler, wpforms, attach, email, download
+Tags: pdf, form, wpforms, email, download
 Plugin URI: https://pdfformsfiller.org/
 Author: Maximum.Software
 Author URI: https://maximum.software/
