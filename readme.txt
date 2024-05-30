@@ -1,8 +1,8 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.1.7
-Stable tag: 1.1.7
+Version: 1.1.8
+Stable tag: 1.1.8
 Requires at least: 5.4
-Tested up to: 6.4
+Tested up to: 6.5
 Requires PHP: 5.5
 Tags: pdf, form, wpforms, email, download
 Plugin URI: https://pdfformsfiller.org/
@@ -49,6 +49,17 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.1.8 =
+
+* Release date: May 30, 2024
+
+* Added multiple choice option concatenation when mapped to a text field
+* Fixed a bug with value mapping's WPForms field drop-down when custom value wasn't loading in correctly
+* Added support for WPForms multiple choice field's choices' 'value' setting
+* Fixed an issue with automatic value mapping generation that occurred when options list elements are strings
+* Fixed an issue: extra lines and spaces in smart-tag field mappings are causing value mapping mismatches
+* Other minor changes
 
 = 1.1.7 =
 
