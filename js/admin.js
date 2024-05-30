@@ -2146,7 +2146,9 @@ jQuery(document).ready(function($) {
 		
 		var choices = [];
 		jQuery.each(wpfField.choices, function(i, choice) {
-			if(choice.hasOwnProperty('label'))
+			if(choice.hasOwnProperty('value') && choice.value)
+				choices.push(String(choice.value));
+			else if(choice.hasOwnProperty('label') && choice.label)
 				choices.push(String(choice.label));
 		});
 		
@@ -2408,8 +2410,13 @@ jQuery(document).ready(function($) {
 			
 			select2SharedData.wpfFieldsChoices[id] = {};
 			jQuery.each(field.choices, function (i, choice) {
-				var text = String(choice.label);
-				select2SharedData.wpfFieldsChoices[id][text] = { id: text, text: text, lowerText: text.toLowerCase() };
+				var text = null;
+				if(choice.hasOwnProperty('value') && choice.value)
+					text = String(choice.value);
+				else if(choice.hasOwnProperty('label') && choice.label)
+					text = String(choice.label);
+				if(text)
+					select2SharedData.wpfFieldsChoices[id][text] = { id: text, text: text, lowerText: text.toLowerCase() };
 			});
 			select2SharedData.wpfFieldsChoices[id][''] = { id: '', text: pdf_forms_for_wpforms.__Null_Value_Mapping };
 		});
