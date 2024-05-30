@@ -2152,7 +2152,9 @@ jQuery(document).ready(function($) {
 		
 		var options = [];
 		jQuery.each(pdfField.options, function(i, option) {
-			if(option.hasOwnProperty('value'))
+			if(typeof option === 'string')
+				options.push(option);
+			else if(option.hasOwnProperty('value'))
 				options.push(String(option.value));
 		});
 		
