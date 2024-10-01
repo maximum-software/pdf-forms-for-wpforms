@@ -196,8 +196,9 @@ jQuery(document).ready(function($) {
 		if(options.hasOwnProperty('sharedDataElementId'))
 			select2Data = select2Data[options.sharedDataElementId];
 		if(typeof select2Data === 'object' && (
-			   (Array.isArray(select2Data) && select2Data.length > 0))
-			|| (!Array.isArray(select2Data) && Object.keys(select2Data).length > 0)
+				   (Array.isArray(select2Data) && select2Data.length > 0)
+				|| (!Array.isArray(select2Data) && Object.keys(select2Data).length > 0)
+			)
 		)
 		{
 			var optionInfo = select2Data[id !== null ? id : 0];
