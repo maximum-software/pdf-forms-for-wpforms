@@ -2407,13 +2407,14 @@ jQuery(document).ready(function($) {
 			jQuery(".pdf-forms-for-wpforms-admin .pdf-mapping-row[data-mapping_id='" + data.mapping_id  + "'] .wpf-field-name").text(field_caption);
 		});
 		
-		// update value mapping drop-downs 
+		// update value mapping drop-downs
 		select2SharedData.wpfFieldsChoices = {};
-		jQuery.each(fields, function (id, field) {
+		jQuery.each(fields, function (index, field) {
 			
 			if(!field.hasOwnProperty('choices'))
 				return;
 			
+			var id = field.id;
 			select2SharedData.wpfFieldsChoices[id] = {};
 			jQuery.each(field.choices, function (i, choice) {
 				var text = null;
