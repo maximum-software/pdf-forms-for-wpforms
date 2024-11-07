@@ -211,7 +211,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		{
 			if( ! class_exists('WPForms') || ! defined( 'WPFORMS_VERSION' ) )
 			{
-				if( current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) )
+				if( current_user_can( 'activate_plugins' ) )
 					echo Pdf_Forms_For_WPForms::render_error_notice( 'wpf-not-installed', array(
 						'label'   => esc_html__( "PDF Forms Filler for WPForms Error", 'pdf-forms-for-wpforms' ),
 						'message' => esc_html__( "The required plugin 'WPForms' version is not installed!", 'pdf-forms-for-wpforms' ),
@@ -220,7 +220,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			}
 			
 			if( ! $this->is_wpf_version_supported( WPFORMS_VERSION ) )
-				if( current_user_can( 'update_plugins' ) )
+				if( current_user_can( 'activate_plugins' ) )
 					echo Pdf_Forms_For_WPForms::render_warning_notice( 'unsupported-wpf-version-'.WPFORMS_VERSION, array(
 						'label'   => esc_html__( "PDF Forms Filler for WPForms Warning", 'pdf-forms-for-wpforms' ),
 						'message' =>
