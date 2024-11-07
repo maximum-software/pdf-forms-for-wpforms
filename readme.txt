@@ -28,6 +28,8 @@ What makes this plugin special is its approach to preparing PDF files. It is not
 
 An external web API (https://pdf.ninja) is used for filling PDF forms (free usage has limitations).
 
+Please see [Pdf.Ninja Terms of Use](https://pdf.ninja/#terms) and [Pdf.Ninja Privacy Policy](https://pdf.ninja/#privacy).
+
 Requirements:
  * PHP 5.5 or newer
  * WordPress 5.4 or newer
