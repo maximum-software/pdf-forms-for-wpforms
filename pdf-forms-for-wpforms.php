@@ -147,7 +147,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		public function cron_schedules( $schedules )
 		{
 			$interval = $this->get_downloads()->get_timeout();
-			$display = self::replace_tags( __("Every {interval} seconds"), array( 'interval' => $interval ) );
+			$display = self::replace_tags( __( "Every {interval} seconds", 'pdf-forms-for-wpforms' ), array( 'interval' => $interval ) );
 			$schedules['pdf_forms_for_wpforms_cron_frequency'] = array(
 				'interval' => $interval,
 				'display' => $display
@@ -982,7 +982,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						throw new Exception(
 							self::replace_tags(
 								__( "File type {mime-type} of {file} is unsupported for {purpose}", 'pdf-forms-for-wpforms' ),
-								array( 'mime-type' => $mimetype, 'file' => $filename, 'purpose' => __( "image embedding", 'pdf-forms-for-wpforms') )
+								array( 'mime-type' => $mimetype, 'file' => $filename, 'purpose' => __( "image embedding", 'pdf-forms-for-wpforms' ) )
 							)
 						);
 					
@@ -1477,7 +1477,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			$attributes['classes'] = trim( $attributes['classes'] . " notice-$type" );
 			
 			if( !isset( $attributes['label'] ) )
-				$attributes['label'] = __( "PDF Forms Filler for WPForms" );
+				$attributes['label'] = __( "PDF Forms Filler for WPForms", 'pdf-forms-for-wpforms' );
 			
 			if( $notice_id )
 			{
@@ -1755,7 +1755,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					throw new Exception(
 						self::replace_tags(
 							__( "File type {mime-type} of {file} is unsupported for {purpose}", 'pdf-forms-for-wpforms' ),
-							array( 'mime-type' => $mimetype, 'file' => wp_basename( $filepath ), 'purpose' => __("PDF form filling", 'pdf-forms-for-wpforms') )
+							array( 'mime-type' => $mimetype, 'file' => wp_basename( $filepath ), 'purpose' => __( "PDF form filling", 'pdf-forms-for-wpforms' ) )
 						)
 					);
 				
@@ -1863,7 +1863,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			
 			$service = $this->get_service();
 			if( !$service )
-				throw new Exception( __( "No service", 'pdf-forms-for-wpfoms' ) );
+				throw new Exception( __( "No service", 'pdf-forms-for-wpforms' ) );
 			
 			$info = $service->api_get_info( $attachment_id );
 			

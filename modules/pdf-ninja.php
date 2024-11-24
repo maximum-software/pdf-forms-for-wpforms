@@ -82,7 +82,7 @@ class WPForms_Pdf_Ninja extends Pdf_Forms_For_WPForms_Service
 					'<h4>{title}</h4><p>{paragraph}</p>',
 					array(
 						'title' => esc_html__( 'Pdf.Ninja API', 'pdf-forms-for-wpforms' ),
-						'paragraph' => esc_html__('The following form allows you to edit your API settings.' ),
+						'paragraph' => esc_html__('The following form allows you to edit your API settings.', 'pdf-forms-for-wpforms' ),
 					)
 				),
 				'type'     => 'content',
