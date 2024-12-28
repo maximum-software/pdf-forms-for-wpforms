@@ -1,21 +1,16 @@
-# Copyright (C) 2022 Maximum.Software
+# Copyright (C) 2024 Maximum.Software
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: PDF Forms Filler for WPForms 1.1.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pdf-forms-for-"
-"wpforms\n"
+"Project-Id-Version: PDF Forms Filler for WPForms 1.1.11\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pdf-forms-for-wpforms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "Language: zh_CN\n"
-"X-Generator: Poedit 2.2.4\n"
 
 #. Plugin Name of the plugin
+#: pdf-forms-for-wpforms.php:1480
 msgid "PDF Forms Filler for WPForms"
 msgstr "用于 WPForms 的 PDF 表单填充器"
 
@@ -25,11 +20,9 @@ msgstr "https://pdfformsfiller.org/"
 
 #. Description of the plugin
 msgid ""
-"Build WPForms from PDF forms. Get PDFs filled automatically and attached to "
-"email messages and/or website responses on form submissions."
-msgstr ""
-"从 PDF 表单构建 WPForms。 自动填写 PDF 并附加到电子邮件和/或表单提交的网站回"
-"复中。"
+"Build WPForms from PDF forms. Get PDFs filled automatically and attached to email messages and/or website responses on form "
+"submissions."
+msgstr "从 PDF 表单构建 WPForms。 自动填写 PDF 并附加到电子邮件和/或表单提交的网站回复中。"
 
 #. Author of the plugin
 msgid "Maximum.Software"
@@ -39,469 +32,480 @@ msgstr "Maximum.Software"
 msgid "https://maximum.software/"
 msgstr "https://maximum.software/"
 
-#: modules/pdf-ninja.php:34 modules/pdf-ninja.php:93
+#: modules/pdf-ninja.php:37 modules/pdf-ninja.php:96
 msgid "copy key"
 msgstr "复制密钥"
 
-#: modules/pdf-ninja.php:35
+#: modules/pdf-ninja.php:38
 msgid "copied!"
 msgstr "复制！"
 
-#: modules/pdf-ninja.php:47 modules/pdf-ninja.php:873
-#: pdf-forms-for-wpforms.php:1618
+#: modules/pdf-ninja.php:50 modules/pdf-ninja.php:860 pdf-forms-for-wpforms.php:1688
 msgid "Unknown error"
 msgstr "未知错误"
 
-#: modules/pdf-ninja.php:61
+#: modules/pdf-ninja.php:64
 msgid "Pdf.Ninja"
 msgstr "Pdf.Ninja"
 
-#: modules/pdf-ninja.php:63
+#: modules/pdf-ninja.php:66
 msgid "Save Settings"
 msgstr "保存设置"
 
-#: modules/pdf-ninja.php:81
+#: modules/pdf-ninja.php:84
 msgid "Pdf.Ninja API"
 msgstr "Pdf.Ninja API"
 
-#: modules/pdf-ninja.php:91
+#: modules/pdf-ninja.php:85
+msgid "The following form allows you to edit your API settings."
+msgstr "以下表单允许您编辑您的 API 设置。"
+
+#: modules/pdf-ninja.php:94
 msgid "API Key"
 msgstr "API密钥"
 
-#: modules/pdf-ninja.php:102
+#: modules/pdf-ninja.php:105
 msgid "Request new key from API"
 msgstr "从 API 请求新密钥"
 
-#: modules/pdf-ninja.php:104
+#: modules/pdf-ninja.php:107
 msgid "Administrator's Email Address"
 msgstr "管理员的电子邮件地址"
 
-#: modules/pdf-ninja.php:105
+#: modules/pdf-ninja.php:108
 msgid "Get new key"
 msgstr "获取新密钥"
 
-#: modules/pdf-ninja.php:114
+#: modules/pdf-ninja.php:117
 msgid "API URL"
 msgstr "API网址"
 
-#: modules/pdf-ninja.php:120
+#: modules/pdf-ninja.php:123
 msgid "API Version"
 msgstr "API 版本"
 
-#: modules/pdf-ninja.php:123
+#: modules/pdf-ninja.php:126
 msgid "Version 1"
 msgstr "版本 1"
 
-#: modules/pdf-ninja.php:124
+#: modules/pdf-ninja.php:127
 msgid "Version 2"
 msgstr "版本 2"
 
-#: modules/pdf-ninja.php:130
+#: modules/pdf-ninja.php:133
 msgid "Data Security"
 msgstr "数据安全"
 
-#: modules/pdf-ninja.php:131
+#: modules/pdf-ninja.php:134
 msgid "Ignore SSL errors"
 msgstr "忽略 SSL 错误"
 
-#: modules/pdf-ninja.php:187
+#: modules/pdf-ninja.php:185
 msgid "Failed to get the Pdf.Ninja API key on last attempt."
 msgstr "上次尝试获取 Pdf.Ninja API 密钥失败。"
 
-#: modules/pdf-ninja.php:252
+#: modules/pdf-ninja.php:255
 msgid "Failed to determine the administrator's email address."
 msgstr "无法确定管理员的电子邮件地址。"
 
-#: modules/pdf-ninja.php:356
+#: modules/pdf-ninja.php:359
 msgid "Failed to connect to {url}"
 msgstr "未能连接到 {url}"
 
-#: modules/pdf-ninja.php:370
+#: modules/pdf-ninja.php:373
 msgid "Failed to decode API server response"
 msgstr "无法解码API服务器响应"
 
-#: modules/pdf-ninja.php:373 modules/pdf-ninja.php:500
-#: modules/pdf-ninja.php:628 modules/pdf-ninja.php:641
-#: modules/pdf-ninja.php:673 modules/pdf-ninja.php:787
+#: modules/pdf-ninja.php:376 modules/pdf-ninja.php:503 modules/pdf-ninja.php:631 modules/pdf-ninja.php:644
+#: modules/pdf-ninja.php:676 modules/pdf-ninja.php:782
 msgid "Pdf.Ninja API server did not send an expected response"
 msgstr "Pdf.Ninja API服务器没有预期的响应"
 
-#: modules/pdf-ninja.php:384
+#: modules/pdf-ninja.php:387
 msgid "Failed to download a file from the API server"
 msgstr "无法从API服务器下载文件"
 
-#: modules/pdf-ninja.php:544
+#: modules/pdf-ninja.php:547
 msgid "Unknown attachment URL"
 msgstr "未知的附件 URL"
 
-#: modules/pdf-ninja.php:573
+#: modules/pdf-ninja.php:576
 msgid "File is not accessible in the local file system"
 msgstr "文件在本地文件系统中不可访问"
 
-#: modules/pdf-ninja.php:678 modules/pdf-ninja.php:792
-#: pdf-forms-for-wpforms.php:695
-msgid "Failed to open file for writing"
-msgstr "无法打开文件进行写入"
-
-#: modules/pdf-ninja.php:684 modules/pdf-ninja.php:798
-#: pdf-forms-for-wpforms.php:701
+#: modules/pdf-ninja.php:679 modules/pdf-ninja.php:785 pdf-forms-for-wpforms.php:726 pdf-forms-for-wpforms.php:910
 msgid "Failed to create file"
 msgstr "文件创建失败"
 
-#: modules/pdf-ninja.php:728 modules/pdf-ninja.php:732
+#: modules/pdf-ninja.php:723 modules/pdf-ninja.php:727
 msgid "Failed to encode JSON data"
 msgstr "无法对JSON数据进行编码"
 
-#: modules/pdf-ninja.php:828 pdf-forms-for-wpforms.php:205
-#: pdf-forms-for-wpforms.php:1327
+#: modules/pdf-ninja.php:815 pdf-forms-for-wpforms.php:216 pdf-forms-for-wpforms.php:1392
 msgid "PDF Forms Filler for WPForms Error"
 msgstr "用于 WPForms 错误的 PDF 表单填充器"
 
-#: modules/pdf-ninja.php:831
-msgid ""
-"Failed to acquire the Pdf.Ninja API key on last attempt. {a-href-edit-"
-"service-page}Please retry manually{/a}."
-msgstr ""
-"上次尝试获取 Pdf.Ninja API 密钥失败。 {a-href-edit-service-page}请手动重试{/"
-"a}。"
+#: modules/pdf-ninja.php:818
+msgid "Failed to acquire the Pdf.Ninja API key on last attempt. {a-href-edit-service-page}Please retry manually{/a}."
+msgstr "上次尝试获取 Pdf.Ninja API 密钥失败。 {a-href-edit-service-page}请手动重试{/a}。"
 
-#: modules/pdf-ninja.php:852
+#: modules/pdf-ninja.php:839
 msgid "Warning"
 msgstr "警告"
 
-#: modules/pdf-ninja.php:853
-msgid ""
-"Your WPForms settings indicate that you are using an insecure connection to "
-"the Pdf.Ninja API server."
+#: modules/pdf-ninja.php:840
+msgid "Your WPForms settings indicate that you are using an insecure connection to the Pdf.Ninja API server."
 msgstr "您的 WPForms 设置表明您正在使用与 Pdf.Ninja API 服务器的不安全连接。"
 
-#: pdf-forms-for-wpforms.php:192
+#: modules/service.php:10 modules/service.php:15 modules/service.php:20 modules/service.php:25 modules/service.php:30
+msgid "Missing feature"
+msgstr "缺少功能"
+
+#: pdf-forms-for-wpforms.php:150
+msgid "Every {interval} seconds"
+msgstr "每隔{interval}秒"
+
+#: pdf-forms-for-wpforms.php:203
 msgid "Support"
 msgstr "支持"
 
-#: pdf-forms-for-wpforms.php:206
+#: pdf-forms-for-wpforms.php:217
 msgid "The required plugin 'WPForms' version is not installed!"
 msgstr "未安装所需的插件“WPForms”版本！"
 
-#: pdf-forms-for-wpforms.php:214
+#: pdf-forms-for-wpforms.php:225
 msgid "PDF Forms Filler for WPForms Warning"
 msgstr "用于 WPForms 警告的 PDF 表单填充器"
 
-#: pdf-forms-for-wpforms.php:217
+#: pdf-forms-for-wpforms.php:228
 msgid ""
-"The currently installed version of 'WPForms' plugin ({current-wpforms-"
-"version}) may not be supported by the current version of 'PDF Forms Filler "
-"for WPForms' plugin ({current-plugin-version}), please switch to 'WPForms' "
-"plugin version {supported-wpforms-version} or below to ensure that 'PDF "
-"Forms Filler for WPForms' plugin would work correctly."
+"The currently installed version of 'WPForms' plugin ({current-wpforms-version}) may not be supported by the current version "
+"of 'PDF Forms Filler for WPForms' plugin ({current-plugin-version}), please switch to 'WPForms' plugin version {supported-"
+"wpforms-version} or below to ensure that 'PDF Forms Filler for WPForms' plugin would work correctly."
 msgstr ""
-"当前安装的“WPForms”插件版本（{current-wpforms-version}）可能不受当前版本"
-"的“PDF Forms Filler for WPForms”插件（{current-plugin-version}）支持，请切换"
-"到“WPForms” ' 插件版本 {supported-wpforms-version} 或更低版本，以确"
-"保“WPForms 的 PDF 表单填充程序”插件能够正常工作。"
+"当前安装的“WPForms”插件版本（{current-wpforms-version}）可能不受当前版本的“PDF Forms Filler for WPForms”插件（{current-"
+"plugin-version}）支持，请切换到“WPForms” ' 插件版本 {supported-wpforms-version} 或更低版本，以确保“WPForms 的 PDF 表单填充程"
+"序”插件能够正常工作。"
 
-#: pdf-forms-for-wpforms.php:219
+#: pdf-forms-for-wpforms.php:230
 msgid "Unknown version"
 msgstr "未知版本"
 
-#: pdf-forms-for-wpforms.php:372 pdf-forms-for-wpforms.php:1672
-#: pdf-forms-for-wpforms.php:1936
+#: pdf-forms-for-wpforms.php:383 pdf-forms-for-wpforms.php:1742 pdf-forms-for-wpforms.php:1986
 msgid "Nonce mismatch"
 msgstr "随机数不匹配"
 
-#: pdf-forms-for-wpforms.php:375 pdf-forms-for-wpforms.php:1680
-#: pdf-forms-for-wpforms.php:1945
+#: pdf-forms-for-wpforms.php:386 pdf-forms-for-wpforms.php:1750 pdf-forms-for-wpforms.php:1995
 msgid "Permission denied"
 msgstr "访问被拒绝"
 
-#: pdf-forms-for-wpforms.php:592
-msgid ""
-"Error saving PDF form data: {error-message} at {error-file}:{error-line}"
-msgstr ""
-"保存 PDF 表单数据时出错：{error-file} 处的 {error-message}：{error-line}"
+#: pdf-forms-for-wpforms.php:421
+msgid "Missing post content"
+msgstr "缺少帖子内容"
 
-#: pdf-forms-for-wpforms.php:683
+#: pdf-forms-for-wpforms.php:622
+msgid "Error saving PDF form data: {error-message} at {error-file}:{error-line}"
+msgstr "保存 PDF 表单数据时出错：{error-file} 处的 {error-message}：{error-line}"
+
+#: pdf-forms-for-wpforms.php:716
 msgid "Failed to download file: {error-message}"
 msgstr "下载文件失败：{error-message}"
 
-#: pdf-forms-for-wpforms.php:957 pdf-forms-for-wpforms.php:1687
+#: pdf-forms-for-wpforms.php:984 pdf-forms-for-wpforms.php:1757
 msgid "File type {mime-type} of {file} is unsupported for {purpose}"
 msgstr "{purpose}不支持{file}的文件类型{mime-type}"
 
-#: pdf-forms-for-wpforms.php:958
+#: pdf-forms-for-wpforms.php:985
 msgid "image embedding"
 msgstr "图像嵌入"
 
-#: pdf-forms-for-wpforms.php:1270 pdf-forms-for-wpforms.php:1330
-msgid "Error generating PDF: {error-message} at {error-file}:{error-line}"
-msgstr "生成PDF时出错：{error-message}位于{error-file}：{error-line}"
+#: pdf-forms-for-wpforms.php:1189
+msgid ", "
+msgstr ","
 
-#: pdf-forms-for-wpforms.php:1375
-msgid "{icon} {a-href-url}{filename}{/a} {i}({size}){/i}"
-msgstr "{icon} {a-href-url}{filename}{/a} {i}({size}){/i}"
-
-#: pdf-forms-for-wpforms.php:1514
-msgid "Error"
-msgstr "错误"
-
-#: pdf-forms-for-wpforms.php:1526 pdf-forms-for-wpforms.php:1660
-msgid "PDF Forms"
-msgstr "PDF表单"
-
-#: pdf-forms-for-wpforms.php:1541
-msgid ""
-"You can use this section to attach a PDF file to your form, insert new form "
-"fields into your form, and link them to fields in the PDF file. You can also "
-"embed images (from URLs or attached files) into the PDF file. Changes here "
-"are applied when the form is saved."
-msgstr ""
-"您可以使用此部分将 PDF 文件附加到表单中，将新的表单域插入到表单中，并将它们链"
-"接到 PDF 文件中的域。 您还可以将图像（来自 URL 或附件）嵌入到 PDF 文件中。 保"
-"存表单时应用此处的更改。"
-
-#: pdf-forms-for-wpforms.php:1542
-msgid "Attach a PDF File"
-msgstr "附加PDF文件"
-
-#: pdf-forms-for-wpforms.php:1543
-msgid "Insert Tags"
-msgstr "插入标签"
-
-#: pdf-forms-for-wpforms.php:1544
-msgid "Insert and Link"
-msgstr "插入并链接"
-
-#: pdf-forms-for-wpforms.php:1545
-msgid ""
-"This button allows you to generate fields for all remaining unlinked PDF "
-"fields, insert them into the form and link them to their corresponding "
-"fields."
-msgstr ""
-"此按钮允许您为所有剩余的未链接的 PDF 字段生成字段，将它们插入表单并将它们链接"
-"到相应的字段。"
-
-#: pdf-forms-for-wpforms.php:1546
-msgid "Insert & Link All"
-msgstr "插入并链接所有"
-
-#: pdf-forms-for-wpforms.php:1547 pdf-forms-for-wpforms.php:1567
-msgid "Delete"
-msgstr "删除"
-
-#: pdf-forms-for-wpforms.php:1548
-msgid "Map Value"
-msgstr "地图价值"
-
-#: pdf-forms-for-wpforms.php:1549
-msgid "Options"
-msgstr "选项"
-
-#: pdf-forms-for-wpforms.php:1550
-msgid "Skip when empty"
-msgstr "空时忽略"
-
-#: pdf-forms-for-wpforms.php:1551
-msgid "Attach the filled PDF file to the following notifications:"
-msgstr "将填写好的 PDF 文件附加到以下通知中："
-
-#: pdf-forms-for-wpforms.php:1552
-msgid "Add download link to filled PDF file to the following confirmations:"
-msgstr "将下载链接添加到填充的 PDF 文件到以下确认："
-
-#: pdf-forms-for-wpforms.php:1553
-msgid "Flatten"
-msgstr "拼合"
-
-#: pdf-forms-for-wpforms.php:1554
-msgid "New filled PDF file name:"
-msgstr "新填充的 PDF 文件名："
-
-#: pdf-forms-for-wpforms.php:1555
-msgid "Path for saving filled PDF file:"
-msgstr "保存填充PDF文件的路径："
-
-#: pdf-forms-for-wpforms.php:1556
-msgid "(leave blank to disable this option)"
-msgstr "（留空以禁用此选项）"
-
-#: pdf-forms-for-wpforms.php:1557
-msgid "Field Mapper Tool"
-msgstr "字段映射工具"
-
-#: pdf-forms-for-wpforms.php:1558
-msgid ""
-"This tool can be used to link form fields and smart tags with fields in the "
-"attached PDF files. WPForms fields can also be generated from PDF fields. "
-"When your users submit the form, input from form fields and other smart tags "
-"will be inserted into the correspoinding fields in the PDF file. WPForms to "
-"PDF field value mappings can also be created to enable the replacement of "
-"WPForms data when PDF fields are filled."
-msgstr ""
-"此工具可用于将表单字段和智能标签与附加 PDF 文件中的字段链接。 WPForms 字段也"
-"可以从 PDF 字段生成。 当您的用户提交表单时，来自表单字段和其他智能标签的输入"
-"将被插入到 PDF 文件中的相应字段中。 还可以创建 WPForms 到 PDF 字段值的映射，"
-"以便在填充 PDF 字段时替换 WPForms 数据。"
-
-#: pdf-forms-for-wpforms.php:1559
-msgid "PDF field"
-msgstr "PDF字段"
-
-#: pdf-forms-for-wpforms.php:1560
-msgid "WPForms field / smart tags"
-msgstr "WPForms 字段/智能标签"
-
-#: pdf-forms-for-wpforms.php:1561
-msgid "Add Mapping"
-msgstr "添加映射"
-
-#: pdf-forms-for-wpforms.php:1562
-msgid "Delete All"
-msgstr "删除所有"
-
-#: pdf-forms-for-wpforms.php:1563
-msgid "New Field:"
-msgstr "新领域："
-
-#: pdf-forms-for-wpforms.php:1564
-msgid "Image Embedding Tool"
-msgstr "图像嵌入工具"
-
-#: pdf-forms-for-wpforms.php:1565
-msgid ""
-"This tool allows embedding images into PDF files.  Images are taken from "
-"field attachments or field values that are URLs.  You must select a PDF "
-"file, its page and draw a bounding box for image insertion."
-msgstr ""
-"该工具允许将图像嵌入到PDF文件中。 图像取自现场附件或作为URL的字段值。 您必须"
-"选择PDF文件，其页面并绘制图像插入的边界框。"
-
-#: pdf-forms-for-wpforms.php:1566
-msgid "Embed Image"
-msgstr "嵌入图片"
-
-#: pdf-forms-for-wpforms.php:1568
-msgid "PDF file"
-msgstr "PDF文件"
-
-#: pdf-forms-for-wpforms.php:1569
-msgid "Page"
-msgstr "页"
-
-#: pdf-forms-for-wpforms.php:1570
-msgid "Select a region where the image needs to be embeded."
-msgstr "选择需要嵌入图像的区域。"
-
-#: pdf-forms-for-wpforms.php:1571
-msgid "Add smart-tags:"
-msgstr "添加智能标签："
-
-#: pdf-forms-for-wpforms.php:1572
-msgid "Show Smart Tags"
-msgstr "显示智能标签"
-
-#: pdf-forms-for-wpforms.php:1574
-msgid ""
-"Have a question/comment/problem?  Feel free to use {a-href-forum}the support "
-"forum{/a}."
-msgstr "有问题/意见/问题？ 随意使用{a-href-forum}支持论坛{/a}。"
-
-#: pdf-forms-for-wpforms.php:1580 pdf-forms-for-wpforms.php:1624
-msgid "Show Help"
-msgstr "显示帮助"
-
-#: pdf-forms-for-wpforms.php:1581 pdf-forms-for-wpforms.php:1625
-msgid "Hide Help"
-msgstr "隐藏帮助"
-
-#: pdf-forms-for-wpforms.php:1616
-msgid "Failed to determine form ID"
-msgstr "无法确定表单 ID"
-
-#: pdf-forms-for-wpforms.php:1617
-msgid "Failed to load PDF form data"
-msgstr "加载 PDF 表单数据失败"
-
-#: pdf-forms-for-wpforms.php:1619
-msgid ""
-"Are you sure you want to delete this file?  This will delete field mappings "
-"and image embeds associated with this file."
-msgstr "你确定要删除这个文件吗？ 这将删除与此文件关联的字段映射和图像嵌入。"
-
-#: pdf-forms-for-wpforms.php:1620
-msgid "Are you sure you want to delete this mapping?"
-msgstr "你确定要删除这个映射吗？"
-
-#: pdf-forms-for-wpforms.php:1621
-msgid "Are you sure you want to delete all mappings?"
-msgstr "您确定要删除所有映射吗？"
-
-#: pdf-forms-for-wpforms.php:1622
-msgid "Are you sure you want to attach a PDF file without any form fields?"
-msgstr "您确定要附加没有任何表单域的 PDF 文件吗？"
-
-#: pdf-forms-for-wpforms.php:1623
-msgid "Are you sure you want to delete this embeded image?"
-msgstr "你确定要删除这个嵌入的图像吗？"
-
-#: pdf-forms-for-wpforms.php:1626
-msgid "Select a PDF file"
-msgstr "选择一个PDF文件"
-
-#: pdf-forms-for-wpforms.php:1627
-msgid "Select"
-msgstr "选择"
-
-#: pdf-forms-for-wpforms.php:1628
-msgid "Custom text string..."
-msgstr "自定义文本字符串..."
-
-#: pdf-forms-for-wpforms.php:1629
-msgid "All PDFs"
-msgstr "所有PDF文件"
-
-#: pdf-forms-for-wpforms.php:1630
-msgid "All"
-msgstr "全部"
-
-#: pdf-forms-for-wpforms.php:1631
-msgid "PDF field type has no equivalent in WPForms"
-msgstr "PDF 字段类型在 WPForms 中没有等效项"
-
-#: pdf-forms-for-wpforms.php:1632
-msgid "Default Notification"
-msgstr "默认通知"
-
-#: pdf-forms-for-wpforms.php:1633
-msgid "Default Confirmation"
-msgstr "默认确认"
-
-#: pdf-forms-for-wpforms.php:1634
-msgid "--- EMPTY ---"
-msgstr " - - 空的  - -"
-
-#: pdf-forms-for-wpforms.php:1677
-msgid "Invalid attachment ID"
-msgstr "附件 ID 无效"
-
-#: pdf-forms-for-wpforms.php:1688
-msgid "PDF form filling"
-msgstr "PDF表格填写"
-
-#: pdf-forms-for-wpforms.php:1751
+#: pdf-forms-for-wpforms.php:1313 pdf-forms-for-wpforms.php:1821
 msgid "Attachment file is not accessible"
 msgstr "无法访问附件文件"
 
-#: pdf-forms-for-wpforms.php:1768
+#: pdf-forms-for-wpforms.php:1326 pdf-forms-for-wpforms.php:1395
+msgid "Error generating PDF: {error-message} at {error-file}:{error-line}"
+msgstr "生成PDF时出错：{error-message}位于{error-file}：{error-line}"
+
+#: pdf-forms-for-wpforms.php:1440
+msgid "{icon} {a-href-url}{filename}{/a} {i}({size}){/i}"
+msgstr "{icon} {a-href-url}{filename}{/a} {i}({size}){/i}"
+
+#: pdf-forms-for-wpforms.php:1579
+msgid "Error"
+msgstr "错误"
+
+#: pdf-forms-for-wpforms.php:1591 pdf-forms-for-wpforms.php:1730
+msgid "PDF Forms"
+msgstr "PDF表单"
+
+#: pdf-forms-for-wpforms.php:1606
+msgid ""
+"You can use this section to attach a PDF file to your form, insert new form fields into your form, and link them to fields "
+"in the PDF file. You can also embed images (from URLs or attached files) into the PDF file. Changes here are applied when "
+"the form is saved."
+msgstr ""
+"您可以使用此部分将 PDF 文件附加到表单中，将新的表单域插入到表单中，并将它们链接到 PDF 文件中的域。 您还可以将图像（来自 URL "
+"或附件）嵌入到 PDF 文件中。 保存表单时应用此处的更改。"
+
+#: pdf-forms-for-wpforms.php:1607
+msgid "Attach a PDF File"
+msgstr "附加PDF文件"
+
+#: pdf-forms-for-wpforms.php:1608
+msgid "Insert Tags"
+msgstr "插入标签"
+
+#: pdf-forms-for-wpforms.php:1609
+msgid "Insert and Link"
+msgstr "插入并链接"
+
+#: pdf-forms-for-wpforms.php:1610
+msgid ""
+"This button allows you to generate fields for all remaining unlinked PDF fields, insert them into the form and link them to "
+"their corresponding fields."
+msgstr "此按钮允许您为所有剩余的未链接的 PDF 字段生成字段，将它们插入表单并将它们链接到相应的字段。"
+
+#: pdf-forms-for-wpforms.php:1611
+msgid "Insert & Link All"
+msgstr "插入并链接所有"
+
+#: pdf-forms-for-wpforms.php:1612 pdf-forms-for-wpforms.php:1632
+msgid "Delete"
+msgstr "删除"
+
+#: pdf-forms-for-wpforms.php:1613
+msgid "Map Value"
+msgstr "地图价值"
+
+#: pdf-forms-for-wpforms.php:1614
+msgid "Options"
+msgstr "选项"
+
+#: pdf-forms-for-wpforms.php:1615
+msgid "Skip when empty"
+msgstr "空时忽略"
+
+#: pdf-forms-for-wpforms.php:1616
+msgid "Attach the filled PDF file to the following notifications:"
+msgstr "将填写好的 PDF 文件附加到以下通知中："
+
+#: pdf-forms-for-wpforms.php:1617
+msgid "Add download link to filled PDF file to the following confirmations:"
+msgstr "将下载链接添加到填充的 PDF 文件到以下确认："
+
+#: pdf-forms-for-wpforms.php:1618
+msgid "Flatten"
+msgstr "拼合"
+
+#: pdf-forms-for-wpforms.php:1619
+msgid "New filled PDF file name:"
+msgstr "新填充的 PDF 文件名："
+
+#: pdf-forms-for-wpforms.php:1620
+msgid "Path for saving filled PDF file:"
+msgstr "保存填充PDF文件的路径："
+
+#: pdf-forms-for-wpforms.php:1621
+msgid "(leave blank to disable this option)"
+msgstr "（留空以禁用此选项）"
+
+#: pdf-forms-for-wpforms.php:1622
+msgid "Field Mapper Tool"
+msgstr "字段映射工具"
+
+#: pdf-forms-for-wpforms.php:1623
+msgid ""
+"This tool can be used to link form fields and smart tags to fields in the attached PDF files. WPForms fields can also be "
+"generated from PDF fields. When your users submit the form, input from form fields and other smart tags will be inserted "
+"into the corresponding fields in the PDF file. WPForms to PDF field value mappings can also be created to enable the "
+"replacement of WPForms data when PDF fields are filled."
+msgstr ""
+"此工具可用于将表单字段和智能标签链接到附加的 PDF 文件中的字段。WPForms 字段也可以从 PDF 字段生成。当您的用户提交表单时，表单"
+"字段和其他智能标签中的输入将插入到 PDF 文件中的相应字段。还可以创建 WPForms 到 PDF 字段值的映射，以便在填写 PDF 字段时替换 "
+"WPForms 数据。"
+
+#: pdf-forms-for-wpforms.php:1624
+msgid "PDF field"
+msgstr "PDF字段"
+
+#: pdf-forms-for-wpforms.php:1625
+msgid "WPForms field / smart tags"
+msgstr "WPForms 字段/智能标签"
+
+#: pdf-forms-for-wpforms.php:1626
+msgid "Add Mapping"
+msgstr "添加映射"
+
+#: pdf-forms-for-wpforms.php:1627
+msgid "Delete All"
+msgstr "删除所有"
+
+#: pdf-forms-for-wpforms.php:1628
+msgid "New Field:"
+msgstr "新领域："
+
+#: pdf-forms-for-wpforms.php:1629
+msgid "Image Embedding Tool"
+msgstr "图像嵌入工具"
+
+#: pdf-forms-for-wpforms.php:1630
+msgid ""
+"This tool allows embedding of images into PDF files. Images are taken from file upload fields or URL field values. You can "
+"select a PDF file page and draw a bounding box for image insertion. Alternatively, you can insert your image in the center "
+"of every page."
+msgstr ""
+"此工具允许将图像嵌入 PDF 文件中。图像可以从文件上传字段或 URL 字段值中获取。您可以选择 PDF 文件页面并绘制一个边界框以插入图"
+"像。或者，您可以将图像插入每一页的中心。"
+
+#: pdf-forms-for-wpforms.php:1631
+msgid "Embed Image"
+msgstr "嵌入图片"
+
+#: pdf-forms-for-wpforms.php:1633
+msgid "PDF file"
+msgstr "PDF文件"
+
+#: pdf-forms-for-wpforms.php:1634
+msgid "Page"
+msgstr "页"
+
+#: pdf-forms-for-wpforms.php:1635
+msgid "Select a region where the image needs to be embeded."
+msgstr "选择需要嵌入图像的区域。"
+
+#: pdf-forms-for-wpforms.php:1636
+msgid "Top"
+msgstr "顶部"
+
+#: pdf-forms-for-wpforms.php:1637
+msgid "Left"
+msgstr "左"
+
+#: pdf-forms-for-wpforms.php:1638
+msgid "Width"
+msgstr "宽度"
+
+#: pdf-forms-for-wpforms.php:1639
+msgid "Height"
+msgstr "身高"
+
+#: pdf-forms-for-wpforms.php:1640
+msgid "pts"
+msgstr "分"
+
+#: pdf-forms-for-wpforms.php:1641
+msgid "Add smart-tags:"
+msgstr "添加智能标签："
+
+#: pdf-forms-for-wpforms.php:1642
+msgid "Show Smart Tags"
+msgstr "显示智能标签"
+
+#: pdf-forms-for-wpforms.php:1644
+msgid "Have a question/comment/problem?  Feel free to use {a-href-forum}the support forum{/a}."
+msgstr "有问题/意见/问题？ 随意使用{a-href-forum}支持论坛{/a}。"
+
+#: pdf-forms-for-wpforms.php:1650 pdf-forms-for-wpforms.php:1694
+msgid "Show Help"
+msgstr "显示帮助"
+
+#: pdf-forms-for-wpforms.php:1651 pdf-forms-for-wpforms.php:1695
+msgid "Hide Help"
+msgstr "隐藏帮助"
+
+#: pdf-forms-for-wpforms.php:1686
+msgid "Failed to determine form ID"
+msgstr "无法确定表单 ID"
+
+#: pdf-forms-for-wpforms.php:1687
+msgid "Failed to load PDF form data"
+msgstr "加载 PDF 表单数据失败"
+
+#: pdf-forms-for-wpforms.php:1689
+msgid "Are you sure you want to delete this file?  This will delete field mappings and image embeds associated with this file."
+msgstr "你确定要删除这个文件吗？ 这将删除与此文件关联的字段映射和图像嵌入。"
+
+#: pdf-forms-for-wpforms.php:1690
+msgid "Are you sure you want to delete this mapping?"
+msgstr "你确定要删除这个映射吗？"
+
+#: pdf-forms-for-wpforms.php:1691
+msgid "Are you sure you want to delete all mappings?"
+msgstr "您确定要删除所有映射吗？"
+
+#: pdf-forms-for-wpforms.php:1692
+msgid "Are you sure you want to attach a PDF file without any form fields?"
+msgstr "您确定要附加没有任何表单域的 PDF 文件吗？"
+
+#: pdf-forms-for-wpforms.php:1693
+msgid "Are you sure you want to delete this embeded image?"
+msgstr "你确定要删除这个嵌入的图像吗？"
+
+#: pdf-forms-for-wpforms.php:1696
+msgid "Select a PDF file"
+msgstr "选择一个PDF文件"
+
+#: pdf-forms-for-wpforms.php:1697
+msgid "Select"
+msgstr "选择"
+
+#: pdf-forms-for-wpforms.php:1698
+msgid "Custom text string..."
+msgstr "自定义文本字符串..."
+
+#: pdf-forms-for-wpforms.php:1699
+msgid "All PDFs"
+msgstr "所有PDF文件"
+
+#: pdf-forms-for-wpforms.php:1700
+msgid "All"
+msgstr "全部"
+
+#: pdf-forms-for-wpforms.php:1701
+msgid "PDF field type has no equivalent in WPForms"
+msgstr "PDF 字段类型在 WPForms 中没有等效项"
+
+#: pdf-forms-for-wpforms.php:1702
+msgid "Default Notification"
+msgstr "默认通知"
+
+#: pdf-forms-for-wpforms.php:1703
+msgid "Default Confirmation"
+msgstr "默认确认"
+
+#: pdf-forms-for-wpforms.php:1704
+msgid "--- EMPTY ---"
+msgstr "- - 空的  - -"
+
+#: pdf-forms-for-wpforms.php:1747
+msgid "Invalid attachment ID"
+msgstr "附件 ID 无效"
+
+#: pdf-forms-for-wpforms.php:1758
+msgid "PDF form filling"
+msgstr "PDF表格填写"
+
+#: pdf-forms-for-wpforms.php:1838
 msgid "Could not read attached file"
 msgstr "无法读取附件"
 
-#: pdf-forms-for-wpforms.php:1942
+#: pdf-forms-for-wpforms.php:1866
+msgid "No service"
+msgstr "无服务"
+
+#: pdf-forms-for-wpforms.php:1952
+msgid "Failed to determine upload path"
+msgstr "无法确定上传路径"
+
+#: pdf-forms-for-wpforms.php:1992
 msgid "Invalid page number"
 msgstr "无效的页码"
 
-#: pdf-forms-for-wpforms.php:1951
+#: pdf-forms-for-wpforms.php:2001
 msgid "Failed to retrieve page snapshot"
 msgstr "无法检索页面快照"
-
-#~ msgid "Docs"
-#~ msgstr "文档"
