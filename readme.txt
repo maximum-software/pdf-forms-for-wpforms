@@ -1,6 +1,6 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.1.10
-Stable tag: 1.1.10
+Version: 1.1.11
+Stable tag: 1.1.11
 Requires at least: 5.4
 Tested up to: 6.7
 Requires PHP: 5.5
@@ -51,6 +51,16 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.1.11 =
+
+* Release date: December 28, 2024
+
+* Added 'delete all value mappings' button
+* Fixed value mapping dropdowns going off-screen caused by very long PDF field option labels
+* Fixed localization issues
+* Updated language files
+* Other bug fixes and improvements
 
 = 1.1.10 =
 
