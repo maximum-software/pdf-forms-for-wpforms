@@ -841,12 +841,11 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		/**
 		 * We need to fill the pdf's document fields and then create attachment file and attach them
 		 */
-		public function fill_pdfs( $wpform_fields, $entry, $form_data )
+		public function fill_pdfs( $wpforms_fields, $entry, $form_data )
 		{
 			try
 			{
 				$entry_id = $entry["id"];
-				$wpform_fields_data = $entry['fields'];
 				
 				$attachments = array();
 				$mappings = array();
@@ -879,14 +878,9 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					$url = null;
 					
 					if( isset( $embed["wpf_field"] ) )
-					{
-						$wpf_field_id = $embed["wpf_field"];
-						$url = $wpform_fields_data[$wpf_field_id];
-					}
+						$url = $wpforms_fields[$embed["wpf_field"]]['value'];
 					if( isset( $embed['smart_tags'] ) ) 
-					{
-						$url = wpforms_process_smart_tags( $embed["smart_tags"], $form_data, $wpform_fields, $entry_id );
-					}
+						$url = wpforms_process_smart_tags( $embed["smart_tags"], $form_data, $wpforms_fields, $entry_id );
 					
 					if( $url != null )
 					{
@@ -990,21 +984,21 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					$embed_files[$id] = $filepath;
 				}
 				
-				$multiselectable_wpform_fields = array();
-				foreach( $wpform_fields as $wpform_field )
-					if( array_key_exists( 'name', $wpform_field ) )
+				$multiselectable_wpforms_fields = array();
+				foreach( $wpforms_fields as $wpforms_field )
+					if( array_key_exists( 'name', $wpforms_field ) )
 					{
 						if(
 							// WPForms checkboxes can have multiple values if the choice limit is more than one
-							( $wpform_field['type'] == 'checkbox' && intval( $form_data['fields'][$wpform_field['id']]['choice_limit'] ) != 1 )
+							( $wpforms_field['type'] == 'checkbox' && intval( $form_data['fields'][$wpforms_field['id']]['choice_limit'] ) != 1 )
 							
 							// WPForms drop-downs can have 'multiple' option
-							|| ( $wpform_field['type'] == 'select' && boolval( $form_data['fields'][$wpform_field['id']]['multiple'] ) )
+							|| ( $wpforms_field['type'] == 'select' && boolval( $form_data['fields'][$wpforms_field['id']]['multiple'] ) )
 							
 							// support for unknown field types: if field data is an array then it must be that this field supports multiple values
-							|| ( is_array( $wpform_fields_data[$wpform_field['id']] ) )
+							|| ( is_array( $entry['fields'][$wpforms_field['id']] ) )
 						)
-							$multiselectable_wpform_fields[$wpform_field['name']] = $wpform_field['name'];
+							$multiselectable_wpforms_fields[ $wpforms_field['id'] ] = $wpforms_field['id'];
 					}
 				
 				foreach( $attachments as $attachment )
@@ -1032,23 +1026,21 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 							continue;
 						
 						$multiple =
-							   ( isset( $mapping["wpf_field"] ) && isset( $multiselectable_wpform_fields[ $mapping["wpf_field"] ] ) )
+							   ( isset( $mapping["wpf_field"] ) && isset( $multiselectable_wpforms_fields[ $mapping["wpf_field"] ] ) )
 							|| ( isset( $fields[$field]['flags'] ) && in_array( 'MultiSelect', $fields[$field]['flags'] ) );
 						
 						if( isset( $mapping["wpf_field"] ) )
-							$data[$field] = $wpform_fields_data[$mapping["wpf_field"]];
+							$data[$field] = $wpforms_fields[$mapping["wpf_field"]]['value'];
 						
 						if( isset( $mapping["smart_tags"] ) )
+							$data[$field] = wpforms_process_smart_tags( $mapping["smart_tags"], $form_data, $wpforms_fields, $entry_id );
+						
+						if( $multiple )
 						{
-							$data[$field] = wpforms_process_smart_tags( $mapping["smart_tags"], $form_data, $wpform_fields, $entry_id );
-							
-							if( $multiple )
-							{
-								$data[$field] = explode( "\n" , $data[$field] );
-								foreach( $data[$field] as &$value )
-									$value = trim( $value );
-								unset( $value );
-							}
+							$data[$field] = explode( "\n" , $data[$field] );
+							foreach( $data[$field] as &$value )
+								$value = trim( $value );
+							unset( $value );
 						}
 					}
 					
@@ -1288,7 +1280,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					
 					$destfilename = strval( $attachment['options']['filename'] );
 					if( $destfilename != "" )
-						$destfilename = strval( wpforms_process_smart_tags( $destfilename, $form_data, $wpform_fields, $entry_id ) );
+						$destfilename = strval( wpforms_process_smart_tags( $destfilename, $form_data, $wpforms_fields, $entry_id ) );
 					if( $destfilename == "" )
 						$destfilename = sanitize_file_name( get_the_title( $attachment_id ) );
 					
@@ -1363,7 +1355,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 							$path_elements = explode( "/", $save_directory );
 							$tag_replaced_path_elements = array();
 							foreach ( $path_elements as $key => $value )
-								$tag_replaced_path_elements[$key] = wpforms_process_smart_tags( $value, $form_data, $wpform_fields, $entry_id );
+								$tag_replaced_path_elements[$key] = wpforms_process_smart_tags( $value, $form_data, $wpforms_fields, $entry_id );
 							
 							foreach( $tag_replaced_path_elements as $elmid => &$new_element )
 							{
@@ -1402,7 +1394,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				$this->wpforms_mail_attachments = array();
 			}
 			
-			return $wpform_fields;
+			return $wpforms_fields;
 		}
 		
 		/**
