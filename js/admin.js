@@ -2476,53 +2476,54 @@ jQuery(document).ready(function($) {
 	// set up wpforms fields update handler
 	jQuery(document).on('wpformsFieldUpdate', function(e, changeFields) {
 		
-		var fields = deepCopy(wpf.getFields());
+		if(!changeFields)
+			return;
 		
-		// update wpfFields labels in mappings
-		jQuery.each(getMappings(), function(i, data) {
-			if(!data.hasOwnProperty('wpf_field') || !fields.hasOwnProperty(data.wpf_field))
-				return;
+		jQuery.each(changeFields, function(f, field) {
+			var wpf_field = field.id;
+			var field_caption = field.label;
 			
-			var field = fields[data.wpf_field];
-			var field_caption = "Field #" + data.wpf_field;
-			if(field.hasOwnProperty('label') && field.label != "")
-				field_caption = field.label;
-			
-			jQuery(".pdf-forms-for-wpforms-admin .pdf-mapping-row[data-mapping_id='" + data.mapping_id  + "'] .wpf-field-name").text(field_caption);
-		});
-		
-		// update value mapping drop-downs
-		select2SharedData.wpfFieldsChoices = {};
-		jQuery.each(fields, function (index, field) {
-			
-			if(!field.hasOwnProperty('choices'))
-				return;
-			
-			var id = field.id;
-			select2SharedData.wpfFieldsChoices[id] = {};
-			jQuery.each(field.choices, function (i, choice) {
-				var text = null;
-				if(choice.hasOwnProperty('value') && choice.value)
-					text = String(choice.value);
-				else if(choice.hasOwnProperty('label') && choice.label)
-					text = String(choice.label);
-				if(text)
-					select2SharedData.wpfFieldsChoices[id][text] = { id: text, text: text, lowerText: text.toLowerCase() };
+			// update wpfFields labels in mappings
+			var mapping_id = null;
+			jQuery.each(getMappings(), function(m, mapping) {
+				if(mapping.wpf_field == wpf_field)
+				{
+					mapping_id = mapping.mapping_id;
+					return false; // break
+				}
 			});
-			select2SharedData.wpfFieldsChoices[id][''] = { id: '', text: pdf_forms_for_wpforms.__Null_Value_Mapping };
-		});
-		
-		// update wpfFields labels in embeds
-		jQuery.each(getEmbeds(), function(i, data) {
-			if(!data.hasOwnProperty('wpf_field') || !fields.hasOwnProperty(data.wpf_field))
-				return;
+			if(mapping_id)
+				jQuery(".pdf-forms-for-wpforms-admin .pdf-mapping-row[data-mapping_id='" + mapping_id  + "'] .wpf-field-name").text(field_caption);
 			
-			var field = fields[data.wpf_field];
-			var field_caption = "Field #" + data.wpf_field;
-			if(field.hasOwnProperty('label') && field.label != "")
-				field_caption = field.label;
+			// update value mapping drop-downs
+			if(field.hasOwnProperty('choices'))
+			{
+				select2SharedData.wpfFieldsChoices[wpf_field] = {};
+				jQuery.each(field.choices, function (i, choice) {
+					var text = null;
+					if(choice.hasOwnProperty('value') && choice.value)
+						text = String(choice.value);
+					else if(choice.hasOwnProperty('label') && choice.label)
+						text = String(choice.label);
+					if(text)
+						select2SharedData.wpfFieldsChoices[wpf_field][text] = { id: text, text: text, lowerText: text.toLowerCase() };
+				});
+				select2SharedData.wpfFieldsChoices[wpf_field][''] = { id: '', text: pdf_forms_for_wpforms.__Null_Value_Mapping };
+			}
+			else
+				delete select2SharedData.wpfFieldsChoices[wpf_field];
 			
-			jQuery(".pdf-forms-for-wpforms-admin .image-embeds-row[data-embed_id='" + data.id  + "'] .wpf-field-caption").text(field_caption);
+			// update wpfFields labels in embeds
+			var embed_id = null;
+			jQuery.each(getEmbeds(), function(m, embed) {
+				if(embed.wpf_field == wpf_field)
+				{
+					embed_id = embed.id;
+					return false; // break
+				}
+			});
+			if(embed_id)
+				jQuery(".pdf-forms-for-wpforms-admin .image-embeds-row[data-embed_id='" + embed_id  + "'] .wpf-field-caption").text(field_caption);
 		});
 	});
 	
