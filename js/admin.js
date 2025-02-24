@@ -91,11 +91,8 @@ jQuery(document).ready(function($) {
 						if(count > totalNeeded)
 							return false;
 						
-						if(!item.hasOwnProperty("lowerText"))
-							item.lowerText = item.text.toLowerCase();
-						
-						var counts = item.lowerText.indexOf(upperTerm) >= 0;
-						
+						var lowerText = item.hasOwnProperty("lowerText") ? item.lowerText : item.text.toLowerCase();
+						var counts = lowerText.indexOf(upperTerm) >= 0;
 						if(counts)
 							count++;
 						
@@ -112,9 +109,8 @@ jQuery(document).ready(function($) {
 					var exists = false;
 					jQuery.each(items, function(index, item)
 					{
-						if(!item.hasOwnProperty("lowerText"))
-							item.lowerText = String(item.text).toLowerCase();
-						if(item.id == tag || item.lowerText == lowerTag)
+						var lowerText = item.hasOwnProperty("lowerText") ? item.lowerText : String(item.text).toLowerCase();
+						if(item.id == tag || lowerText == lowerTag)
 						{
 							exists = true;
 							return false; // break
@@ -122,7 +118,7 @@ jQuery(document).ready(function($) {
 					});
 					if(!exists)
 					{
-						items = Object.assign([], items); // shallow copy
+						items = shallowCopy(items);
 						items.unshift({id: tag, text: tag, lowerText: lowerTag});
 					}
 				}
@@ -132,7 +128,7 @@ jQuery(document).ready(function($) {
 				items = items.slice((params.page - 1) * pageSize, totalNeeded); // paginate
 				
 				callback({
-					results: items,
+					results: deepCopy(items),
 					pagination: { more: more }
 				});
 			};
@@ -284,6 +280,51 @@ jQuery(document).ready(function($) {
 		dataAdapter: jQuery.fn.select2.amd.require("pdf-forms-for-wpforms-shared-data-adapter")
 	});
 	
+	var shallowCopy = function(obj)
+	{
+		if(obj === null || typeof obj !== 'object')
+			return obj;
+		if(Array.isArray(obj))
+			return obj.slice();
+		try
+		{
+			return Object.assign({}, obj);
+		}
+		catch (e)
+		{
+			console.error('shallowCopy: failed to copy value of type ' + typeof obj);
+			return obj;
+		}
+	};
+	
+	var deepCopy = function(obj)
+	{
+		// return primitive values as-is
+		if(obj === null || typeof obj !== 'object')
+			return obj;
+		
+		// use structuredClone if available (modern browsers)
+		if(typeof structuredClone === 'function')
+			try { return structuredClone(obj); } catch (e) { } // ignore failure
+		
+		// fallback implementation for older browsers
+		
+		if(Array.isArray(obj))
+			return obj.map(function(item) { return deepCopy(item); });
+		
+		try
+		{
+			var copy = {};
+			Object.keys(obj).forEach(function(key) { copy[key] = deepCopy(obj[key]); });
+			return copy;
+		}
+		catch (e)
+		{
+			console.error('deepCopy: failed to copy value of type ' + typeof obj);
+			return obj;
+		}
+	};
+	
 	var clearMessages = function()
 	{
 		jQuery('.pdf-forms-for-wpforms-admin .messages').empty();
@@ -404,8 +445,8 @@ jQuery(document).ready(function($) {
 				if(!(type === 'text' || type === 'radio' || type === 'select' || type === 'checkbox'))
 					return;
 				
-				var all_attachment_data = Object.assign({}, field); // shallow copy
-				var current_attachment_data = Object.assign({}, field); // shallow copy
+				var all_attachment_data = shallowCopy(field);
+				var current_attachment_data = shallowCopy(field);
 				
 				all_attachment_data['id'] = 'all-' + field.id;
 				all_attachment_data['text'] = name;
@@ -532,7 +573,7 @@ jQuery(document).ready(function($) {
 	{
 		try
 		{
-			var field = Object.assign({}, wpf.getField(id)); // shallow copy
+			var field = deepCopy(wpf.getField(id));
 			var name = "Field #" + id;
 			if(field.hasOwnProperty('label') && field.label != "")
 				name = field.label;
@@ -684,6 +725,8 @@ jQuery(document).ready(function($) {
 		var info = getAttachmentData(attachment_id);
 		if(!info)
 			return;
+		
+		data = deepCopy(data);
 		
 		var filename = info.filename;
 		var options = data.options;
@@ -839,6 +882,8 @@ jQuery(document).ready(function($) {
 			var mappings = getMappings();
 			jQuery.each(data.value_mappings, function(index, value_mapping) {
 				
+				value_mapping = shallowCopy(value_mapping);
+				
 				// find mapping id
 				for(var i=0, l=mappings.length; i<l; i++)
 				{
@@ -969,6 +1014,8 @@ jQuery(document).ready(function($) {
 		|| typeof data.wpf_value == 'undefined'
 		|| typeof data.pdf_value == 'undefined')
 			return;
+		
+		data = deepCopy(data);
 		
 		data.value_mapping_id = generateId();
 		pluginData["value_mappings"].push(data);
@@ -1113,6 +1160,8 @@ jQuery(document).ready(function($) {
 	
 	var addMapping = function(data)
 	{
+		data = deepCopy(data);
+		
 		data.mapping_id = generateId();
 		pluginData["mappings"].push(data);
 		
@@ -1348,6 +1397,8 @@ jQuery(document).ready(function($) {
 			if (!wpf_field_data)
 				return;
 		}
+		
+		embed = deepCopy(embed);
 		
 		if(!embed.id)
 			embed.id = ++embed_id_autoinc;
@@ -1749,7 +1800,7 @@ jQuery(document).ready(function($) {
 							return;
 					setAttachmentData(data.attachment_id, data);
 					
-					var options = Object.assign({}, defaultPdfOptions); // shallow copy
+					var options = deepCopy(defaultPdfOptions);
 					
 					// add first notification by default
 					jQuery.each(getWpformsNotifications(), function(i, notification) {
@@ -1903,7 +1954,7 @@ jQuery(document).ready(function($) {
 					{
 						if(pdf_field_data.hasOwnProperty('options') && (Array.isArray(pdf_field_data.options) || typeof pdf_field_data.options == 'object'))
 						{
-							var options = Object.assign({}, pdf_field_data.options); // shallow copy
+							var options = shallowCopy(pdf_field_data.options);
 							if(!Array.isArray(options))
 								options = Object.values(options);
 							
@@ -2425,7 +2476,7 @@ jQuery(document).ready(function($) {
 	// set up wpforms fields update handler
 	jQuery(document).on('wpformsFieldUpdate', function(e, changeFields) {
 		
-		var fields = Object.assign({}, wpf.getFields()); // shallow copy
+		var fields = deepCopy(wpf.getFields());
 		
 		// update wpfFields labels in mappings
 		jQuery.each(getMappings(), function(i, data) {
