@@ -1,9 +1,7 @@
 === PDF Forms Filler for WPForms ===
 Version: 1.1.11
 Stable tag: 1.1.11
-Requires at least: 5.4
 Tested up to: 6.7
-Requires PHP: 5.5
 Tags: pdf, form, wpforms, email, download
 Plugin URI: https://pdfformsfiller.org/
 Author: Maximum.Software
