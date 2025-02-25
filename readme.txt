@@ -1,6 +1,6 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.1.11
-Stable tag: 1.1.11
+Version: 1.2.0
+Stable tag: 1.2.0
 Tested up to: 6.7
 Tags: pdf, form, wpforms, email, download
 Plugin URI: https://pdfformsfiller.org/
@@ -50,6 +50,18 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.2.0 =
+
+* Release date: February 25, 2025
+
+* WARNING: This version includes changes that may affect plugin behavior. Please test your forms thoroughly after updating.
+* Switched from `wpforms_process` action to `wpforms_process_after_filter` filter for filling PDFs to fix an issue with file upload fields
+* Switched from using form submission raw data ($_POST) to formatted field data for filling PDFs
+* Fixed an issue with file upload URL not being accessible with non-smart-tag mappings
+* Fixed a bug with multi-selectable field detection
+* Temporarily added PDF as a supported image format for embedding (until capabilities feature is implemented)
+* Other minor fixes and improvements
 
 = 1.1.11 =
 
@@ -156,6 +168,11 @@ Special thanks to the following sponsors of this plugin:
 * Release date: September 9, 2022
 
 * Initial release
+
+== Upgrade Notice ==
+
+= 1.2.0 =
+WARNING: This version includes changes that may affect plugin behavior. Please test your forms thoroughly after updating.
 
 == Frequently Asked Questions ==
 
