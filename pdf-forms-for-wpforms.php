@@ -805,6 +805,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					"image/x-ms-bmp",
 					"image/svg+xml",
 					"image/webp",
+					"application/pdf",
 				);
 			
 			if( $mimetype )
