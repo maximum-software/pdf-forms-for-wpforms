@@ -1,7 +1,7 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.2.0
-Stable tag: 1.2.0
-Tested up to: 6.7
+Version: 1.3.0
+Stable tag: 1.3.0
+Tested up to: 6.8
 Tags: pdf, form, wpforms, email, download
 Plugin URI: https://pdfformsfiller.org/
 Author: Maximum.Software
@@ -50,6 +50,14 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.3.0 =
+
+* Release date: April 2, 2025
+
+* WARNING: This version includes changes that may affect plugin behavior. Please test your forms thoroughly after updating.
+* Fixed an issue with smart tags rendering: smart tag values were HTML-escaped when we need plain text
+* Field Mapper Tool UI issue fixed (column widths).
 
 = 1.2.0 =
 
@@ -170,6 +178,11 @@ Special thanks to the following sponsors of this plugin:
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+WARNING: This version includes changes that may affect plugin behavior. Please test your forms thoroughly after updating.
+The specific issue is that (in previous versions) smart tag values were HTML-escaped, causing unwanted HTML escape sequences to appear when smart tag containing strings were rendered.
+This version fixes the issue by unescaping smart tag values. Smart tag mappings and image embeds are affected, as well as PDF filenames and save paths that have smart tags.
 
 = 1.2.0 =
 WARNING: This version includes changes that may affect plugin behavior. Please test your forms thoroughly after updating.
