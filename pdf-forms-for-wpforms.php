@@ -37,6 +37,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		private $storage = null;
 		private $tmp_dir = null;
 		private $wpforms_mail_attachments = array();
+		private $need_plaintext_smart_tag_value_flag = false;
 		
 		private function __construct()
 		{
@@ -78,6 +79,8 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			add_action( 'admin_menu', array( $this, 'register_services' ) );
 			
 			add_filter( 'wpforms_save_form_args', array( $this, 'wpforms_save_form_args' ), 10, 3 );
+			
+			add_filter( 'wpforms_smarttags_process_value', array( $this, 'plaintext_smart_tag_value_workaround_filter' ), PHP_INT_MAX, 6 );
 			// fill_pdfs: we can't use wpforms_process_complete (because notifications have already been sent) and wpforms_process because uploaded files haven't been processed yet
 			add_filter( 'wpforms_process_after_filter', array( $this, 'fill_pdfs' ), 999999, 3 );
 			add_action( 'wpforms_process_complete', array( $this, 'remove_tmp_dir' ), 99, 0 );
@@ -840,6 +843,37 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		}
 		
 		/**
+		 * Wrapper for WPForms' wpforms_process_smart_tags()
+		 * 
+		 * The function wpforms_process_smart_tags() formats smart tag values for HTML output (via `wp_kses_post()`), but we need plain text.
+		 * Additional issue is that the content we are passing into wpforms_process_smart_tags() is plain text mixed with smart tags, but the smart tags will be formatted in HTML.
+		 * So, we need to use a workaround to make sure we get plain text smart tag values.
+		 */
+		public function wpforms_process_smart_tags( $content, $form_data, $fields = [], $entry_id = '', $context = '' )
+		{
+			// enable flag to convert smart tag values from HTML to plain text
+			$this->need_plaintext_smart_tag_value_flag = true;
+			
+			$value = wpforms_process_smart_tags( $content, $form_data, $fields, $entry_id, $context );
+			
+			// disable conversion
+			$this->need_plaintext_smart_tag_value_flag = false;
+			
+			return $value;
+		}
+		
+		/**
+		 * Filter the smart tag values late to convert HTML to plain text when we are inside our own wpforms_process_smart_tags call
+		 */
+		public function plaintext_smart_tag_value_workaround_filter( $value, $tag_name, $form_data, $fields, $entry_id, $smart_tag_object )
+		{
+			if( $this->need_plaintext_smart_tag_value_flag )
+				return html_entity_decode( strip_tags( $value ), ENT_QUOTES, 'UTF-8' );
+			else
+				return $value;
+		}
+		
+		/**
 		 * We need to fill the pdf's document fields and then create attachment file and attach them
 		 */
 		public function fill_pdfs( $wpforms_fields, $entry, $form_data )
@@ -881,7 +915,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					if( isset( $embed["wpf_field"] ) )
 						$url = $wpforms_fields[$embed["wpf_field"]]['value'];
 					if( isset( $embed['smart_tags'] ) ) 
-						$url = wpforms_process_smart_tags( $embed["smart_tags"], $form_data, $wpforms_fields, $entry_id );
+						$url = $this->wpforms_process_smart_tags( $embed["smart_tags"], $form_data, $wpforms_fields, $entry_id );
 					
 					if( $url != null )
 					{
@@ -1034,7 +1068,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 							$data[$field] = $wpforms_fields[$mapping["wpf_field"]]['value'];
 						
 						if( isset( $mapping["smart_tags"] ) )
-							$data[$field] = wpforms_process_smart_tags( $mapping["smart_tags"], $form_data, $wpforms_fields, $entry_id );
+							$data[$field] = $this->wpforms_process_smart_tags( $mapping["smart_tags"], $form_data, $wpforms_fields, $entry_id );
 						
 						if( $multiple )
 						{
@@ -1281,7 +1315,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					
 					$destfilename = strval( $attachment['options']['filename'] );
 					if( $destfilename != "" )
-						$destfilename = strval( wpforms_process_smart_tags( $destfilename, $form_data, $wpforms_fields, $entry_id ) );
+						$destfilename = strval( $this->wpforms_process_smart_tags( $destfilename, $form_data, $wpforms_fields, $entry_id ) );
 					if( $destfilename == "" )
 						$destfilename = sanitize_file_name( get_the_title( $attachment_id ) );
 					
@@ -1356,7 +1390,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 							$path_elements = explode( "/", $save_directory );
 							$tag_replaced_path_elements = array();
 							foreach ( $path_elements as $key => $value )
-								$tag_replaced_path_elements[$key] = wpforms_process_smart_tags( $value, $form_data, $wpforms_fields, $entry_id );
+								$tag_replaced_path_elements[$key] = $this->wpforms_process_smart_tags( $value, $form_data, $wpforms_fields, $entry_id );
 							
 							foreach( $tag_replaced_path_elements as $elmid => &$new_element )
 							{
