@@ -406,7 +406,7 @@ msgid "Show Smart Tags"
 msgstr ""
 
 #: pdf-forms-for-wpforms.php:1644
-msgid "Have a question/comment/problem?  Feel free to use {a-href-forum}the support forum{/a}."
+msgid "Have a question/comment/problem?  Feel free to use {a-href-forum}the support forum{/a} and view {a-href-tutorial}the tutorial video{/a}."
 msgstr ""
 
 #: pdf-forms-for-wpforms.php:1650

@@ -1671,9 +1671,10 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				'add-smart-tags' => esc_html__( 'Add smart-tags:', 'pdf-forms-for-wpforms' ),
 				'show-smart-tags' => esc_html__( 'Show Smart Tags', 'pdf-forms-for-wpforms' ),
 				'help-message' => self::replace_tags(
-					esc_html__( "Have a question/comment/problem?  Feel free to use {a-href-forum}the support forum{/a}.", 'pdf-forms-for-wpforms' ),
+					esc_html__( "Have a question/comment/problem?  Feel free to use {a-href-forum}the support forum{/a} and view {a-href-tutorial}the tutorial video{/a}.", 'pdf-forms-for-wpforms' ),
 					array(
 						'a-href-forum' => '<a href="https://wordpress.org/support/plugin/pdf-forms-for-wpforms/" target="_blank">',
+						'a-href-tutorial' => '<a href="https://youtu.be/3V2k7ITVNlo" target="_blank">',
 						'/a' => '</a>',
 					)
 				),

@@ -29,6 +29,10 @@ An external web API (https://pdf.ninja) is used for filling PDF forms (free usag
 
 Please see [Pdf.Ninja Terms of Use](https://pdf.ninja/#terms) and [Pdf.Ninja Privacy Policy](https://pdf.ninja/#privacy).
 
+Please see the [tutorial video](https://youtu.be/3V2k7ITVNlo) for detailed information.
+
+[youtube http://www.youtube.com/watch?v=3V2k7ITVNlo]
+
 Requirements:
  * PHP 5.5 or newer
  * WordPress 5.4 or newer
