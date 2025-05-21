@@ -1,6 +1,6 @@
 === PDF Forms Filler for WPForms ===
-Version: 1.3.0
-Stable tag: 1.3.0
+Version: 1.3.1
+Stable tag: 1.3.1
 Tested up to: 6.8
 Tags: pdf, form, wpforms, email, download
 Plugin URI: https://pdfformsfiller.org/
@@ -54,6 +54,12 @@ Special thanks to the following sponsors of this plugin:
 4. Start using the 'PDF Forms' section in the WPForms editor under settings.
 
 == Changelog ==
+
+= 1.3.1 =
+
+* Release date: May 21, 2025
+
+* Fixed the issue of {entry_id} smart tag not working correctly
 
 = 1.3.0 =
 
