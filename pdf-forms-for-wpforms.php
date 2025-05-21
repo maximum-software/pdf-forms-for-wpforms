@@ -25,7 +25,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 	class Pdf_Forms_For_WPForms
 	{
 		const VERSION = '1.3.0';
-		const MIN_WPFORMS_VERSION = '1.6.9';
+		const MIN_WPFORMS_VERSION = '1.7.7';
 		const MAX_WPFORMS_VERSION = '1.9.99';
 		private static $BLACKLISTED_WPFORMS_VERSIONS = array();
 		
@@ -81,8 +81,10 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			add_filter( 'wpforms_save_form_args', array( $this, 'wpforms_save_form_args' ), 10, 3 );
 			
 			add_filter( 'wpforms_smarttags_process_value', array( $this, 'plaintext_smart_tag_value_workaround_filter' ), PHP_INT_MAX, 6 );
-			// fill_pdfs: we can't use wpforms_process_complete (because notifications have already been sent) and wpforms_process because uploaded files haven't been processed yet
-			add_filter( 'wpforms_process_after_filter', array( $this, 'fill_pdfs' ), 999999, 3 );
+			// fill_pdfs: we can't use wpforms_process_complete (because notifications have already been sent)
+			// and wpforms_process because uploaded files haven't been processed yet
+			// we need entry_id as well, which is only provided to wpforms_process_entry_saved
+			add_action( 'wpforms_process_entry_saved', array( $this, 'fill_pdfs' ), 99, 4 );
 			add_action( 'wpforms_process_complete', array( $this, 'remove_tmp_dir' ), 99, 0 );
 			add_filter( 'wpforms_emails_send_email_data', array( $this, 'attach_files' ), 10, 2 );
 			add_action( 'wpforms_frontend_confirmation_message', array( $this, 'change_confirmation_message'), 10, 4 );
@@ -876,12 +878,10 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 		/**
 		 * We need to fill the pdf's document fields and then create attachment file and attach them
 		 */
-		public function fill_pdfs( $wpforms_fields, $entry, $form_data )
+		public function fill_pdfs( $wpforms_fields, $entry, $form_data, $entry_id )
 		{
 			try
 			{
-				$entry_id = $entry["id"];
-				
 				$attachments = array();
 				$mappings = array();
 				$embeds = array();
@@ -1428,8 +1428,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				$this->remove_tmp_dir();
 				$this->wpforms_mail_attachments = array();
 			}
-			
-			return $wpforms_fields;
 		}
 		
 		/**
