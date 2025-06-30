@@ -1711,7 +1711,6 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					wp_register_style( 'pdf_forms_for_wpforms_admin_style', plugin_dir_url( __FILE__ ) . 'css/admin.css', array( 'jcrop', 'select2' ), self::VERSION );
 					
 					wp_localize_script( 'pdf_forms_for_wpforms_admin_script', 'pdf_forms_for_wpforms', array(
-						'ajax_url' => admin_url( 'admin-ajax.php' ),
 						'ajax_nonce' => wp_create_nonce( 'pdf-forms-for-wpforms-ajax-nonce' ),
 						'__No_Form_ID' => __( "Failed to determine form ID", 'pdf-forms-for-wpforms' ),
 						'__No_Preload_Data' => __( 'Failed to load PDF form data', 'pdf-forms-for-wpforms' ),

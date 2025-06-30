@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 		jQuery('.wpforms-admin-settings-pdf-ninja #pdf-forms-for-wpforms-messages').empty();
 		
 		jQuery.ajax({
-			url: pdf_forms_for_wpforms.ajax_url,
+			url: ajaxurl,
 			type: 'POST',
 			data: { 'action': 'pdf_forms_for_wpforms_generate_pdf_ninja_key', 'nonce': pdf_forms_for_wpforms.ajax_nonce },
 			cache: false,

@@ -1545,7 +1545,7 @@ jQuery(document).ready(function($) {
 			return;
 		
 		jQuery.ajax({
-			url: pdf_forms_for_wpforms.ajax_url,
+			url: ajaxurl,
 			type: 'POST',
 			data: {
 				'action': 'pdf_forms_for_wpforms_query_page_image',
@@ -1773,7 +1773,7 @@ jQuery(document).ready(function($) {
 	var attachPdf = function(file_id)
 	{
 		jQuery.ajax({
-			url: pdf_forms_for_wpforms.ajax_url,
+			url: ajaxurl,
 			type: 'POST',
 			data: {
 				'action': 'pdf_forms_for_wpforms_get_attachment_data',
