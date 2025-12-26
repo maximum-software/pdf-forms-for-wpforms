@@ -1701,7 +1701,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				if( wpforms_is_admin_page( 'builder' ) )
 				{
 					wp_register_style( 'select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), '4.0.13' );
-					wp_register_script( 'select2', plugin_dir_url(  __FILE__ ) . 'js/select2/select2.min.js', array( 'jquery' ), '4.0.13' );
+					wp_register_script( 'select2', plugin_dir_url( __FILE__ ) . 'js/select2/select2.min.js', array( 'jquery' ), '4.0.13' );
 					
 					// TODO: improve registering/enqueuing of jcrop
 					if( ! wp_style_is( 'jcrop', 'registered' ) )
