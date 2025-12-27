@@ -624,7 +624,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			{
 				// TODO: improve error handling via wpforms
 				wp_send_json_error(
-					esc_html(
+					esc_textarea(
 						self::replace_tags(
 							__( "Error saving PDF form data: {error-message} at {error-file}:{error-line}", 'pdf-forms-for-wpforms' ),
 							array( 'error-message' => $e->getMessage(), 'error-file' => wp_basename( $e->getFile() ), 'error-line' => $e->getLine() )
@@ -1470,7 +1470,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 									array(
 										'icon' => '<span class="dashicons dashicons-download"></span>',
 										'a-href-url' => '<a href="' . esc_attr( $file['url'] ) . '" download>',
-										'filename' => esc_html( $file['filename'] ),
+										'filename' => esc_textarea( $file['filename'] ),
 										'/a' => '</a>',
 										'i' => '<span class="file-size">',
 										'size' => esc_html( size_format( filesize( $file['filepath'] ) ) ),
@@ -1606,7 +1606,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				$messages .=
 					Pdf_Forms_For_WPForms::render_error_notice( null, array(
 						'label' => esc_html__( "Error", 'pdf-forms-for-wpforms' ),
-						'message' => esc_html__( $e->getMessage(), 'pdf-forms-for-wpforms' ),
+						'message' => esc_textarea( $e->getMessage() ),
 					) );
 			}
 			
@@ -1630,7 +1630,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					),
 					false
 				),
-				'preload-data' => esc_html( self::json_encode( $preload_data ) ),
+				'preload-data' => esc_textarea( self::json_encode( $preload_data ) ),
 				'messages' => $messages,
 				'instructions' => esc_html__( "You can use this section to attach a PDF file to your form, insert new form fields into your form, and link them to fields in the PDF file. You can also embed images (from URLs or attached files) into the PDF file. Changes here are applied when the form is saved.", 'pdf-forms-for-wpforms' ),
 				'attach-pdf' => esc_html__( "Attach a PDF File", 'pdf-forms-for-wpforms' ),
