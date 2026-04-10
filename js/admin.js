@@ -524,20 +524,22 @@ jQuery(document).ready(function($) {
 	}
 	
 	var precomputeWpfSelect2Cache = function() {
-		
+
 		var wpfSelect2Cache = [];
-		
-		jQuery('.pdf-forms-for-wpforms-admin .wpf-field-list option').each(function(i) {
-			var id = jQuery(this).val();
-			if(id === "") return; // skip "--- select field ---"
-			var label = jQuery(this).text();
-			var field = {
+
+		var fields = wpf.getFields();
+		jQuery.each(fields, function(key, field) {
+			var id = String(field.id);
+			var name = "Field #" + id;
+			if(field.hasOwnProperty('label') && field.label != "")
+				name = String(field.label);
+			var fieldData = {
 				id: id,
-				text: label,
-				lowerText: label.toLowerCase(),
+				text: name,
+				lowerText: name.toLowerCase(),
 				smarttag: false
 			};
-			wpfSelect2Cache.push(field);
+			wpfSelect2Cache.push(fieldData);
 		});
 		
 		var smartTags = [
@@ -2111,12 +2113,9 @@ jQuery(document).ready(function($) {
 	});
 	
 	// set up handler for changes in list of WPForms fields
-	var wpfFieldsList = jQuery('.pdf-forms-for-wpforms-admin .wpf-field-list');
-	if(wpfFieldsList.length > 0)
-	{
-		var wpfFieldsListObserver = new MutationObserver(function() { runWhenDone(refreshWpfFields); });
-		wpfFieldsListObserver.observe(wpfFieldsList[0], {childList: true, subtree: true});
-	}
+	jQuery(document).on('wpformsFieldUpdate wpformsFieldDuplicated wpformsFieldPasted', function() {
+		runWhenDone(refreshWpfFields);
+	});
 	
 	// set up handler for notifications changes
 	var notificationsPanel = jQuery('#wpforms-builder-form div[data-panel="notifications"]');
