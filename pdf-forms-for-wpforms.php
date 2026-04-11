@@ -1732,6 +1732,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 						'__Default_Notification' => __( 'Default Notification', 'pdf-forms-for-wpforms' ),
 						'__Default_Confirmation' => __( 'Default Confirmation', 'pdf-forms-for-wpforms' ),
 						'__Null_Value_Mapping' => __( '--- EMPTY ---', 'pdf-forms-for-wpforms' ),
+						'__Field_Number' => __( 'Field #', 'pdf-forms-for-wpforms' ),
 					) );
 					
 					wp_enqueue_media();

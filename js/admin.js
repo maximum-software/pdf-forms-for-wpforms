@@ -530,7 +530,7 @@ jQuery(document).ready(function($) {
 		var fields = wpf.getFields();
 		jQuery.each(fields, function(key, field) {
 			var id = String(field.id);
-			var name = "Field #" + id;
+			var name = pdf_forms_for_wpforms.__Field_Number + id;
 			if(field.hasOwnProperty('label') && field.label != "")
 				name = String(field.label);
 			var fieldData = {
@@ -576,7 +576,7 @@ jQuery(document).ready(function($) {
 		try
 		{
 			var field = deepCopy(wpf.getField(id));
-			var name = "Field #" + id;
+			var name = pdf_forms_for_wpforms.__Field_Number + id;
 			if(field.hasOwnProperty('label') && field.label != "")
 				name = field.label;
 			field['name'] = name;
