@@ -1439,12 +1439,15 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 			$notification_id = $wpforms->notification_id;
 			
 			foreach( $this->wpforms_mail_attachments as $file )
+			{
 				foreach( $file['options']['notifications'] as $id )
-					if( $notification_id == $id )
-					{
+				{
+					if( $notification_id == $id ) {
 						$emailData['attachments'][] = $file['file'];
 						break;
 					}
+				}
+			}
 			
 			return $emailData;
 		}
@@ -1461,9 +1464,10 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 					return $confirmation_message;
 				
 				foreach( $this->downloads->get_files() as $file )
+				{
 					foreach( $file['metadata']['confirmations'] as $id )
-						if( $id == $confirmation_id )
-						{
+					{
+						if( $id == $confirmation_id ) {
 							$confirmation_message .= "<div>".
 								self::replace_tags(
 									esc_html__( "{icon} {a-href-url}{filename}{/a} {i}({size}){/i}", 'pdf-forms-for-wpforms' ),
@@ -1480,6 +1484,8 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 								. "</div>";
 							break;
 						}
+					}
+				}
 				
 				// make sure to enable cron if it is down so that old download files get cleaned up
 				$this->enable_cron();
