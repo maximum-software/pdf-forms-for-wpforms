@@ -1,0 +1,17 @@
+# composer
+vendor/
+
+# build artifacts
+build/
+dist/
+
+# release artifacts
+svn/
+
+# env
+.env
+
+# ide files
+.vscode/
+.idea/
+

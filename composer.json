@@ -1,0 +1,73 @@
+{
+	"name": "maximum-software/pdf-forms-for-wpforms",
+	"description": "Build WPForms from PDF forms. Get PDFs filled automatically and attached to email messages and/or website responses on form submissions.",
+	"version": "1.3.3",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-only",
+	"authors": [
+		{
+			"name": "Maximum Software Inc",
+			"email": "contact@maximum.software"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"php": ">=5.6"
+	},
+	"require-dev": {
+		"maximum-software/wp-plugin-tooling": "dev-main"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "ssh://git@gitea.maximum.software:2222/maximum-software/wp-plugin-tooling.git"
+		}
+	],
+	"config": {
+		"process-timeout": 3600,
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"maximum-software/wp-plugin-tooling": true
+		}
+	},
+	"extra": {
+		"wp-plugin-tooling": {
+			"slug": "pdf-forms-for-wpforms",
+			"domain": "pdf-forms-for-wpforms",
+			"main_file": "pdf-forms-for-wpforms.php",
+			"svn_url": "https://plugins.svn.wordpress.org/pdf-forms-for-wpforms",
+			"php_version": "5.6",
+			"wp_version": "5.4",
+			"translation_headers": {
+				"Last-Translator": "Maximum Software Inc <contact@maximum.software>",
+				"Language-Team": "Maximum Software Inc <contact@maximum.software>"
+			},
+			"prefixes": [
+				"pdf_forms_for_wpforms",
+				"PDF_FORMS_FOR_WPFORMS",
+				"Pdf_Forms_For_WPForms",
+				"WPForms_Pdf_Ninja"
+			],
+			"phpcs_files": [
+				"./modules",
+				"./inc",
+				"./pdf-forms-for-wpforms.php"
+			],
+			"package_files": [
+				"pdf-forms-for-wpforms.php",
+				"readme.txt",
+				"LICENSE",
+				"js",
+				"css",
+				"html",
+				"modules",
+				"inc",
+				"languages"
+			]
+		}
+	}
+}
