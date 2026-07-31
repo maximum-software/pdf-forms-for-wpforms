@@ -425,7 +425,7 @@ if( ! class_exists('Pdf_Forms_For_WPForms') )
 				$post_content = json_decode( stripslashes( $post['post_content'] ), true );
 				if( ! is_array( $post_content ) )
 					throw new Exception(
-							__( "Missing post content", 'pdf-forms-for-wpforms' ),
+							__( "Missing post content", 'pdf-forms-for-wpforms' )
 						);
 				
 				// check form settings
