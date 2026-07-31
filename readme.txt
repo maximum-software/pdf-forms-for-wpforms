@@ -1,6 +1,7 @@
 === PDF Forms Filler for WPForms ===
 Version: 1.3.3
 Stable tag: 1.3.3
+Requires PHP: 5.6
 Tested up to: 7.0
 Tags: pdf, form, wpforms, email, download
 Plugin URI: https://pdfformsfiller.org/
@@ -34,7 +35,7 @@ Please see the [tutorial video](https://youtu.be/3V2k7ITVNlo) and the [documenta
 [youtube http://www.youtube.com/watch?v=3V2k7ITVNlo]
 
 Requirements:
- * PHP 5.5 or newer
+ * PHP 5.6 or newer
  * WordPress 5.4 or newer
  * WPForms 1.6.9 or newer
  * Chrome 63, Firefox 58 (or equivalent) or newer

@@ -23,7 +23,7 @@ Please see the [tutorial video](https://youtu.be/3V2k7ITVNlo) and the [documenta
 [![PDF Forms Filler for WPForms Tutorial](https://img.youtube.com/vi/3V2k7ITVNlo/0.jpg)](https://www.youtube.com/watch?v=3V2k7ITVNlo "PDF Forms Filler for WPForms Tutorial")
 
 Requirements:
-* PHP 5.5 or newer
+* PHP 5.6 or newer
 * WordPress 5.4 or newer
 * WPForms 1.6.9 or newer
 * Chrome 63, Firefox 58 (or equivalent) or newer

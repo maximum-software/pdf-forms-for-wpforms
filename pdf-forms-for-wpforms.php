@@ -5,7 +5,7 @@
  * Description: Build WPForms from PDF forms. Get PDFs filled automatically and attached to email messages and/or website responses on form submissions.
  * Version: 1.3.3
  * Requires at least: 5.4
- * Requires PHP: 5.5
+ * Requires PHP: 5.6
  * Author: Maximum.Software
  * Author URI: https://maximum.software/
  * Text Domain: pdf-forms-for-wpforms
