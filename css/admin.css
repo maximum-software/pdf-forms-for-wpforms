@@ -47,6 +47,17 @@
 	text-align: left;
 }
 
+.pdf-forms-for-wpforms-admin td.smart-tags,
+.pdf-forms-for-wpforms-admin .pdf-options div.wpforms-panel-field
+{
+	position: relative;
+}
+
+.pdf-forms-for-wpforms-admin .toggle-smart-tag-display
+{
+	display: none;
+}
+
 .pdf-forms-for-wpforms-admin .filename-column
 {
 	width: 100%
@@ -62,7 +73,8 @@
 	padding: 10px;
 }
 
-.pdf-forms-for-wpforms-admin div.pdf-options div
+.pdf-forms-for-wpforms-admin div.pdf-options > div,
+.pdf-forms-for-wpforms-admin div.pdf-options-hint
 {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -85,6 +97,14 @@
 	flex: 1;
 	margin-left: 5px;
 	margin-right: 5px;
+}
+
+.pdf-forms-for-wpforms-admin div.pdf-options div.flex .wpforms-smart-tags-widget-container
+{
+	flex: 1;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 0;
 }
 
 .pdf-forms-for-wpforms-admin .notification,

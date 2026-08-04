@@ -33,16 +33,16 @@
 									<span>{filename}</span>
 									<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
 								</label>
-								<div class="flex"><input id="pdf-forms-for-wpforms-smart-tags" data-option="filename" type="text" class="smart-tags"/><span>.pdf</span></div>
-								<div>{leave-blank-to-disable}</div>
+								<div class="flex"><input id="pdf-forms-for-wpforms-smart-tags" data-option="filename" type="text" class="smart-tags" data-type="all"/><span>.pdf</span></div>
+								<div class="pdf-options-hint">{leave-blank-to-disable}</div>
 							</div>
 						<div class="wpforms-panel-field pdf-option-save-directory pdf-options-multiline">
 							<label for="pdf-forms-for-wpforms-smart-tags">
 								<span>{save-directory}</span>
 								<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
 							</label>
-							<div class="flex"><span>wp-content/uploads/</span><input id="pdf-forms-for-wpforms-smart-tags" data-option="save_directory" type="text" class="smart-tags"/></div>
-							<div>{leave-blank-to-disable}</div>
+							<div class="flex"><span>wp-content/uploads/</span><input id="pdf-forms-for-wpforms-smart-tags" data-option="save_directory" type="text" class="smart-tags" data-type="all"/></div>
+							<div class="pdf-options-hint">{leave-blank-to-disable}</div>
 						</div>
 						<div class="wpforms-panel-field pdf-option-confirmations select-dropdown confirmation">
 							{confirmations}<br/>
@@ -116,7 +116,7 @@
 								{add-smart-tags}
 								<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
 							</label>
-							<textarea id="pdf-forms-for-wpforms-smart-tags" spellcheck="false" class="smart-tags"></textarea>
+							<textarea id="pdf-forms-for-wpforms-smart-tags" spellcheck="false" class="smart-tags" data-type="all"></textarea>
 						</div>
 					</td>
 					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>
@@ -228,7 +228,7 @@
 								{add-smart-tags}
 								<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
 							</label>
-							<textarea id="pdf-forms-for-wpforms-smart-tags" spellcheck="false" class="smart-tags"></textarea>
+							<textarea id="pdf-forms-for-wpforms-smart-tags" spellcheck="false" class="smart-tags" data-type="all"></textarea>
 						</div>
 					</td>
 					<td class="mapping-arrow"><span class="dashicons dashicons-arrow-right-alt"></span></td>

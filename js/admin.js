@@ -720,6 +720,33 @@ jQuery(document).ready(function($) {
 		delete attachmentData[attachment_id];
 	}
 	
+	var hasSmartTagWidgetsCache;
+	var hasSmartTagWidgets = function()
+	{
+		if(hasSmartTagWidgetsCache === undefined)
+		{
+			// check for WPForms >= 1.10 smart tag widget API (cached; can't change during page lifetime)
+			var smartTags = window.WPForms && window.WPForms.Admin && window.WPForms.Admin.Builder && window.WPForms.Admin.Builder.SmartTags;
+			hasSmartTagWidgetsCache = !!(smartTags && typeof smartTags.initWidgets === 'function');
+		}
+		return hasSmartTagWidgetsCache;
+	};
+	
+	var initSmartTagWidgets = function(container)
+	{
+		// init WPForms >= 1.10 smart tag widgets or show legacy toggle buttons for < 1.10
+		if(hasSmartTagWidgets())
+		{
+			// templates don't carry wpforms-smart-tags-enabled so that WPForms' global
+			// initWidgets on builder ready never widget-ifies the hidden template rows;
+			container.find('input.smart-tags, textarea.smart-tags').addClass('wpforms-smart-tags-enabled');
+			
+			WPForms.Admin.Builder.SmartTags.initWidgets(container);
+		}
+		else
+			container.find('.toggle-smart-tag-display').show();
+	};
+	
 	var addAttachment = function(data)
 	{
 		var attachment_id = data.attachment_id;
@@ -809,6 +836,7 @@ jQuery(document).ready(function($) {
 		});
 		
 		jQuery('.pdf-forms-for-wpforms-admin .pdf-attachments tr.pdf-buttons').before(tag);
+		initSmartTagWidgets(tag);
 		// TODO: remove item when attachment is deleted
 		// better TODO: use shared list (attachmentData)
 		select2SharedData.pdfSelect2Files.push({
@@ -1249,6 +1277,7 @@ jQuery(document).ready(function($) {
 		});
 		
 		tag.insertBefore(jQuery('.pdf-forms-for-wpforms-admin .pdf-fields-mapper .delete-all-row'));
+		initSmartTagWidgets(tag);
 		jQuery('.pdf-forms-for-wpforms-admin .delete-all-row').show();
 	};
 	
@@ -1511,6 +1540,7 @@ jQuery(document).ready(function($) {
 			tag.find('.page-selector-row').addBack('.page-selector-row').hide();
 		
 		jQuery('.pdf-forms-for-wpforms-admin .image-embeds tbody').append(tag);
+		initSmartTagWidgets(tag);
 	};
 	
 	var deleteEmbed = function(embed_id)
