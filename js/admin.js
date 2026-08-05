@@ -732,6 +732,33 @@ jQuery(document).ready(function($) {
 		return hasSmartTagWidgetsCache;
 	};
 	
+	// WPFORMS GECKO CARET PLACEMENT BUG WORKAROUND
+	// Gecko-only: Blink/WebKit place the caret after the pill correctly.
+	// Give an input widget a clickable caret-landing spot after a trailing tag pill.
+	// renderWidgetContent leaves an empty trailing text node after a trailing tag;
+	// a zero-width node can't be hit-tested, so the caret lands inside the tag and
+	// typed/inserted text goes into it. Fill that node with a ZWSP (stripped on save).
+	var fixSmartTagWidgetCaret = function(widget)
+	{
+		// sweep stale ZWSPs
+		var anchor = window.getSelection().anchorNode;
+		for(var node = widget.firstChild; node; node = node.nextSibling)
+			if(node.nodeType === 3 && node !== anchor)
+				node.nodeValue = node.nodeValue.split('\u200B').join('');
+		var last = widget.lastChild;
+		if(!last)
+			return;
+		// trailing empty text node right after a tag: fill it with a ZWSP
+		if(last.nodeType === 3 && last.nodeValue === ''
+		&& last.previousSibling && last.previousSibling.nodeType === 1
+		&& last.previousSibling.classList.contains('tag'))
+			last.nodeValue = '\u200B';
+		// trailing tag with no text node after it: append a ZWSP node
+		else if(last.nodeType === 1 && last.classList.contains('tag'))
+			widget.appendChild(document.createTextNode('\u200B'));
+	};
+	// END WPFORMS GECKO CARET PLACEMENT BUG WORKAROUND
+	
 	var initSmartTagWidgets = function(container)
 	{
 		// init WPForms >= 1.10 smart tag widgets or show legacy toggle buttons for < 1.10
@@ -742,6 +769,16 @@ jQuery(document).ready(function($) {
 			container.find('input.smart-tags, textarea.smart-tags').addClass('wpforms-smart-tags-enabled');
 			
 			WPForms.Admin.Builder.SmartTags.initWidgets(container);
+			
+			// WPFORMS GECKO CARET PLACEMENT BUG WORKAROUND
+			// input widgets (not textareas) can end with a bare tag when a value is
+			// loaded without a trailing space; fix the caret landing and keep it fixed
+			container.find('.wpforms-smart-tags-widget-input').each(function()
+			{
+				fixSmartTagWidgetCaret(this);
+				jQuery(this).on('input', function() { fixSmartTagWidgetCaret(this); });
+			});
+			// END GECKO CARET PLACEMENT WPFORMS BUG WORKAROUND
 		}
 		else
 			container.find('.toggle-smart-tag-display').show();
