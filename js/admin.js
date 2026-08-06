@@ -1274,9 +1274,10 @@ jQuery(document).ready(function($) {
 			
 			// set unique id
 			tag.find('label').attr('for', 'mapping-smart-tags-'+data.mapping_id);
-			tag.find('textarea.smart-tags').attr('id', 'mapping-smart-tags-'+data.mapping_id);
-			
-			tag.find('textarea.smart-tags').val(data.smart_tags).data('mapping_id', data.mapping_id);
+			tag.find('textarea.smart-tags')
+				.attr('id', 'mapping-smart-tags-'+data.mapping_id)
+				.val(data.smart_tags)
+				.data('mapping_id', data.mapping_id);
 			tag.find('.pdf-field-name').text(pdf_field_caption);
 		}
 		
@@ -1525,10 +1526,10 @@ jQuery(document).ready(function($) {
 			
 			// set unique id
 			tag.find('label').attr('for', 'embed-smart-tags-'+data.embed.id);
-			tag.find('textarea.smart-tags').attr('id', 'embed-smart-tags-'+data.embed.id);
-			
-			tag.find('textarea.smart-tags').text(data.smart_tags);
-			tag.find('textarea.smart-tags').data('embed_id', data.embed.id);
+			tag.find('textarea.smart-tags')
+				.attr('id', 'embed-smart-tags-'+data.embed.id)
+				.val(data.smart_tags)
+				.data('embed_id', data.embed.id);
 		}
 		else
 		{
