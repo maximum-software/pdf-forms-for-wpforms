@@ -811,6 +811,16 @@ jQuery(document).ready(function($) {
 		
 		if(typeof options != 'undefined' && options !== null)
 		{
+			// set unique ids
+			tag.find('.pdf-option-save-directory label').attr('for', 'pdf-option-save-directory-smart-tags-'+attachment_id);
+			tag.find('.pdf-option-save-directory input.smart-tags').attr('id', 'pdf-option-save-directory-smart-tags-'+attachment_id);
+			tag.find('.pdf-option-filename label').attr('for', 'pdf-option-filename-smart-tags-'+attachment_id);
+			tag.find('.pdf-option-filename input.smart-tags').attr('id', 'pdf-option-filename-smart-tags-'+attachment_id);
+			tag.find('.pdf-option-confirmations label').attr('for', 'pdf-forms-for-wpforms-confirmations-list-'+attachment_id);
+			tag.find('.pdf-option-confirmations select').attr('id', 'pdf-forms-for-wpforms-confirmations-list-'+attachment_id);
+			tag.find('.pdf-option-notifications label').attr('for', 'pdf-forms-for-wpforms-notifications-list-'+attachment_id);
+			tag.find('.pdf-option-notifications select').attr('id', 'pdf-forms-for-wpforms-notifications-list-'+attachment_id);
+			
 			tag.find('.pdf-options input[type=checkbox]').each(function() {
 				var option = jQuery(this).data('option');
 				jQuery(this)[0].checked = (options[option] !== false);
@@ -821,12 +831,6 @@ jQuery(document).ready(function($) {
 			});
 			tag.find('.pdf-options select.notifications-list').initializeMultipleSelect2Field('notifications', options['notifications']);
 			tag.find('.pdf-options select.confirmations-list').initializeMultipleSelect2Field('confirmations', options['confirmations']);
-			
-			// set unique ids
-			tag.find('.pdf-option-save-directory label').attr('for', 'pdf-option-save-directory-smart-tags-'+attachment_id);
-			tag.find('.pdf-option-save-directory input.smart-tags').attr('id', 'pdf-option-save-directory-smart-tags-'+attachment_id);
-			tag.find('.pdf-option-filename label').attr('for', 'pdf-option-filename-smart-tags-'+attachment_id);
-			tag.find('.pdf-option-filename input.smart-tags').attr('id', 'pdf-option-filename-smart-tags-'+attachment_id);
 		}
 		
 		tag.find('.pdf-options input[type=checkbox]').change(function() {
@@ -1531,8 +1535,8 @@ jQuery(document).ready(function($) {
 			var template = jQuery('.pdf-forms-for-wpforms-admin .image-embeds-row-smarttag-template');
 			var tag = template.clone().removeClass('image-embeds-row-smarttag-template').addClass('image-embeds-row');
 			
-			// set unique id
-			tag.find('label').attr('for', 'embed-smart-tags-'+data.embed.id);
+			// set unique id for smart-tags textarea
+			tag.find('.smart-tags label').attr('for', 'embed-smart-tags-'+data.embed.id);
 			tag.find('textarea.smart-tags')
 				.attr('id', 'embed-smart-tags-'+data.embed.id)
 				.val(data.smart_tags)
@@ -1545,6 +1549,16 @@ jQuery(document).ready(function($) {
 			tag.find('.convert-to-smarttags-button').data('embed_id', data.embed.id);
 			tag.find('span.wpf-field-name').text(data.wpf_field_data.text);
 		}
+		
+		// set unique ids for coordinate inputs and their labels
+		tag.find('.page-coordinates label[for="embed-left"]').attr('for', 'embed-left-'+data.embed.id);
+		tag.find('.page-coordinates input[name="left"]').attr('id', 'embed-left-'+data.embed.id);
+		tag.find('.page-coordinates label[for="embed-top"]').attr('for', 'embed-top-'+data.embed.id);
+		tag.find('.page-coordinates input[name="top"]').attr('id', 'embed-top-'+data.embed.id);
+		tag.find('.page-coordinates label[for="embed-width"]').attr('for', 'embed-width-'+data.embed.id);
+		tag.find('.page-coordinates input[name="width"]').attr('id', 'embed-width-'+data.embed.id);
+		tag.find('.page-coordinates label[for="embed-height"]').attr('for', 'embed-height-'+data.embed.id);
+		tag.find('.page-coordinates input[name="height"]').attr('id', 'embed-height-'+data.embed.id);
 		
 		tag.attr('data-embed_id', data.embed.id);
 		

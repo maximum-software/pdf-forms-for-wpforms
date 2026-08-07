@@ -29,28 +29,28 @@
 						<div class="wpforms-panel-field pdf-option-skip"><input data-option="skip_empty" type="checkbox"/> {skip-when-empty}</div>
 						<div class="wpforms-panel-field pdf-option-flatten"><input data-option="flatten" type="checkbox"/> {flatten}</div>
 						<div class="wpforms-panel-field pdf-option-filename pdf-options-multiline">
-								<label for="pdf-forms-for-wpforms-smart-tags">
+								<label for="pdf-forms-for-wpforms-filename">
 									<span>{filename}</span>
 									<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
 								</label>
-								<div class="flex"><input id="pdf-forms-for-wpforms-smart-tags" data-option="filename" type="text" class="smart-tags" data-type="all"/><span>.pdf</span></div>
+								<div class="flex"><input id="pdf-forms-for-wpforms-filename" data-option="filename" type="text" class="smart-tags" data-type="all"/><span>.pdf</span></div>
 								<div class="pdf-options-hint">{leave-blank-to-disable}</div>
 							</div>
 						<div class="wpforms-panel-field pdf-option-save-directory pdf-options-multiline">
-							<label for="pdf-forms-for-wpforms-smart-tags">
+							<label for="pdf-forms-for-wpforms-save-directory">
 								<span>{save-directory}</span>
 								<a href="#" class="toggle-smart-tag-display toggle-unfoldable-cont" data-type="all"><i class="fa fa-tags"></i><span>{show-smart-tags}</span></a>
 							</label>
-							<div class="flex"><span>wp-content/uploads/</span><input id="pdf-forms-for-wpforms-smart-tags" data-option="save_directory" type="text" class="smart-tags" data-type="all"/></div>
+							<div class="flex"><span>wp-content/uploads/</span><input id="pdf-forms-for-wpforms-save-directory" data-option="save_directory" type="text" class="smart-tags" data-type="all"/></div>
 							<div class="pdf-options-hint">{leave-blank-to-disable}</div>
 						</div>
 						<div class="wpforms-panel-field pdf-option-confirmations select-dropdown confirmation">
-							{confirmations}<br/>
-							<select class="confirmations-list" multiple="multiple" data-option="confirmations"></select>
+							<label for="pdf-forms-for-wpforms-confirmations-list"><span>{confirmations}</span></label>
+							<select id="pdf-forms-for-wpforms-confirmations-list" class="confirmations-list" multiple="multiple" data-option="confirmations"></select>
 						</div>
 						<div class="wpforms-panel-field pdf-option-notifications select-dropdown notification">
-							{notifications}<br/>
-							<select class="notifications-list" multiple="multiple" data-option="notifications"></select>
+							<label for="pdf-forms-for-wpforms-notifications-list"><span>{notifications}</span></label>
+							<select id="pdf-forms-for-wpforms-notifications-list" class="notifications-list" multiple="multiple" data-option="notifications"></select>
 						</div>
 					</div>
 				</td>
@@ -198,20 +198,20 @@
 						</div>
 						<div class="page-coordinates">
 							<span>
-								<label for="left">{left}</label>
-								<input type="number" min="0" name="left" class="coordinate" value="10" /> {pts};
+								<label for="embed-left">{left}</label>
+								<input type="number" min="0" id="embed-left" name="left" class="coordinate" value="10" /> {pts};
 							</span>
 							<span>
-								<label for="top">{top}</label>
-								<input type="number" min="0" name="top" class="coordinate" value="10" /> {pts};
+								<label for="embed-top">{top}</label>
+								<input type="number" min="0" id="embed-top" name="top" class="coordinate" value="10" /> {pts};
 							</span>
 							<span>
-								<label for="width">{width}</label>
-								<input type="number" min="0" name="width" class="coordinate" value="50" /> {pts};
+								<label for="embed-width">{width}</label>
+								<input type="number" min="0" id="embed-width" name="width" class="coordinate" value="50" /> {pts};
 							</span>
 							<span>
-								<label for="height">{height}</label>
-								<input type="number" min="0" name="height" class="coordinate" value="50" /> {pts};
+								<label for="embed-height">{height}</label>
+								<input type="number" min="0" id="embed-height" name="height" class="coordinate" value="50" /> {pts};
 							</span>
 						</div>
 					</td>
@@ -244,20 +244,20 @@
 						</div>
 						<div class="page-coordinates">
 							<span>
-								<label for="left">{left}</label>
-								<input type="number" min="0" name="left" class="coordinate" value="10" /> {pts};
+								<label for="embed-left">{left}</label>
+								<input type="number" min="0" id="embed-left" name="left" class="coordinate" value="10" /> {pts};
 							</span>
 							<span>
-								<label for="top">{top}</label>
-								<input type="number" min="0" name="top" class="coordinate" value="10" /> {pts};
+								<label for="embed-top">{top}</label>
+								<input type="number" min="0" id="embed-top" name="top" class="coordinate" value="10" /> {pts};
 							</span>
 							<span>
-								<label for="width">{width}</label>
-								<input type="number" min="0" name="width" class="coordinate" value="50" /> {pts};
+								<label for="embed-width">{width}</label>
+								<input type="number" min="0" id="embed-width" name="width" class="coordinate" value="50" /> {pts};
 							</span>
 							<span>
-								<label for="height">{height}</label>
-								<input type="number" min="0" name="height" class="coordinate" value="50" /> {pts};
+								<label for="embed-height">{height}</label>
+								<input type="number" min="0" id="embed-height" name="height" class="coordinate" value="50" /> {pts};
 							</span>
 						</div>
 					</td>
