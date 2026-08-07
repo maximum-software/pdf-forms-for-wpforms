@@ -1002,12 +1002,19 @@ jQuery(document).ready(function($) {
 			return [];
 	};
 	
-	var runWhenDoneTimers = {};
-	var runWhenDone = function(func)
+	var runWhenDoneTimers = [];
+	var runWhenDone = function(func, args)
 	{
-		if(runWhenDoneTimers[func])
-			return;
-		runWhenDoneTimers[func] = setTimeout(function(func){ delete runWhenDoneTimers[func]; func(); }, 0, func);
+		for(var i=0; i<runWhenDoneTimers.length; i++)
+			if(runWhenDoneTimers[i].func === func && runWhenDoneTimers[i].args === args)
+				return;
+		var timer = {func: func, args: args};
+		timer.id = setTimeout(function(timer)
+		{
+			runWhenDoneTimers.splice(runWhenDoneTimers.indexOf(timer), 1);
+			timer.func(timer.args);
+		}, 0, timer);
+		runWhenDoneTimers.push(timer);
 	}
 	
 	var setMappings = function(mappings)
@@ -1315,7 +1322,7 @@ jQuery(document).ready(function($) {
 		});
 		
 		tag.insertBefore(jQuery('.pdf-forms-for-wpforms-admin .pdf-fields-mapper .delete-all-row'));
-		initSmartTagWidgets(tag);
+		runWhenDone(initSmartTagWidgets, tag);
 		jQuery('.pdf-forms-for-wpforms-admin .delete-all-row').show();
 	};
 	
@@ -1578,7 +1585,7 @@ jQuery(document).ready(function($) {
 			tag.find('.page-selector-row').addBack('.page-selector-row').hide();
 		
 		jQuery('.pdf-forms-for-wpforms-admin .image-embeds tbody').append(tag);
-		initSmartTagWidgets(tag);
+		runWhenDone(initSmartTagWidgets, tag);
 	};
 	
 	var deleteEmbed = function(embed_id)
