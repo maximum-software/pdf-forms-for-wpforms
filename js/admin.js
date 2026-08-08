@@ -784,6 +784,49 @@ jQuery(document).ready(function($) {
 			container.find('.toggle-smart-tag-display').show();
 	};
 	
+	// returns the scrollable panel element that contains our settings section
+	var getScroller = function()
+	{
+		return jQuery('.pdf-forms-for-wpforms-admin').closest('.wpforms-panel-content-wrap');
+	};
+	
+	// disables scroll anchoring on the panel scroller
+	var disableScrollAnchoring = function()
+	{
+		getScroller().css('overflow-anchor', 'none');
+	};
+	
+	// schedules re-enablement of scroll anchoring
+	var reenableScrollAnchoring = function()
+	{
+		runWhenDone(function() { getScroller().css('overflow-anchor', ''); });
+	};
+	
+	// captures row's viewport position so that it can be restored afterwards
+	var getRowInViewPosition = function(rowSelector)
+	{
+		var row = jQuery(rowSelector)[0];
+		return {
+			viewportTop: row ? row.getBoundingClientRect().top : 0,
+			rowSelector: rowSelector
+		};
+	};
+	
+	// schedules restoration of row's viewport position captured previously
+	var restoreRowInViewPosition = function(position)
+	{
+		runWhenDone(function()
+		{
+			var row = jQuery(position.rowSelector)[0];
+			if(!row)
+				return;
+			var scroller = getScroller();
+			scroller.css('scroll-behavior', 'auto'); // disable scroller's smooth scroll behavior
+			scroller.scrollTop(scroller.scrollTop() + row.getBoundingClientRect().top - position.viewportTop);
+			scroller.css('scroll-behavior', ''); // restore scroll behavior
+		});
+	};
+	
 	var addAttachment = function(data)
 	{
 		var attachment_id = data.attachment_id;
@@ -1332,6 +1375,8 @@ jQuery(document).ready(function($) {
 	
 	var refreshMappings = function()
 	{
+		disableScrollAnchoring();
+		
 		jQuery('.pdf-forms-for-wpforms-admin .pdf-mapping-row').remove();
 		jQuery('.pdf-forms-for-wpforms-admin .pdf-valuemapping-row').remove();
 		
@@ -1347,6 +1392,8 @@ jQuery(document).ready(function($) {
 			jQuery('.pdf-forms-for-wpforms-admin .delete-all-row').hide();
 		else
 			jQuery('.pdf-forms-for-wpforms-admin .delete-all-row').show();
+		
+		reenableScrollAnchoring();
 	};
 	
 	var updateFieldHint = function()
@@ -1496,6 +1543,8 @@ jQuery(document).ready(function($) {
 	
 	var refreshEmbeds = function()
 	{
+		disableScrollAnchoring();
+		
 		jQuery('.pdf-forms-for-wpforms-admin .image-embeds-row').remove();
 		
 		var embeds = getEmbeds();
@@ -1524,6 +1573,8 @@ jQuery(document).ready(function($) {
 				addEmbedEntry({wpf_field_data: wpf_field_data, attachment: attachment, embed: embed});
 			}
 		}
+		
+		reenableScrollAnchoring();
 	};
 	
 	var addEmbedEntry = function(data)
@@ -1635,6 +1686,20 @@ jQuery(document).ready(function($) {
 		if(!pageData || !pageData.width || !pageData.height)
 			return;
 		
+		// set the container and image dimensions
+		var width = 700;
+		var height = Math.round((pageData.height / pageData.width) * width);
+		var widthCss = width + 'px';
+		var heightCss = height + 'px';
+		
+		var container = tag.find('.jcrop-container');
+		var image = tag.find('.jcrop-page');
+		
+		container.css('width', widthCss);
+		container.css('height', heightCss);
+		image.attr('width', width).css('width', widthCss);
+		image.attr('height', height).css('height', heightCss);
+		
 		jQuery.ajax({
 			url: ajaxurl,
 			type: 'POST',
@@ -1654,22 +1719,6 @@ jQuery(document).ready(function($) {
 				
 				if(data.hasOwnProperty('snapshot'))
 				{
-					var width = 700;
-					var height = Math.round((pageData.height / pageData.width) * width);
-					
-					var container = tag.find('.jcrop-container');
-					var image = tag.find('.jcrop-page');
-					
-					var widthStr = width.toString();
-					var heightStr = height.toString();
-					var widthCss = widthStr + 'px';
-					var heightCss = heightStr + 'px';
-					
-					jQuery(image).attr('width', widthStr).css('width', widthCss);
-					jQuery(image).attr('height', heightStr).css('height', heightCss);
-					jQuery(container).css('width', widthCss);
-					jQuery(container).css('height', heightCss);
-					
 					var xPixelsPerPoint = width / pageData.width;
 					var yPixelsPerPoint = height / pageData.height;
 					
@@ -2264,6 +2313,9 @@ jQuery(document).ready(function($) {
 
 		var mapping_id = jQuery(this).data('mapping_id');
 
+		var rowInViewPosition = getRowInViewPosition(
+			'.pdf-forms-for-wpforms-admin .pdf-mapping-row[data-mapping_id="'+mapping_id+'"]');
+
 		var mappings = getMappings();
 		for(var i=0, l=mappings.length; i<l; i++)
 		{
@@ -2276,6 +2328,7 @@ jQuery(document).ready(function($) {
 		}
 		setMappings(mappings);
 		refreshMappings();
+		restoreRowInViewPosition(rowInViewPosition);
 	});
 
 	jQuery('.pdf-forms-for-wpforms-admin .image-embedding-tool').on("click", '.convert-to-smarttags-button', function(event) {
@@ -2285,6 +2338,9 @@ jQuery(document).ready(function($) {
 		event.preventDefault();
 		
 		var embed_id = jQuery(this).data('embed_id');
+		
+		var rowInViewPosition = getRowInViewPosition(
+			'.pdf-forms-for-wpforms-admin .image-embeds-row[data-embed_id="'+embed_id+'"]');
 		
 		var embeds = getEmbeds();
 		for(var i=0, l=embeds.length; i<l; i++){
@@ -2297,6 +2353,7 @@ jQuery(document).ready(function($) {
 		}
 		setEmbeds(embeds);
 		refreshEmbeds();
+		restoreRowInViewPosition(rowInViewPosition);
 	});
 	
 	var generateValueMappings = function(mapping_id, wpf_field, pdf_field) {
