@@ -322,6 +322,24 @@
 	height: 32px !important;
 }
 
+.pdf-forms-for-wpforms-admin .select-dropdown .select2 .select2-selection--multiple .select2-search--inline
+{
+	margin: 6px 0 0;
+}
+
+.pdf-forms-for-wpforms-admin .select-dropdown .select2 .select2-selection--multiple .select2-search__field
+{
+	height: 19px;
+	margin-top: 0;
+	line-height: 19px;
+}
+
+.pdf-forms-for-wpforms-admin .select-dropdown .select2 .select2-selection--multiple .select2-selection__choice
+{
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
 .pdf-forms-for-wpforms-admin .image-embeds td.pdf-page
 {
 	width: 10%;
